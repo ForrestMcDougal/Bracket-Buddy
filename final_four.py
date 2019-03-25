@@ -18,7 +18,7 @@ final_fours = {
         'Louisville': False
     },
     2013: {
-        'Lousiville': True,
+        'Louisville': True,
         'Michigan': False,
         'Syracuse': False,
         'Wichita St.': False
