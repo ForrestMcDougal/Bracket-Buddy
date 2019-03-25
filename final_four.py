@@ -2,7 +2,7 @@ final_fours = {
     2010: {
         'Duke': True,
         'Butler': False,
-        'Michigan State': False,
+        'Michigan St.': False,
         'West Virginia': False,
     },
     2011: {
@@ -14,14 +14,14 @@ final_fours = {
     2012: {
         'Kentucky': True,
         'Kansas': False,
-        'Ohio State': False,
+        'Ohio St.': False,
         'Louisville': False
     },
     2013: {
         'Lousiville': True,
         'Michigan': False,
         'Syracuse': False,
-        'Wichita State': False
+        'Wichita St.': False
     },
     2014: {
         'Connecticut': True,
@@ -32,7 +32,7 @@ final_fours = {
     2015: {
         'Duke': True,
         'Wisconsin': False,
-        'Michigan State': False,
+        'Michigan St.': False,
         'Kentucky': False
     },
     2016: {
@@ -51,6 +51,6 @@ final_fours = {
         'Villanova': True,
         'Michigan': False,
         'Kansas': False,
-        'Loyola-Chicago': False
+        'Loyola Chicago': False
     }
 }
