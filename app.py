@@ -1,5 +1,6 @@
-from flask import Flask, render_template, jsonify
+from flask import Flask, render_template
 from flask_pymongo import PyMongo
+import simplejson
 
 app = Flask(__name__)
 
@@ -14,7 +15,7 @@ def all_data():
     for doc in data:
         doc.pop('_id')
         docs.append(doc)
-    return jsonify(docs)
+    return simplejson.dumps(docs, ignore_nan=True)
 
 
 @app.route("/api/team/<team>")
@@ -24,7 +25,7 @@ def team_data(team):
     for doc in team_info:
         doc.pop('_id')
         docs.append(doc)
-    return jsonify(docs)
+    return simplejson.dumps(docs, ignore_nan=True)
 
 
 @app.route("/api/year/<year>")
@@ -34,7 +35,7 @@ def year_data(year):
     for doc in year_info:
         doc.pop('_id')
         docs.append(doc)
-    return jsonify(docs)
+    return simplejson.dumps(docs, ignore_nan=True)
 
 
 @app.route("/api/team/year/<team>/<year>")
@@ -45,12 +46,17 @@ def team_year_data(team, year):
     for doc in team_year_info:
         doc.pop('_id')
         docs.append(doc)
-    return jsonify(docs)
+    return simplejson.dumps(docs, ignore_nan=True)
 
 
 @app.route('/')
 def index():
     return render_template('index.html')
+
+
+@app.route('/scatter')
+def comparison():
+    return render_template('scatter.html')
 
 
 if __name__ == "__main__":
