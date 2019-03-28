@@ -49,6 +49,27 @@ def team_year_data(team, year):
     return simplejson.dumps(docs, ignore_nan=True)
 
 
+@app.route("/api/scatter/<year>/<team>/<team_year>")
+def scatter(year, team, team_year):
+    if year == 'all':
+        year_info = mongo.db.basketball.find({})
+    else:
+        year_info = mongo.db.basketball.find({'Season': int(year)})
+    docs = []
+    for doc in year_info:
+        doc.pop('_id')
+        doc['featured'] = False
+        docs.append(doc)
+    if team != 'none':
+        team = mongo.db.basketball.find(
+            {'Season': int(team_year), 'TeamName': team})
+        for doc in team:
+            doc.pop('_id')
+            doc['featured'] = True
+            docs.append(doc)
+    return simplejson.dumps(docs, ignore_nan=True)
+
+
 @app.route('/')
 def index():
     return render_template('index.html')
