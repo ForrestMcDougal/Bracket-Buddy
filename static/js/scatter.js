@@ -225,9 +225,8 @@ function visualize(theData) {
 	d3.select(window).on('resize', resize);
 
 	function resize() {
-		width = parseInt(d3.select('#scatter').style('width'));
-		height = width - width / 3.9;
-		leftTextY = (height + labelArea) / 2 - labelArea;
+		let width = parseInt(d3.select('#scatter').style('width'));
+		let height = width - width / 3.9;
 
 		svg.attr('width', width).attr('height', height);
 
@@ -239,6 +238,12 @@ function visualize(theData) {
 		svg.select('.yAxis').call(yAxis);
 
 		tickCount();
+
+
+		let xText = d3.select('.xText');
+		let yText = d3.select('.yText');
+		let leftTextX = margin + tPadLeft;
+		let leftTextY = (height + labelArea) / 2 - labelArea / 2;
 
 		function xTextRefreshResize() {
 			xText.attr(
