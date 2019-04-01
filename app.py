@@ -140,6 +140,36 @@ def radar(team, year):
         temp_doc['FT_Rate_D'] = stats[0]['All']['FT_Rate_D']['mean'] / \
             doc['FT_Rate_D']
         master_temp['Team'] = temp_doc
+        docs.append(master_temp)
+    return simplejson.dumps(docs, ignore_nan=True)
+
+
+@app.route('/api/radar/compare/<team1>/<year1>/<team2>/<year2>')
+def radar_compare(team1, year1, team2, year2):
+    team_year_info = mongo.db.basketball.find(
+        {'TeamName': str(team1), 'Season': int(year1)})
+    docs = []
+    for doc in team_year_info:
+        doc.pop('_id')
+        master_temp = {}
+        temp_doc = {}
+        temp_doc['eFG_Pct_O'] = doc['eFG_Pct_O'] / \
+            stats[0]['All']['eFG_Pct_O']['mean']
+        temp_doc['TO_Pct_O'] = stats[0]['All']['TO_Pct_O']['mean'] / \
+            doc['TO_Pct_O']
+        temp_doc['OR_Pct_O'] = doc['OR_Pct_O'] / \
+            stats[0]['All']['OR_Pct_O']['mean']
+        temp_doc['FT_Rate_O'] = doc['FT_Rate_O'] / \
+            stats[0]['All']['FT_Rate_O']['mean']
+        temp_doc['eFG_Pct_D'] = stats[0]['All']['eFG_Pct_D']['mean'] / \
+            doc['eFG_Pct_D']
+        temp_doc['TO_Pct_D'] = doc['TO_Pct_D'] / \
+            stats[0]['All']['TO_Pct_D']['mean']
+        temp_doc['OR_Pct_D'] = stats[0]['All']['OR_Pct_D']['mean'] / \
+            doc['OR_Pct_D']
+        temp_doc['FT_Rate_D'] = stats[0]['All']['FT_Rate_D']['mean'] / \
+            doc['FT_Rate_D']
+        master_temp['Team'] = temp_doc
         tournament_doc = {}
         tournament_doc['eFG_Pct_O'] = 1.0460424505970831
         tournament_doc['TO_Pct_O'] = 1.073456866651516
@@ -150,16 +180,41 @@ def radar(team, year):
         tournament_doc['OR_Pct_D'] = 1.0391702499951196
         tournament_doc['FT_Rate_D'] = 1.0856409662284037
         master_temp['Tournament'] = tournament_doc
-        ff_doc = {}
-        ff_doc['eFG_Pct_O'] = 1.0593040661176616
-        ff_doc['TO_Pct_O'] = 1.1219560658029968
-        ff_doc['OR_Pct_O'] = 1.1207991829455208
-        ff_doc['FT_Rate_O'] = 1.018268829152643
-        ff_doc['eFG_Pct_D'] = 1.0848117551048555
-        ff_doc['TO_Pct_D'] = 1.0262171682498762
-        ff_doc['OR_Pct_D'] = 1.0387269741356127
-        ff_doc['FT_Rate_D'] = 1.175776291868274
-        master_temp['FinalFour'] = ff_doc
+        docs.append(master_temp)
+
+    team_year_info = mongo.db.basketball.find(
+        {'TeamName': str(team2), 'Season': int(year2)})
+    for doc in team_year_info:
+        doc.pop('_id')
+        master_temp = {}
+        temp_doc = {}
+        temp_doc['eFG_Pct_O'] = doc['eFG_Pct_O'] / \
+            stats[0]['All']['eFG_Pct_O']['mean']
+        temp_doc['TO_Pct_O'] = stats[0]['All']['TO_Pct_O']['mean'] / \
+            doc['TO_Pct_O']
+        temp_doc['OR_Pct_O'] = doc['OR_Pct_O'] / \
+            stats[0]['All']['OR_Pct_O']['mean']
+        temp_doc['FT_Rate_O'] = doc['FT_Rate_O'] / \
+            stats[0]['All']['FT_Rate_O']['mean']
+        temp_doc['eFG_Pct_D'] = stats[0]['All']['eFG_Pct_D']['mean'] / \
+            doc['eFG_Pct_D']
+        temp_doc['TO_Pct_D'] = doc['TO_Pct_D'] / \
+            stats[0]['All']['TO_Pct_D']['mean']
+        temp_doc['OR_Pct_D'] = stats[0]['All']['OR_Pct_D']['mean'] / \
+            doc['OR_Pct_D']
+        temp_doc['FT_Rate_D'] = stats[0]['All']['FT_Rate_D']['mean'] / \
+            doc['FT_Rate_D']
+        master_temp['Team'] = temp_doc
+        tournament_doc = {}
+        tournament_doc['eFG_Pct_O'] = 1.0460424505970831
+        tournament_doc['TO_Pct_O'] = 1.073456866651516
+        tournament_doc['OR_Pct_O'] = 1.0629167804186908
+        tournament_doc['FT_Rate_O'] = 1.0338176225710891
+        tournament_doc['eFG_Pct_D'] = 1.0493121330945443
+        tournament_doc['TO_Pct_D'] = 1.0167173947951866
+        tournament_doc['OR_Pct_D'] = 1.0391702499951196
+        tournament_doc['FT_Rate_D'] = 1.0856409662284037
+        master_temp['Tournament'] = tournament_doc
         docs.append(master_temp)
     return simplejson.dumps(docs, ignore_nan=True)
 
@@ -177,6 +232,16 @@ def comparison():
 @app.route('/team')
 def team_page():
     return render_template('teamPage.html')
+
+
+@app.route('/comparison')
+def comparison_page():
+    return render_template('comparison.html')
+
+
+@app.route('/reference')
+def reference_page():
+    return render_template('reference.html')
 
 
 if __name__ == "__main__":

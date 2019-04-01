@@ -35,10 +35,10 @@ function makeBarChartInit(ctx) {
 }
 
 function makeDoubleBarChartInit(ctx) {
-	let selTeamHome = teamDropdownHome.value;
-	let selYearHome = teamYearDropdownHome.value;
-	let selTeamAway = teamDropdownAway.value;
-	let selYearAway = teamYearDropdownAway.value;
+	let selTeamHome = homeTeamDropdown.value;
+	let selYearHome = homeYearDropdown.value;
+	let selTeamAway = awayTeamDropdown.value;
+	let selYearAway = awayYearDropdown.value;
 	d3.json(`/api/barDouble/${selTeamHome}/${selYearHome}/${selTeamAway}/${selYearAway}`).then((data) => {
 		let data1 = [];
 		let data2 = [];
@@ -56,13 +56,13 @@ function makeDoubleBarChartInit(ctx) {
 		data2.push(data[1]['norm_Exp']);
 		data2.push(data[1]['norm_Size']);
 
-		myChart = new Chart(ctx, {
+		doubleBarChart = new Chart(ctx, {
 			type: 'bar',
 			data: {
 				labels: [ 'Tempo', 'OE', 'DE', 'Exp', 'Size' ],
 				datasets: [
 					{
-						label: 'Team1',
+						label: `${selYearHome} ${selTeamHome}`,
 						data: data1,
 						backgroundColor: '#7BAFD4',
 						borderColor: '#000000',
@@ -70,7 +70,7 @@ function makeDoubleBarChartInit(ctx) {
 						hoverBackgroundColor: [ '#355AB6', '#355AB6', '#355AB6', '#355AB6', '#355AB6' ]
 					},
 					{
-						label: 'Team2',
+						label: `${selYearAway} ${selTeamAway}`,
 						data: data2,
 						backgroundColor: '#BD3D8B',
 						borderColor: '#000000',
@@ -110,7 +110,7 @@ function makeBarChart(data, selTeam) {
 	barChart.update();
 }
 
-function makeDoubleBarChart(data) {
+function makeDoubleBarChart(data, homeTeam, homeYear, awayTeam, awayYear) {
 	let data1 = [];
 	let data2 = [];
 
@@ -127,11 +127,11 @@ function makeDoubleBarChart(data) {
 	data2.push(data[1]['norm_Exp']);
 	data2.push(data[1]['norm_Size']);
 
-	myChart.data = {
+	doubleBarChart.data = {
 		labels: [ 'Tempo', 'OE', 'DE', 'Exp', 'Size' ],
 		datasets: [
 			{
-				label: 'Team1',
+				label: `${homeYear} ${homeTeam}`,
 				data: data1,
 				backgroundColor: '#7BAFD4',
 				borderColor: '#000000',
@@ -139,7 +139,7 @@ function makeDoubleBarChart(data) {
 				hoverBackgroundColor: [ '#355AB6', '#355AB6', '#355AB6', '#355AB6', '#355AB6' ]
 			},
 			{
-				label: 'Team2',
+				label: `${awayYear} ${awayTeam}`,
 				data: data2,
 				backgroundColor: '#BD3D8B',
 				borderColor: '#000000',
@@ -148,5 +148,5 @@ function makeDoubleBarChart(data) {
 			}
 		]
 	};
-	myChart.update();
+	doubleBarChart.update();
 }

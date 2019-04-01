@@ -12,21 +12,24 @@
 
 <body>
   <nav class="navbar navbar-expand-lg navbar-light bg-light mb-3">
-    <a class="navbar-brand" href="#" id="home">NCAA DATA</a>
+    <a class="navbar-brand" href="/" id="home">NCAA DATA</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
       <span class="navbar-toggler-icon"></span>
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
-          <a id="team-page" class="nav-link" href="#">Team Page</a>
+        <li class="nav-item active">
+          <a id="team-page" class="nav-link" href="#">Team Page <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
-          <a id="compare-teams" class="nav-link" href="#">Comparison</a>
+          <a id="compare-teams" class="nav-link" href="/comparison">Comparison</a>
         </li>
         <li class="nav-item">
-          <a id="compare-scatter" class="nav-link" href="#">Graph</a>
+          <a id="compare-scatter" class="nav-link" href="/scatter">Graph</a>
+        </li>
+        <li class="nav-item">
+          <a id="reference" class="nav-link" href="/reference">Reference</a>
         </li>
       </ul>
     </div>
@@ -35,7 +38,7 @@
     <div id="team-select">
       <div class="row">
         <div class="col-md-3 col-sm-0 col-xs-0">
-          <h5>Add a Team</h5>
+          <h5>Change Team</h5>
         </div>
         <div class="col-md-3 col-sm-6 col-xs-12">
           <label for="team-year-filter">Choose a Year</label>
@@ -412,54 +415,78 @@
       </div>
     </div>
   </div>
-  <div id="barContainer">
-    <canvas id="teamBar" height="110px" width="500px"></canvas>
-  </div>
-  <div class="col-md-3 col-sm-6 col-xs-12">
-    <label for="history-filter">Change Stat</label>
-    <div>
-      <select id="history-filter" name="history-filter" class="dropdown">
-        <option value="Tempo" data-label="Tempo" selected>Tempo</option>
-        <option value="AdjTempo" data-label="Adj. Tempo">Adj. Tempo</option>
-        <option value="OE" data-label="Offensive Efficiency">O Efficiency</option>
-        <option value="AdjOE" data-label="Adjusted Offensive Efficiency">Adjusted O Efficiency</option>
-        <option value="DE" data-label="Defensive Efficiency">D Efficiency</option>
-        <option value="AdjDE" data-label="Adjusted Defensive Efficiency">Adjusted D Efficiency</option>
-        <option value="Exp" data-label="Experience">Experience</option>
-        <option value="Size" data-label="Size">Size</option>
-        <option value="BlockPct" data-label="Block %">Block %</option>
-        <option value="OppBlockPct" data-label="Opponent Block %">Opponent Block %</option>
-        <option value="StlRate" data-label="Steal Rate">Steal Rate</option>
-        <option value="OppStlRate" data-label="Opponent Steal Rate">Opponent Steal Rate</option>
-        <option value="DefensiveFingerprint" data-label="Defensive Fingerprint">Defensive Fingerprint</option>
-        <option value="eFG_Pct_O" data-label="Effective Field Goal % - Offense">Effective FG% - O</option>
-        <option value="eFG_Pct_D" data-label="Effective Field Goal % - Defense">Effective FG % - D</option>
-        <option value="TO_Pct_O" data-label="Offensive Turnover %">O Turnover %</option>
-        <option value="TO_Pct_D" data-label="Defensive Turnover %">D Turnover %</option>
-        <option value="OR_Pct_O" data-label="Offensive Rebound % - Earned">O Rebound % - Earned</option>
-        <option value="OR_Pct_D" data-label="Offensive Rebound % - Allowed">O Rebound % - Allowed</option>
-        <option value="FT_Rate_O" data-label="Free Throw Rate - Offense">Free Throw Rate - O</option>
-        <option value="FT_Rate_D" data-label="Free Throw Rate - Defense">Free Throw Rate - D</option>
-        <option value="OFF_FT" data-label="Offensive Free Throws">O Free Throws</option>
-        <option value="DEF_FT" data-label="Defensive Free Throws">D Free Throws</option>
-        <option value="OFF_2PT" data-label="Offensive 2 Pointers">O 2 Pointers</option>
-        <option value="DEF_2PT" data-label="Defensive 2 Pointers">D 2 Pointers</option>
-        <option value="OFF_3PT" data-label="Offensive 3 Pointers">O 3 Pointers</option>
-        <option value="DEF_3PT" data-label="Defensive 3 Pointers">D 3 Pointers</option>
-        <option value="Bench" data-label="Bench">Bench</option>
-        <option value="FG2Pct" data-label="2 Pt Field Goal %">2 Pt FG%</option>
-        <option value="OppFG2Pct" data-label="Opponent 2 Pt Field Goal %">Opponent 2 Pt FG%</option>
-        <option value="FG3Pct" data-label="3 Pt Field Goal %">3 Pt FG%</option>
-        <option value="OppFG3Pct" data-label="Opponent 3 Pt Field Goal %">Opponent 3 Pt FG%</option>
-        <option value="FTPct" data-label="Free Throw %">Free Throw %</option>
-        <option value="OppFTPct" data-label="Opponent Free Throw %">Opponent Free Throw %</option>
-        <option value="ARate" data-label="Assist Rate">Assist Rate</option>
-        <option value="OppARate" data-label="Opponent Assist Rate">Opponent Assist Rate</option>
-      </select>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 col-sm-6 col-xs-12" id="barContainer">
+        <canvas id="teamBar"></canvas>
+      </div>
+      <div class="col-md-6 col-sm-6 col-xs-12" id="fourFactorsRadar">
+        <canvas id="teamFourFactorsRadar"aspectRatio="1"></canvas>
+      </div>
     </div>
-  </div>
-  <div id="historyContainer">
-    <canvas id="teamHistory" height="110px" width="500px"></canvas>
+    <div class="row">
+      <div class="col-md-3 col-sm-6 col-xs-12">
+        <label for="history-filter">Change Stat</label>
+        <div>
+          <select id="history-filter" name="history-filter" class="dropdown">
+            <option value="Tempo" data-label="Tempo" selected>Tempo</option>
+            <option value="AdjTempo" data-label="Adj. Tempo">Adj. Tempo</option>
+            <option value="OE" data-label="Offensive Efficiency">O Efficiency</option>
+            <option value="AdjOE" data-label="Adjusted Offensive Efficiency">Adjusted O Efficiency</option>
+            <option value="DE" data-label="Defensive Efficiency">D Efficiency</option>
+            <option value="AdjDE" data-label="Adjusted Defensive Efficiency">Adjusted D Efficiency</option>
+            <option value="Exp" data-label="Experience">Experience</option>
+            <option value="Size" data-label="Size">Size</option>
+            <option value="BlockPct" data-label="Block %">Block %</option>
+            <option value="OppBlockPct" data-label="Opponent Block %">Opponent Block %</option>
+            <option value="StlRate" data-label="Steal Rate">Steal Rate</option>
+            <option value="OppStlRate" data-label="Opponent Steal Rate">Opponent Steal Rate</option>
+            <option value="DefensiveFingerprint" data-label="Defensive Fingerprint">Defensive Fingerprint</option>
+            <option value="eFG_Pct_O" data-label="Effective Field Goal % - Offense">Effective FG% - O</option>
+            <option value="eFG_Pct_D" data-label="Effective Field Goal % - Defense">Effective FG % - D</option>
+            <option value="TO_Pct_O" data-label="Offensive Turnover %">O Turnover %</option>
+            <option value="TO_Pct_D" data-label="Defensive Turnover %">D Turnover %</option>
+            <option value="OR_Pct_O" data-label="Offensive Rebound % - Earned">O Rebound % - Earned</option>
+            <option value="OR_Pct_D" data-label="Offensive Rebound % - Allowed">O Rebound % - Allowed</option>
+            <option value="FT_Rate_O" data-label="Free Throw Rate - Offense">Free Throw Rate - O</option>
+            <option value="FT_Rate_D" data-label="Free Throw Rate - Defense">Free Throw Rate - D</option>
+            <option value="OFF_FT" data-label="Offensive Free Throws">O Free Throws</option>
+            <option value="DEF_FT" data-label="Defensive Free Throws">D Free Throws</option>
+            <option value="OFF_2PT" data-label="Offensive 2 Pointers">O 2 Pointers</option>
+            <option value="DEF_2PT" data-label="Defensive 2 Pointers">D 2 Pointers</option>
+            <option value="OFF_3PT" data-label="Offensive 3 Pointers">O 3 Pointers</option>
+            <option value="DEF_3PT" data-label="Defensive 3 Pointers">D 3 Pointers</option>
+            <option value="Bench" data-label="Bench">Bench</option>
+            <option value="FG2Pct" data-label="2 Pt Field Goal %">2 Pt FG%</option>
+            <option value="OppFG2Pct" data-label="Opponent 2 Pt Field Goal %">Opponent 2 Pt FG%</option>
+            <option value="FG3Pct" data-label="3 Pt Field Goal %">3 Pt FG%</option>
+            <option value="OppFG3Pct" data-label="Opponent 3 Pt Field Goal %">Opponent 3 Pt FG%</option>
+            <option value="FTPct" data-label="Free Throw %">Free Throw %</option>
+            <option value="OppFTPct" data-label="Opponent Free Throw %">Opponent Free Throw %</option>
+            <option value="ARate" data-label="Assist Rate">Assist Rate</option>
+            <option value="OppARate" data-label="Opponent Assist Rate">Opponent Assist Rate</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6 col-sm-6 col-xs-12" id="historyContainer">
+        <canvas id="teamHistory"></canvas>
+      </div>
+      <div class="col-md-6 col-sm-6 col-xs-12" id="rank-radar">
+        <canvas id="rankRadar"></canvas>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6 col-sm-6 col-xs-12">
+        <canvas id="teamODoughnut" aspectRatio="1"></canvas>
+      </div>
+      <div class="col-md-6 col-sm-6 col-xs-12">
+        <canvas id="teamDDoughnut" aspectRatio="1"></canvas>
+      </div>
+      
+    </div>
+    </div>
   </div>
 
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -475,6 +502,8 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
   <script src="{{ url_for('static', filename='js/barChart.js') }}"></script>
   <script src="{{ url_for('static', filename='js/history.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/doughnuts.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/radar.js') }}"></script>
   <script src="{{ url_for('static', filename='js/teamPage.js') }}"></script>
 </body>
 
