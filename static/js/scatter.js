@@ -239,6 +239,7 @@ function visualize(theData) {
 
 		tickCount();
 
+
 		let xText = d3.select('.xText');
 		let yText = d3.select('.yText');
 		let leftTextX = margin + tPadLeft;
