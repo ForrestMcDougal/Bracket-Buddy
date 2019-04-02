@@ -28,7 +28,7 @@ function showPage() {
 	d3.json(`/api/barDouble/${homeTeam}/${homeYear}/${awayTeam}/${awayYear}`).then((data) => {
 		makeDoubleBarChart(data, homeTeam, homeYear, awayTeam, awayYear);
 		makeRadarRankCompare(data);
-		makeDoughnuts(data);
+		makeDoughnutsCompare(data);
 	});
 	d3
 		.json(`/api/radar/compare/${selTeamHome}/${selYearHome}/${selTeamAway}/${selYearAway}`)

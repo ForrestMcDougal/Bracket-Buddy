@@ -243,7 +243,7 @@ function makeDoughnutsCompareInit(ctxHomeO, ctxHomeD, ctxAwayO, ctxAwayD) {
 	});
 }
 
-function makeDoughnuts(data) {
+function makeDoughnutsCompare(data) {
 	let homeOData = [];
 	homeOData.push(data[0]['OFF_2PT'].toFixed(1));
 	homeOData.push(data[0]['OFF_3PT'].toFixed(1));

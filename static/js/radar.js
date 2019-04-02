@@ -206,9 +206,7 @@ function makeRadarFourFactorsComparisonInit(ctxHomeFF, ctxAwayFF) {
 			]
 		};
 
-		let allVals = teamDataHomeArr.concat(teamDataAwayArr);
-		console.log(allVals);
-		console.log(Math.max(...allVals));
+		let allVals = teamDataHomeArr.concat(...teamDataAwayArr).concat(...tourneyDataArr);
 
 		let options = {
 			scale: {
@@ -308,7 +306,7 @@ function makeRadarFourFactorsComparison(theData, homeTeam, homeYear, awayTeam, a
 		]
 	};
 
-	let allVals = teamDataHomeArr.concat(teamDataAwayArr);
+	let allVals = teamDataHomeArr.concat(...teamDataAwayArr).concat(...toruneyDataArr);
 
 	let options = {
 		scale: {
