@@ -52,5 +52,11 @@ final_fours = {
         'Michigan': False,
         'Kansas': False,
         'Loyola Chicago': False
+    },
+    2019: {
+        'Texas Tech': False,
+        'Michigan St.': False,
+        'Auburn': False,
+        'Virginia': False
     }
 }

@@ -4,6 +4,7 @@ import pymongo
 import pandas as pd
 
 from final_four import final_fours
+from team_colors import colors
 
 conn = 'mongodb://localhost:27017'
 client = pymongo.MongoClient(conn)
@@ -47,10 +48,14 @@ for year in years:
         record['Conference'] = find_conference(record['TeamName'])
         record['FinalFour'] = False
         record['Champion'] = False
-        if year < 2019:
-            if record['TeamName'] in final_fours[year].keys():
-                record['FinalFour'] = True
-                if final_fours[year][record['TeamName']]:
-                    record['Champion'] = True
+        team_name = record['TeamName']
+        team_colors = colors.get(team_name, ["#000000", "#000000", "#000000"])
+        record['color1'] = team_colors[0]
+        record['color2'] = team_colors[1]
+        record['color3'] = team_colors[2]
+        if record['TeamName'] in final_fours[year].keys():
+            record['FinalFour'] = True
+            if final_fours[year][record['TeamName']]:
+                record['Champion'] = True
 
         db.basketball.insert_one(record)
