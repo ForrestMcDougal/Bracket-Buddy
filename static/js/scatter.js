@@ -1,5 +1,3 @@
-const filters = document.querySelector('#filters');
-filters.addEventListener('change', showGraph);
 const teamSelect = document.querySelector('#team-select');
 teamSelect.addEventListener('change', showGraph);
 
@@ -11,6 +9,9 @@ const teamDropdown = document.querySelector('#team-dropdown');
 const teamYearDropdown = document.querySelector('#team-year-dropdown');
 const legendSpan = document.querySelector('#legend-selected-team');
 const correlation = document.querySelector('#correlation');
+
+teamGroup.addEventListener('change', showGraph);
+yearDropdown.addEventListener('change', showGraph);
 
 function pearsonCorrelation(independent, dependent) {
 	let independent_mean = arithmeticMean(independent);
@@ -48,6 +49,11 @@ function standardDeviation(data) {
 	return std_dev;
 }
 
+function xMinMax() {
+	xMin = d3.min(theData, (d) => parseFloat(d[curX]) * 0.9);
+	xMax = d3.max(theData, (d) => parseFloat(d[curX]) * 1.1);
+}
+
 let width = parseInt(d3.select('#scatter').style('width'));
 let height = width - width / 3.9;
 let margin = 10;
@@ -70,7 +76,7 @@ function axisGeneration() {
 	function xTextRefresh() {
 		xText.attr(
 			'transform',
-			'translate(' + ((width - labelArea) / 2 + labelArea) + ', ' + (height - margin - tPadBot) + ')'
+			'translate(' + ((width - labelArea) / 2 + labelArea - 40) + ', ' + (height - margin - tPadBot) + ')'
 		);
 	}
 	xTextRefresh();
@@ -224,6 +230,93 @@ function visualize(theData) {
 
 	d3.select(window).on('resize', resize);
 
+	d3.select('#x-axis-dropdown').on('change', function() {
+		curX = xAxisDropdown.value;
+		xMinMax();
+		xScale.domain([ xMin, xMax ]);
+		svg.select('.xAxis').transition().duration(300).call(xAxis);
+		d3.selectAll('circle').each(function() {
+			d3
+				.select(this)
+				.transition()
+				.attr('cx', function(d) {
+					return xScale(d[curX]);
+				})
+				.duration(300);
+		});
+		d3.selectAll('.teamText').each(function() {
+			d3
+				.select(this)
+				.transition()
+				.attr('dx', function(d) {
+					return xScale(d[curX]);
+				})
+				.duration(300);
+		});
+		let xAxisText = xAxisDropdown.options[xAxisDropdown.selectedIndex].getAttribute('data-label');
+		let xText = d3.select('.xText');
+		xText.remove();
+		svg.append('g').attr('class', 'xText');
+		xText = d3.select('.xText');
+		function xTextRefresh() {
+			xText.attr(
+				'transform',
+				'translate(' + ((width - labelArea) / 2 + labelArea - 40) + ', ' + (height - margin - tPadBot) + ')'
+			);
+		}
+		xTextRefresh();
+		xText
+			.append('text')
+			.attr('y', -20)
+			.attr('data-name', xAxisText)
+			.attr('data-axis', 'x')
+			.attr('class', 'aText x')
+			.text(xAxisText);
+	});
+
+	d3.select('#y-axis-dropdown').on('change', function() {
+		curY = yAxisDropdown.value;
+		yMinMax();
+		yScale.domain([ yMin, yMax ]);
+		svg.select('.yAxis').transition().duration(300).call(yAxis);
+		d3.selectAll('circle').each(function() {
+			d3
+				.select(this)
+				.transition()
+				.attr('cy', function(d) {
+					return yScale(d[curY]);
+				})
+				.duration(300);
+		});
+		d3.selectAll('.teamText').each(function() {
+			d3
+				.select(this)
+				.transition()
+				.attr('dy', function(d) {
+					return yScale(d[curY]);
+				})
+				.duration(300);
+		});
+		let yAxisText = yAxisDropdown.options[yAxisDropdown.selectedIndex].getAttribute('data-label');
+		let yText = d3.select('.yText');
+		yText.remove();
+		svg.append('g').attr('class', 'yText');
+		yText = d3.select('.yText');
+		let leftTextX = margin + tPadLeft;
+		let leftTextY = (height + labelArea) / 2 - labelArea / 2;
+		function yTextRefresh() {
+			yText.attr('transform', 'translate(' + leftTextX + ', ' + leftTextY + ')rotate(-90)');
+		}
+		yTextRefresh();
+		yText
+			.append('text')
+			.attr('y', 80)
+			.attr('data-name', yAxisText)
+			.attr('data-axis', 'y')
+			.attr('class', 'aText y')
+			.text(yAxisText);
+	});
+
 	function resize() {
 		let width = parseInt(d3.select('#scatter').style('width'));
 		let height = width - width / 3.9;
@@ -238,7 +331,6 @@ function visualize(theData) {
 		svg.select('.yAxis').call(yAxis);
 
 		tickCount();
-
 
 		let xText = d3.select('.xText');
 		let yText = d3.select('.yText');
