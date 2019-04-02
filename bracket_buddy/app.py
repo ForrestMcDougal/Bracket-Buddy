@@ -1,8 +1,9 @@
 from flask import Flask, render_template
 from flask_pymongo import PyMongo
 import simplejson
+import dns
 
-from stats import stats
+from team_stats import stats
 
 app = Flask(__name__)
 

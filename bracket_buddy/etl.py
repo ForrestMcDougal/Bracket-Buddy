@@ -2,9 +2,12 @@ import os
 
 import pymongo
 import pandas as pd
+import dns
 
 from final_four import final_fours
 from team_colors import colors
+from config import uri
+
 
 conn = 'mongodb://localhost:27017'
 client = pymongo.MongoClient(conn)
