@@ -27,11 +27,7 @@ function makeRadarFourFactorsInit(ctxFourFactors) {
 		for (let i in tourneyData) {
 			tourneyDataArr.push(tourneyData[i]);
 		}
-		let finalFourData = theData[0]['FinalFour'];
-		let finalFourDataArr = [];
-		for (let i in finalFourData) {
-			finalFourDataArr.push(finalFourData[i]);
-		}
+		console.log(tourneyDataArr);
 
 		let radarData = {
 			labels: [
@@ -86,11 +82,6 @@ function makeRadarFourFactors(theData, selTeam, selYear) {
 	let tourneyDataArr = [];
 	for (let i in tourneyData) {
 		tourneyDataArr.push(tourneyData[i]);
-	}
-	let finalFourData = theData[0]['FinalFour'];
-	let finalFourDataArr = [];
-	for (let i in finalFourData) {
-		finalFourDataArr.push(finalFourData[i]);
 	}
 
 	let radarData = {
@@ -306,7 +297,7 @@ function makeRadarFourFactorsComparison(theData, homeTeam, homeYear, awayTeam, a
 		]
 	};
 
-	let allVals = teamDataHomeArr.concat(...teamDataAwayArr).concat(...toruneyDataArr);
+	let allVals = teamDataHomeArr.concat(...teamDataAwayArr).concat(...tourneyDataArr);
 
 	let options = {
 		scale: {

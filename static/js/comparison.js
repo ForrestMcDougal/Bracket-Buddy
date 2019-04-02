@@ -31,6 +31,6 @@ function showPage() {
 		makeDoughnutsCompare(data);
 	});
 	d3
-		.json(`/api/radar/compare/${selTeamHome}/${selYearHome}/${selTeamAway}/${selYearAway}`)
+		.json(`/api/radar/compare/${homeTeam}/${homeYear}/${awayTeam}/${awayYear}`)
 		.then((data) => makeRadarFourFactorsComparison(data, homeTeam, homeYear, awayTeam, awayYear));
 }

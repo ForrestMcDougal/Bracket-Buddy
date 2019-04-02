@@ -140,6 +140,16 @@ def radar(team, year):
         temp_doc['FT_Rate_D'] = stats[0]['All']['FT_Rate_D']['mean'] / \
             doc['FT_Rate_D']
         master_temp['Team'] = temp_doc
+        tournament_doc = {}
+        tournament_doc['eFG_Pct_O'] = 1.0460424505970831
+        tournament_doc['TO_Pct_O'] = 1.073456866651516
+        tournament_doc['OR_Pct_O'] = 1.0629167804186908
+        tournament_doc['FT_Rate_O'] = 1.0338176225710891
+        tournament_doc['eFG_Pct_D'] = 1.0493121330945443
+        tournament_doc['TO_Pct_D'] = 1.0167173947951866
+        tournament_doc['OR_Pct_D'] = 1.0391702499951196
+        tournament_doc['FT_Rate_D'] = 1.0856409662284037
+        master_temp['Tournament'] = tournament_doc
         docs.append(master_temp)
     return simplejson.dumps(docs, ignore_nan=True)
 
@@ -205,16 +215,6 @@ def radar_compare(team1, year1, team2, year2):
         temp_doc['FT_Rate_D'] = stats[0]['All']['FT_Rate_D']['mean'] / \
             doc['FT_Rate_D']
         master_temp['Team'] = temp_doc
-        tournament_doc = {}
-        tournament_doc['eFG_Pct_O'] = 1.0460424505970831
-        tournament_doc['TO_Pct_O'] = 1.073456866651516
-        tournament_doc['OR_Pct_O'] = 1.0629167804186908
-        tournament_doc['FT_Rate_O'] = 1.0338176225710891
-        tournament_doc['eFG_Pct_D'] = 1.0493121330945443
-        tournament_doc['TO_Pct_D'] = 1.0167173947951866
-        tournament_doc['OR_Pct_D'] = 1.0391702499951196
-        tournament_doc['FT_Rate_D'] = 1.0856409662284037
-        master_temp['Tournament'] = tournament_doc
         docs.append(master_temp)
     return simplejson.dumps(docs, ignore_nan=True)
 
