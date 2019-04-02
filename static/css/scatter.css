@@ -82,18 +82,10 @@ svg {
 	border-radius: 4px;
 }
 
-#filters {
-	text-align: center;
-}
-
 #legend {
 	text-align: center;
 	margin-top: 10px;
 	margin-bottom: 5px;
-}
-
-#team-select {
-	text-align: center;
 }
 
 /* Mobile Rules */

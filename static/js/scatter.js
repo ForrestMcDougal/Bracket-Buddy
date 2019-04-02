@@ -55,7 +55,7 @@ function xMinMax() {
 }
 
 let width = parseInt(d3.select('#scatter').style('width'));
-let height = width - width / 3.9;
+let height = width - width / 3.9 - 100;
 let margin = 10;
 let labelArea = 200;
 let tPadBot = 140;
@@ -319,7 +319,7 @@ function visualize(theData) {
 
 	function resize() {
 		let width = parseInt(d3.select('#scatter').style('width'));
-		let height = width - width / 3.9;
+		let height = width - width / 3.9 - 100;
 
 		svg.attr('width', width).attr('height', height);
 
