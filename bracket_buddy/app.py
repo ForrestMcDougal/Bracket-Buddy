@@ -5,7 +5,7 @@ from flask_pymongo import PyMongo
 import simplejson
 import dns
 
-from team_stats import stats
+from bracket_buddy.team_stats import stats
 
 app = Flask(__name__)
 
