@@ -1,0 +1,11 @@
+.display-4 {
+    font-size: 40px;
+}
+
+.lead {
+    text-emphasis-color: red;
+}
+
+p {
+    text-decoration-color: blue;
+}

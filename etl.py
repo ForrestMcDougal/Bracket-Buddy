@@ -29,7 +29,7 @@ def find_conference(team):
         return 'ACC'
     elif team in big12:
         return 'Big 12'
-    elif team in big10:
+    elif team in big10:x    
         return 'Big 10'
     elif team in pac12:
         return 'PAC 12'
