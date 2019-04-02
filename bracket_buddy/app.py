@@ -1,3 +1,5 @@
+import os
+
 from flask import Flask, render_template
 from flask_pymongo import PyMongo
 import simplejson
@@ -7,7 +9,7 @@ from team_stats import stats
 
 app = Flask(__name__)
 
-app.config["MONGO_URI"] = "mongodb://localhost:27017/ncaa"
+app.config["MONGO_URI"] = os.environ.get('MONGO_URI')
 mongo = PyMongo(app)
 
 
