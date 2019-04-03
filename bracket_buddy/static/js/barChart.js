@@ -7,13 +7,13 @@ function rawLabel(xLabel, data, indx) {
 			return [ `Raw: ${data[indx]['AdjEM'].toFixed(2)}`, `Rank: ${data[indx]['RankAdjEM']}` ];
 			break;
 		case 'Tempo':
-			return [ `Raw: ${data[indx]['Tempo'].toFixed(2)}`, `Rank: ${data[indx]['RankTempo']}` ];
+			return [ `Raw: ${data[indx]['AdjTempo'].toFixed(2)}`, `Rank: ${data[indx]['RankAdjTempo']}` ];
 			break;
 		case 'OE':
-			return [ `Raw: ${data[indx]['OE'].toFixed(2)}`, `Rank: ${data[indx]['RankOE']}` ];
+			return [ `Raw: ${data[indx]['AdjOE'].toFixed(2)}`, `Rank: ${data[indx]['RankAdjOE']}` ];
 			break;
 		case 'DE':
-			return [ `Raw: ${data[indx]['DE'].toFixed(2)}`, `Rank: ${data[indx]['RankDE']}` ];
+			return [ `Raw: ${data[indx]['AdjDE'].toFixed(2)}`, `Rank: ${data[indx]['RankAdjDE']}` ];
 			break;
 		case 'Exp':
 			return [ `Raw: ${data[indx]['Exp'].toFixed(2)}`, `Rank: ${data[indx]['ExpRank']}` ];
