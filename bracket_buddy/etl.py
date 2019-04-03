@@ -52,7 +52,7 @@ for year in years:
         record['FinalFour'] = False
         record['Champion'] = False
         team_name = record['TeamName']
-        team_colors = colors.get(team_name, ["#000000", "#000000", "#000000"])
+        team_colors = colors.get(team_name, ["#000000", "#909090", "#FFFFFF"])
         record['color1'] = team_colors[0]
         record['color2'] = team_colors[1]
         record['color3'] = team_colors[2]

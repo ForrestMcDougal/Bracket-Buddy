@@ -26,7 +26,7 @@ function makeDoughnutsInit(ctxO, ctxD) {
 				{
 					label: 'Offensive',
 					data: oData,
-					backgroundColor: [ '#ff0000', '#0000ff', '#008000' ],
+					backgroundColor: [ data[0]['color1'], data[0]['color2'], data[0]['color3'] ],
 					borderColor: [ '#000000', '#000000', '#000000' ],
 					borderWidth: [ 1, 1, 1 ]
 				}
@@ -59,7 +59,7 @@ function makeDoughnutsInit(ctxO, ctxD) {
 				{
 					label: 'Defensive',
 					data: dData,
-					backgroundColor: [ '#ff0000', '#0000ff', '#008000' ],
+					backgroundColor: [ data[0]['color1'], data[0]['color2'], data[0]['color3'] ],
 					borderColor: [ '#000000', '#000000', '#000000' ],
 					borderWidth: [ 1, 1, 1 ]
 				}
@@ -106,8 +106,8 @@ function makeDoughnuts(data) {
 			{
 				label: 'Offensive',
 				data: oData,
-				backgroundColor: [ '#ff0000', '#0000ff', '#008000' ],
-				borderColor: [ '#ff0000', '#0000ff', '#008000' ],
+				backgroundColor: [ data[0]['color1'], data[0]['color2'], data[0]['color3'] ],
+				borderColor: [ '#000000', '#000000', '#000000' ],
 				borderWidth: [ 1, 1, 1 ]
 			}
 		]
@@ -122,8 +122,8 @@ function makeDoughnuts(data) {
 			{
 				label: 'Defensive',
 				data: dData,
-				backgroundColor: [ '#ff0000', '#0000ff', '#008000' ],
-				borderColor: [ '#ff0000', '#0000ff', '#008000' ],
+				backgroundColor: [ data[0]['color1'], data[0]['color2'], data[0]['color3'] ],
+				borderColor: [ '#000000', '#000000', '#000000' ],
 				borderWidth: [ 1, 1, 1 ]
 			}
 		]
@@ -164,7 +164,7 @@ function makeDoughnutsCompareInit(ctxHomeO, ctxHomeD, ctxAwayO, ctxAwayD) {
 				{
 					label: 'Offensive',
 					data: homeOData,
-					backgroundColor: [ '#ff0000', '#0000ff', '#008000' ],
+					backgroundColor: [ data[0]['color1'], data[0]['color2'], data[0]['color3'] ],
 					borderColor: [ '#000000', '#000000', '#000000' ],
 					borderWidth: [ 1, 1, 1 ]
 				}
@@ -190,7 +190,7 @@ function makeDoughnutsCompareInit(ctxHomeO, ctxHomeD, ctxAwayO, ctxAwayD) {
 				{
 					label: 'Defensive',
 					data: homeDData,
-					backgroundColor: [ '#ff0000', '#0000ff', '#008000' ],
+					backgroundColor: [ data[0]['color1'], data[0]['color2'], data[0]['color3'] ],
 					borderColor: [ '#000000', '#000000', '#000000' ],
 					borderWidth: [ 1, 1, 1 ]
 				}
@@ -209,7 +209,7 @@ function makeDoughnutsCompareInit(ctxHomeO, ctxHomeD, ctxAwayO, ctxAwayD) {
 				{
 					label: 'Offensive',
 					data: awayOData,
-					backgroundColor: [ '#ff0000', '#0000ff', '#008000' ],
+					backgroundColor: [ data[1]['color1'], data[1]['color2'], data[1]['color3'] ],
 					borderColor: [ '#000000', '#000000', '#000000' ],
 					borderWidth: [ 1, 1, 1 ]
 				}
@@ -228,7 +228,7 @@ function makeDoughnutsCompareInit(ctxHomeO, ctxHomeD, ctxAwayO, ctxAwayD) {
 				{
 					label: 'Defensive',
 					data: awayDData,
-					backgroundColor: [ '#ff0000', '#0000ff', '#008000' ],
+					backgroundColor: [ data[1]['color1'], data[1]['color2'], data[1]['color3'] ],
 					borderColor: [ '#000000', '#000000', '#000000' ],
 					borderWidth: [ 1, 1, 1 ]
 				}
@@ -269,7 +269,7 @@ function makeDoughnutsCompare(data) {
 			{
 				label: 'Offensive',
 				data: homeOData,
-				backgroundColor: [ '#ff0000', '#0000ff', '#008000' ],
+				backgroundColor: [ data[0]['color1'], data[0]['color2'], data[0]['color3'] ],
 				borderColor: [ '#000000', '#000000', '#000000' ],
 				borderWidth: [ 1, 1, 1 ]
 			}
@@ -285,7 +285,7 @@ function makeDoughnutsCompare(data) {
 			{
 				label: 'Defensive',
 				data: homeDData,
-				backgroundColor: [ '#ff0000', '#0000ff', '#008000' ],
+				backgroundColor: [ data[0]['color1'], data[0]['color2'], data[0]['color3'] ],
 				borderColor: [ '#000000', '#000000', '#000000' ],
 				borderWidth: [ 1, 1, 1 ]
 			}
@@ -301,7 +301,7 @@ function makeDoughnutsCompare(data) {
 			{
 				label: 'Offensive',
 				data: awayOData,
-				backgroundColor: [ '#ff0000', '#0000ff', '#008000' ],
+				backgroundColor: [ data[1]['color1'], data[1]['color2'], data[1]['color3'] ],
 				borderColor: [ '#000000', '#000000', '#000000' ],
 				borderWidth: [ 1, 1, 1 ]
 			}
@@ -317,7 +317,7 @@ function makeDoughnutsCompare(data) {
 			{
 				label: 'Defensive',
 				data: awayDData,
-				backgroundColor: [ '#ff0000', '#0000ff', '#008000' ],
+				backgroundColor: [ data[1]['color1'], data[1]['color2'], data[1]['color3'] ],
 				borderColor: [ '#000000', '#000000', '#000000' ],
 				borderWidth: [ 1, 1, 1 ]
 			}

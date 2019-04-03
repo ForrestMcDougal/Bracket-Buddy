@@ -16,7 +16,9 @@ function makeHistoryChartInit(chart) {
 					{
 						label: label,
 						data: yVal,
-						borderColor: '#00009c'
+						borderColor: data[0]['color1'],
+						fill: true,
+						backgroundColor: data[0]['color2']
 					}
 				]
 			}
@@ -36,7 +38,9 @@ function makeHistoryChart(data) {
 			{
 				label: label,
 				data: yVal,
-				borderColor: '#00009c'
+				borderColor: data[0]['color1'],
+				fill: true,
+				backgroundColor: data[0]['color2']
 			}
 		]
 	};

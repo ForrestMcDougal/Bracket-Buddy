@@ -161,12 +161,18 @@ function visualize(theData) {
 	svg.call(toolTip);
 
 	function xMinMax() {
-		xMin = d3.min(theData, (d) => parseFloat(d[curX]) * 0.98);
+		let tempMin1 = d3.min(theData, (d) => parseFloat(d[curX]) * 0.98);
+		let tempMin2 = d3.min(theData, (d) => parseFloat(d[curX]) * 1.02);
+		let temp = [ tempMin1, tempMin2 ];
+		xMin = d3.min(temp, (d) => d);
 		xMax = d3.max(theData, (d) => parseFloat(d[curX]) * 1.02);
 	}
 
 	function yMinMax() {
-		yMin = d3.min(theData, (d) => parseFloat(d[curY]) * 0.98);
+		let tempMin1 = d3.min(theData, (d) => parseFloat(d[curY]) * 0.98);
+		let tempMin2 = d3.min(theData, (d) => parseFloat(d[curY]) * 1.02);
+		let temp = [ tempMin1, tempMin2 ];
+		yMin = d3.min(temp, (d) => d);
 		yMax = d3.max(theData, (d) => parseFloat(d[curY]) * 1.02);
 	}
 

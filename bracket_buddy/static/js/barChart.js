@@ -8,25 +8,26 @@ function makeBarChartInit(ctx) {
 		let rankData = [];
 
 		// offensive
-		rankData.push(data[0]['norm_Tempo']);
+		rankData.push(data[0]['norm_ADJ_EM']);
 		rankData.push(data[0]['norm_OE']);
 		rankData.push(data[0]['norm_DE']);
+		rankData.push(data[0]['norm_Tempo']);
 		rankData.push(data[0]['norm_Exp']);
 		rankData.push(data[0]['norm_Size']);
 
 		barChart = new Chart(ctx, {
 			type: 'bar',
 			data: {
-				labels: [ 'Tempo', 'OE', 'DE', 'Exp', 'Size' ],
+				labels: [ 'Adj EM', 'Tempo', 'OE', 'DE', 'Exp', 'Size' ],
 				datasets: [
 					{
 						label: selTeam,
 						data: rankData,
-						backgroundColor: '#00009c',
-						borderColor: '#000000',
-						borderWidth: '2',
-						hoverBorderColor: 'BD3D8B',
-						hoverBackgroundColor: 'EBDF7C'
+						backgroundColor: data[0]['color1'],
+						borderColor: data[0]['color2'],
+						borderWidth: '3',
+						hoverBorderColor: data[0]['color1'],
+						hoverBackgroundColor: data[0]['color2']
 					}
 				]
 			}
@@ -44,38 +45,42 @@ function makeDoubleBarChartInit(ctx) {
 		let data2 = [];
 
 		// offensive
-		data1.push(data[0]['norm_Tempo']);
+		data1.push(data[0]['norm_ADJ_EM']);
 		data1.push(data[0]['norm_OE']);
 		data1.push(data[0]['norm_DE']);
+		data1.push(data[0]['norm_Tempo']);
 		data1.push(data[0]['norm_Exp']);
 		data1.push(data[0]['norm_Size']);
 
-		data2.push(data[1]['norm_Tempo']);
+		data2.push(data[1]['norm_ADJ_EM']);
 		data2.push(data[1]['norm_OE']);
 		data2.push(data[1]['norm_DE']);
+		data2.push(data[1]['norm_Tempo']);
 		data2.push(data[1]['norm_Exp']);
 		data2.push(data[1]['norm_Size']);
 
 		doubleBarChart = new Chart(ctx, {
 			type: 'bar',
 			data: {
-				labels: [ 'Tempo', 'OE', 'DE', 'Exp', 'Size' ],
+				labels: [ 'Adj EM', 'Tempo', 'OE', 'DE', 'Exp', 'Size' ],
 				datasets: [
 					{
 						label: `${selYearHome} ${selTeamHome}`,
 						data: data1,
-						backgroundColor: '#7BAFD4',
-						borderColor: '#000000',
-						borderWidth: '2',
-						hoverBackgroundColor: [ '#355AB6', '#355AB6', '#355AB6', '#355AB6', '#355AB6' ]
+						backgroundColor: data[0]['color1'],
+						borderColor: data[0]['color2'],
+						borderWidth: '3',
+						hoverBorderColor: data[0]['color1'],
+						hoverBackgroundColor: data[0]['color2']
 					},
 					{
 						label: `${selYearAway} ${selTeamAway}`,
 						data: data2,
-						backgroundColor: '#BD3D8B',
-						borderColor: '#000000',
-						borderWidth: '2',
-						hoverBackgroundColor: [ '#E8CBEA', '#E8CBEA', '#E8CBEA', '#E8CBEA', '#E8CBEA' ]
+						backgroundColor: data[1]['color1'],
+						borderColor: data[1]['color2'],
+						borderWidth: '3',
+						hoverBorderColor: data[1]['color1'],
+						hoverBackgroundColor: data[1]['color2']
 					}
 				]
 			}
@@ -87,23 +92,24 @@ function makeBarChart(data, selTeam) {
 	let rankData = [];
 
 	// offensive
-	rankData.push(data[0]['norm_Tempo']);
+	rankData.push(data[0]['norm_ADJ_EM']);
 	rankData.push(data[0]['norm_OE']);
 	rankData.push(data[0]['norm_DE']);
+	rankData.push(data[0]['norm_Tempo']);
 	rankData.push(data[0]['norm_Exp']);
 	rankData.push(data[0]['norm_Size']);
 
 	barChart.data = {
-		labels: [ 'Tempo', 'OE', 'DE', 'Exp', 'Size' ],
+		labels: [ 'Adj EM', 'Tempo', 'OE', 'DE', 'Exp', 'Size' ],
 		datasets: [
 			{
 				label: selTeam,
 				data: rankData,
-				backgroundColor: '#00009c',
-				borderColor: '#000000',
-				borderWidth: '2',
-				hoverBorderColor: '#BD3D8B',
-				hoverBackgroundColor: [ '#EBDF7C', '#EBDF7C' ]
+				backgroundColor: data[0]['color1'],
+				borderColor: data[0]['color2'],
+				borderWidth: '3',
+				hoverBorderColor: data[0]['color1'],
+				hoverBackgroundColor: data[0]['color2']
 			}
 		]
 	};
@@ -115,36 +121,40 @@ function makeDoubleBarChart(data, homeTeam, homeYear, awayTeam, awayYear) {
 	let data2 = [];
 
 	// offensive
-	data1.push(data[0]['norm_Tempo']);
+	data1.push(data[0]['norm_ADJ_EM']);
 	data1.push(data[0]['norm_OE']);
 	data1.push(data[0]['norm_DE']);
+	data1.push(data[0]['norm_Tempo']);
 	data1.push(data[0]['norm_Exp']);
 	data1.push(data[0]['norm_Size']);
 
-	data2.push(data[1]['norm_Tempo']);
+	data2.push(data[1]['norm_ADJ_EM']);
 	data2.push(data[1]['norm_OE']);
 	data2.push(data[1]['norm_DE']);
+	data2.push(data[1]['norm_Tempo']);
 	data2.push(data[1]['norm_Exp']);
 	data2.push(data[1]['norm_Size']);
 
 	doubleBarChart.data = {
-		labels: [ 'Tempo', 'OE', 'DE', 'Exp', 'Size' ],
+		labels: [ 'Adj EM', 'Tempo', 'OE', 'DE', 'Exp', 'Size' ],
 		datasets: [
 			{
 				label: `${homeYear} ${homeTeam}`,
 				data: data1,
-				backgroundColor: '#7BAFD4',
-				borderColor: '#000000',
-				borderWidth: '2',
-				hoverBackgroundColor: [ '#355AB6', '#355AB6', '#355AB6', '#355AB6', '#355AB6' ]
+				backgroundColor: data[0]['color1'],
+				borderColor: data[0]['color2'],
+				borderWidth: '3',
+				hoverBorderColor: data[0]['color1'],
+				hoverBackgroundColor: data[0]['color2']
 			},
 			{
 				label: `${awayYear} ${awayTeam}`,
 				data: data2,
-				backgroundColor: '#BD3D8B',
-				borderColor: '#000000',
-				borderWidth: '2',
-				hoverBackgroundColor: [ '#E8CBEA', '#E8CBEA', '#E8CBEA', '#E8CBEA', '#E8CBEA' ]
+				backgroundColor: data[1]['color1'],
+				borderColor: data[1]['color2'],
+				borderWidth: '3',
+				hoverBorderColor: data[1]['color1'],
+				hoverBackgroundColor: data[1]['color2']
 			}
 		]
 	};

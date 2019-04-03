@@ -5,11 +5,16 @@ from flask_pymongo import PyMongo
 import simplejson
 import dns
 
-from bracket_buddy.team_stats import stats
+# For deployment
+# from bracket_buddy.stats import stats
+
+# For local testing
+from team_stats import stats
 
 app = Flask(__name__)
 
-app.config["MONGO_URI"] = os.environ.get('MONGO_URI')
+app.config["MONGO_URI"] = os.environ.get(
+    'MONGO_URI', 'mongodb://localhost:27017/ncaa')
 mongo = PyMongo(app)
 
 
@@ -82,6 +87,7 @@ def singleBar(team, year):
     docs = []
     for doc in team_year_info:
         doc.pop('_id')
+        doc['norm_ADJ_EM'] = (doc['AdjEM']+100) / 100
         doc['norm_OE'] = doc['AdjOE'] / stats[0]['All']['OE']['mean']
         doc['norm_DE'] = stats[0]['All']['DE']['mean'] / doc['AdjDE']
         doc['norm_Tempo'] = doc['AdjTempo'] / stats[0]['All']['Tempo']['mean']
@@ -98,6 +104,7 @@ def doubleBar(team1, year1, team2, year2):
         {'TeamName': str(team1), 'Season': int(year1)})
     for doc in team_year_info1:
         doc.pop('_id')
+        doc['norm_ADJ_EM'] = (doc['AdjEM']+100) / 100
         doc['norm_OE'] = doc['AdjOE'] / stats[0]['All']['OE']['mean']
         doc['norm_DE'] = stats[0]['All']['DE']['mean'] / doc['AdjDE']
         doc['norm_Tempo'] = doc['AdjTempo'] / stats[0]['All']['Tempo']['mean']
@@ -108,6 +115,7 @@ def doubleBar(team1, year1, team2, year2):
         {'TeamName': str(team2), 'Season': int(year2)})
     for doc in team_year_info2:
         doc.pop('_id')
+        doc['norm_ADJ_EM'] = (doc['AdjEM']+100) / 100
         doc['norm_OE'] = doc['AdjOE'] / stats[0]['All']['OE']['mean']
         doc['norm_DE'] = stats[0]['All']['DE']['mean'] / doc['AdjDE']
         doc['norm_Tempo'] = doc['AdjTempo'] / stats[0]['All']['Tempo']['mean']
