@@ -43,7 +43,7 @@ function makeDoughnutsInit(ctxO, ctxD) {
 				fontColor: '#111'
 			},
 			legend: {
-				display: false
+				display: true
 			}
 		};
 
@@ -76,7 +76,7 @@ function makeDoughnutsInit(ctxO, ctxD) {
 				fontColor: '#111'
 			},
 			legend: {
-				display: false
+				display: true
 			}
 		};
 
