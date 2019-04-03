@@ -7,12 +7,13 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/reference.css') }}">
   <title>NCAA Team Data</title>
 </head>
 
 <body>
   <nav class="navbar navbar-expand-lg navbar-light bg-light mb-3">
-    <a class="navbar-brand active" href="/home" id="home">NCAA DATA <span class="sr-only">(current)</span></a>
+    <a class="navbar-brand active" href="#" id="home">NCAA DATA <span class="sr-only">(current)</span></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -34,6 +35,153 @@
       </ul>
     </div>
   </nav>
+  <div id="content">
+    <h1>Statistics Reference</h1><br>
+    <h5>Adjuted EM (Adjusted Efficiency Margin)</h5>
+    <ul>
+      <p>Adjusted Offensive Efficiency - Adjusted Defensive Efficiency, ideally the overall gauge of a team's quality</p>
+    </ul>
+    <h5>Adjusted D Efficiency</h5>
+    <ul>
+      <p>Number of points a team allows per 100 defensive possessions, normalized for strength of schedule</p>
+    </ul>
+    <h5>Adjusted O Efficiency</h5>
+    <ul>
+      <p>Number of points a team scores per 100 offensive possessions, normalized for strength of schedule</p>
+    </ul>
+    <h5>Adjusted Tempo</h5>
+    <ul>
+      <p>The number of possessions per 40 minutes (officially FGA-OR+TO+0.42*FTA) adjusted for an opponent's pace of play</p>
+    </ul>
+    <h5>Assist Rate</h5>
+    <ul>
+      <p>The percentage of a team's field goals which are assisted</p>
+    </ul>
+    <h5>Bench</h5>
+    <ul>
+      <p>Percentage of minutes played by non-starters (players playing less than 10% of games not included)</p>
+    </ul>
+    <h5>Block %</h5>
+    <ul>
+      <p>Percentage of opponent's shots which a team blocks</p>
+    </ul>
+    <h5>D Efficiency (Defensive Efficiency</h5>
+    <ul>
+      <p>Number of points a team allows per 100 possessions (unadjusted for opponent)</p>
+    </ul>
+    <h5>D Free Throws</h5>
+    <ul>
+      <p>Overall percentage of points that a team allows from free throws</p>
+    </ul>
+    <h5>D 3 Pointers</h5>
+    <ul>
+      <p>Overall percentage of points that a team allows from 3 point FGs</p>
+    </ul>
+    <h5> D 2 Pointers</h5>
+    <ul>
+      <p>Overall percentage of points that a team allows from 2 point FGs</p>
+    </ul>
+    <h5>D Turnover %</h5>
+    <ul>
+      <p>Percentage of defensive possessions in which a team forces a turnover</p>
+    </ul>
+    <h5>Effective FG% D</h5>
+    <ul>
+      <p>A teams field goal percentage defense with 50% extra weight for 3 Pt field goals allowed ((.5*3FGM + FGM) / FGA)</p>
+    </ul>
+    <h5>Effective FG% O</h5>
+    <ul>
+      <p>A team's field goal percentage with 50% extra weight for 3 Pt FGs ((.5*3FGM + FGM) / FGA)</p>
+    </ul>
+    <h5>Experience</h5>
+    <ul>
+      <p>The average experience of rostered players, weighted for minutes played (0= freshman, 1= sophomore, 2= junior, 3= senior)</p>
+    </ul>
+    <h5>Free Throw Rate D</h5>
+    <ul>
+      <p>Opponent's number of free throws per field goal attempt (FTA/FGA)</p>
+    </ul>
+    <h5>Free Throw Rate O</h5>
+    <ul>
+      <p>Number of free throws a team shoots per field goal attempt (FTA/FGA)</p>
+    </ul>
+    <h5>Free Throw %</h5>
+    <ul>
+      <p>A team's free throw percentage (free throws made/free throw attempts)</p>
+    </ul>
+    <h5>O Efficiency</h5>
+    <ul>
+      <p>Points scored per 100 possessions (unadjusted)</p>
+    </ul>
+    <h5>O Free Throws</h5>
+    <ul>
+      <p>Overall percentage of points a team scores from free throws</p>
+    </ul>
+    <h5>O Rebound % Allowed</h5>
+    <ul>
+      <p>Percentage of opponent's missed shots that the opponent rebound</p>
+    </ul>
+    <h5>O Rebound % Earned</h5>
+    <ul>
+      <p>Overall percentage of a team's missed shots they are able to rebound</p>
+    </ul>
+    <h5>O 3 Pointers</h5>
+    <ul>
+      <p>Overall percentage of points scored by 3 Pt FGs</p>
+    </ul>
+    <h5>O 2 Pointers</h5>
+    <ul>
+      <p>Overall percentage of points scored by 2 Pt FGs</p>
+    </ul>
+    <h5>O Turnover %</h5>
+    <ul>
+      <p>Percentage of possessions in which a team commits a turnover</p>
+    </ul>
+    <h5>Opponent Assist Rate</h5>
+    <ul>
+      <p>Opponent's percentage of FGs in which the FG was assisted</p>
+    </ul>
+    <h5>Opponent Block %</h5>
+    <ul>
+      <p>Percentage of shots blocked by the opponent</p>
+    </ul>
+    <h5>Opponent Free Throw %</h5>
+    <ul>
+      <p>Opponent's free throw percentage (free throws made/free throws attempted)</p>
+    </ul>
+    <h5>Opponent 3 Pt FG%</h5>
+    <ul>
+      <p>Opponent's 3 Pt FG% (three pointers made/three pointers attempted)</p>
+    </ul>
+    <h5>Opponent 2 Pt FG%</h5>
+    <ul>
+      <p>Opponent's 2 Pt FG% (two pointers made/two pointers attempted)</p>
+    </ul>
+    <h5>Opponent Steal Rate</h5>
+    <ul>
+      <p>Percentage of possessions in which a team has the ball stolen by the opponent</p>
+    </ul>
+    <h5>Size</h5>
+    <ul>
+      <p>Average height of players in inches (doesn't account for players playing less than 10% of minutes)</p>
+    </ul>
+    <h5>Steal Rate</h5>
+    <ul>
+      <p>Percentage of defensive possessions in which a team gets a steal</p>
+    </ul>
+    <h5>Tempo</h5>
+    <ul>
+      <p>Number of possessions per 40 minutes (unadjusted)</p>
+    </ul>
+    <h5>3 Pt FG%</h5>
+    <ul>
+      <p>Percentage of made 3 Pt FGs (three pointers made/three pointers attempted)</p>
+    </ul>
+    <h5>2 Pt FG%</h5>
+    <ul>
+      <p>Percentage of made 2 Pt FGs (two pointers made/two pointers attempted</p>
+    </ul>
+  </div>
 
   <div class="container">
     <div class="jumbotron">
