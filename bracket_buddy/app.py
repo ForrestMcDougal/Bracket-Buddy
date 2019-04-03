@@ -6,10 +6,10 @@ import simplejson
 import dns
 
 # For deployment
-# from bracket_buddy.stats import stats
+from bracket_buddy.stats import stats
 
 # For local testing
-from team_stats import stats
+# from team_stats import stats
 
 app = Flask(__name__)
 
