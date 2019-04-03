@@ -8,16 +8,17 @@ function makeBarChartInit(ctx) {
 		let rankData = [];
 
 		// offensive
-		rankData.push(data[0]['norm_Tempo']);
+		rankData.push(data[0]['norm_ADJ_EM']);
 		rankData.push(data[0]['norm_OE']);
 		rankData.push(data[0]['norm_DE']);
+		rankData.push(data[0]['norm_Tempo']);
 		rankData.push(data[0]['norm_Exp']);
 		rankData.push(data[0]['norm_Size']);
 
 		barChart = new Chart(ctx, {
 			type: 'bar',
 			data: {
-				labels: [ 'Tempo', 'OE', 'DE', 'Exp', 'Size' ],
+				labels: [ 'Adj EM','Tempo', 'OE', 'DE', 'Exp', 'Size' ],
 				datasets: [
 					{
 						label: selTeam,
@@ -44,22 +45,24 @@ function makeDoubleBarChartInit(ctx) {
 		let data2 = [];
 
 		// offensive
-		data1.push(data[0]['norm_Tempo']);
+		data1.push(data[0]['norm_ADJ_EM']);
 		data1.push(data[0]['norm_OE']);
 		data1.push(data[0]['norm_DE']);
+		data1.push(data[0]['norm_Tempo']);
 		data1.push(data[0]['norm_Exp']);
 		data1.push(data[0]['norm_Size']);
 
-		data2.push(data[1]['norm_Tempo']);
+		data2.push(data[1]['norm_ADJ_EM']);
 		data2.push(data[1]['norm_OE']);
 		data2.push(data[1]['norm_DE']);
+		data2.push(data[1]['norm_Tempo']);
 		data2.push(data[1]['norm_Exp']);
 		data2.push(data[1]['norm_Size']);
 
 		doubleBarChart = new Chart(ctx, {
 			type: 'bar',
 			data: {
-				labels: [ 'Tempo', 'OE', 'DE', 'Exp', 'Size' ],
+				labels: [ 'Adj EM','Tempo', 'OE', 'DE', 'Exp', 'Size' ],
 				datasets: [
 					{
 						label: `${selYearHome} ${selTeamHome}`,
@@ -67,7 +70,7 @@ function makeDoubleBarChartInit(ctx) {
 						backgroundColor: '#7BAFD4',
 						borderColor: '#000000',
 						borderWidth: '2',
-						hoverBackgroundColor: [ '#355AB6', '#355AB6', '#355AB6', '#355AB6', '#355AB6' ]
+						hoverBackgroundColor: [ '#355AB6', '#355AB6', '#355AB6', '#355AB6', '#355AB6', '#355AB6' ]
 					},
 					{
 						label: `${selYearAway} ${selTeamAway}`,
@@ -75,7 +78,7 @@ function makeDoubleBarChartInit(ctx) {
 						backgroundColor: '#BD3D8B',
 						borderColor: '#000000',
 						borderWidth: '2',
-						hoverBackgroundColor: [ '#E8CBEA', '#E8CBEA', '#E8CBEA', '#E8CBEA', '#E8CBEA' ]
+						hoverBackgroundColor: [ '#E8CBEA', '#E8CBEA', '#E8CBEA', '#E8CBEA', '#E8CBEA', '#E8CBEA' ]
 					}
 				]
 			}
@@ -87,14 +90,15 @@ function makeBarChart(data, selTeam) {
 	let rankData = [];
 
 	// offensive
-	rankData.push(data[0]['norm_Tempo']);
+	rankData.push(data[0]['norm_ADJ_EM']);
 	rankData.push(data[0]['norm_OE']);
 	rankData.push(data[0]['norm_DE']);
+	rankData.push(data[0]['norm_Tempo']);
 	rankData.push(data[0]['norm_Exp']);
 	rankData.push(data[0]['norm_Size']);
 
 	barChart.data = {
-		labels: [ 'Tempo', 'OE', 'DE', 'Exp', 'Size' ],
+		labels: [ 'Adj EM','Tempo', 'OE', 'DE', 'Exp', 'Size' ],
 		datasets: [
 			{
 				label: selTeam,
@@ -114,21 +118,25 @@ function makeDoubleBarChart(data, homeTeam, homeYear, awayTeam, awayYear) {
 	let data1 = [];
 	let data2 = [];
 
+
+	
 	// offensive
-	data1.push(data[0]['norm_Tempo']);
+	data1.push(data[0]['norm_ADJ_EM']);
 	data1.push(data[0]['norm_OE']);
 	data1.push(data[0]['norm_DE']);
+	data1.push(data[0]['norm_Tempo']);
 	data1.push(data[0]['norm_Exp']);
 	data1.push(data[0]['norm_Size']);
 
-	data2.push(data[1]['norm_Tempo']);
+	data2.push(data[1]['norm_ADJ_EM']);
 	data2.push(data[1]['norm_OE']);
 	data2.push(data[1]['norm_DE']);
+	data2.push(data[1]['norm_Tempo']);
 	data2.push(data[1]['norm_Exp']);
 	data2.push(data[1]['norm_Size']);
 
 	doubleBarChart.data = {
-		labels: [ 'Tempo', 'OE', 'DE', 'Exp', 'Size' ],
+		labels: [ 'Adj EM','Tempo', 'OE', 'DE', 'Exp', 'Size' ],
 		datasets: [
 			{
 				label: `${homeYear} ${homeTeam}`,
@@ -136,7 +144,7 @@ function makeDoubleBarChart(data, homeTeam, homeYear, awayTeam, awayYear) {
 				backgroundColor: '#7BAFD4',
 				borderColor: '#000000',
 				borderWidth: '2',
-				hoverBackgroundColor: [ '#355AB6', '#355AB6', '#355AB6', '#355AB6', '#355AB6' ]
+				hoverBackgroundColor: [ '#355AB6', '#355AB6', '#355AB6', '#355AB6', '#355AB6', '#355AB6' ]
 			},
 			{
 				label: `${awayYear} ${awayTeam}`,
@@ -144,7 +152,7 @@ function makeDoubleBarChart(data, homeTeam, homeYear, awayTeam, awayYear) {
 				backgroundColor: '#BD3D8B',
 				borderColor: '#000000',
 				borderWidth: '2',
-				hoverBackgroundColor: [ '#E8CBEA', '#E8CBEA', '#E8CBEA', '#E8CBEA', '#E8CBEA' ]
+				hoverBackgroundColor: [ '#E8CBEA', '#E8CBEA', '#E8CBEA', '#E8CBEA', '#E8CBEA', '#E8CBEA' ]
 			}
 		]
 	};
