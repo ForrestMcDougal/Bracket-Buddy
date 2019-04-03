@@ -20,14 +20,13 @@ function makeRadarFourFactorsInit(ctxFourFactors) {
 		let teamData = theData[0]['Team'];
 		let teamDataArr = [];
 		for (let i in teamData) {
-			teamDataArr.push(teamData[i]);
+			teamDataArr.push(+teamData[i]);
 		}
 		let tourneyData = theData[0]['Tournament'];
 		let tourneyDataArr = [];
 		for (let i in tourneyData) {
-			tourneyDataArr.push(tourneyData[i]);
+			tourneyDataArr.push(+tourneyData[i]);
 		}
-		console.log(tourneyDataArr);
 
 		let radarData = {
 			labels: [
@@ -65,6 +64,14 @@ function makeRadarFourFactorsInit(ctxFourFactors) {
 				scale: {
 					ticks: {
 						beginAtZero: true
+					}
+				},
+				tooltips: {
+					callbacks: {
+						label: function(tooltipItem) {
+							let avg = `${(Number(tooltipItem.yLabel) * 100).toFixed(2)}% of Average`;
+							return avg;
+						}
 					}
 				}
 			}
@@ -114,6 +121,21 @@ function makeRadarFourFactors(theData, selTeam, selYear) {
 	};
 
 	radarFourFactors.data = radarData;
+	radarFourFactors.options = {
+		scale: {
+			ticks: {
+				beginAtZero: true
+			}
+		},
+		tooltips: {
+			callbacks: {
+				label: function(tooltipItem) {
+					let avg = `${(Number(tooltipItem.yLabel) * 100).toFixed(2)}% of Average`;
+					return avg;
+				}
+			}
+		}
+	};
 	radarFourFactors.update();
 }
 
@@ -204,6 +226,14 @@ function makeRadarFourFactorsComparisonInit(ctxHomeFF, ctxAwayFF) {
 				ticks: {
 					beginAtZero: true,
 					max: Math.max(...allVals)
+				}
+			},
+			tooltips: {
+				callbacks: {
+					label: function(tooltipItem) {
+						let avg = `${(Number(tooltipItem.yLabel) * 100).toFixed(2)}% of Average`;
+						return avg;
+					}
 				}
 			}
 		};
@@ -305,6 +335,14 @@ function makeRadarFourFactorsComparison(theData, homeTeam, homeYear, awayTeam, a
 				beginAtZero: true,
 				max: Math.max(...allVals)
 			}
+		},
+		tooltips: {
+			callbacks: {
+				label: function(tooltipItem) {
+					let avg = `${(Number(tooltipItem.yLabel) * 100).toFixed(2)}% of Average`;
+					return avg;
+				}
+			}
 		}
 	};
 
@@ -398,6 +436,13 @@ function makeRadarRankInit(ctxRank) {
 						min: 1,
 						max: 353
 					}
+				},
+				tooltips: {
+					callbacks: {
+						label: function(tooltipItem) {
+							return `Rank: ${Number(tooltipItem.yLabel)}`;
+						}
+					}
 				}
 			}
 		});
@@ -472,7 +517,25 @@ function makeRadarRank(data) {
 		]
 	};
 
+	let options = {
+		scale: {
+			ticks: {
+				reverse: true,
+				min: 1,
+				max: 353
+			}
+		},
+		tooltips: {
+			callbacks: {
+				label: function(tooltipItem) {
+					return `Rank: ${Number(tooltipItem.yLabel)}`;
+				}
+			}
+		}
+	};
+
 	radarRank.data = radarRankData;
+	radarRank.options = options;
 	radarRank.update();
 }
 
@@ -610,6 +673,13 @@ function makeRadarRankCompareInit(ctxHome, ctxAway) {
 						min: 1,
 						max: 353
 					}
+				},
+				tooltips: {
+					callbacks: {
+						label: function(tooltipItem) {
+							return `Rank: ${Number(tooltipItem.yLabel)}`;
+						}
+					}
 				}
 			}
 		});
@@ -623,6 +693,13 @@ function makeRadarRankCompareInit(ctxHome, ctxAway) {
 						reverse: true,
 						min: 1,
 						max: 353
+					}
+				},
+				tooltips: {
+					callbacks: {
+						label: function(tooltipItem) {
+							return `Rank: ${Number(tooltipItem.yLabel)}`;
+						}
 					}
 				}
 			}
@@ -749,8 +826,27 @@ function makeRadarRankCompare(data) {
 		]
 	};
 
+	let options = {
+		scale: {
+			ticks: {
+				reverse: true,
+				min: 1,
+				max: 353
+			}
+		},
+		tooltips: {
+			callbacks: {
+				label: function(tooltipItem) {
+					return `Rank: ${Number(tooltipItem.yLabel)}`;
+				}
+			}
+		}
+	};
+
 	radarHomeRank.data = radarDataHome;
+	radarHomeRank.options = options;
 	radarHomeRank.update();
 	radarAwayRank.data = radarDataAway;
+	radarAwayRank.options = options;
 	radarAwayRank.update();
 }
