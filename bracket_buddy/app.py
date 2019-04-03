@@ -88,9 +88,10 @@ def singleBar(team, year):
     for doc in team_year_info:
         doc.pop('_id')
         doc['norm_ADJ_EM'] = (doc['AdjEM']+100) / 100
-        doc['norm_OE'] = doc['AdjOE'] / stats[0]['All']['OE']['mean']
-        doc['norm_DE'] = stats[0]['All']['DE']['mean'] / doc['AdjDE']
-        doc['norm_Tempo'] = doc['AdjTempo'] / stats[0]['All']['Tempo']['mean']
+        doc['norm_OE'] = doc['AdjOE'] / stats[0]['All']['AdjOE']['mean']
+        doc['norm_DE'] = stats[0]['All']['AdjDE']['mean'] / doc['AdjDE']
+        doc['norm_Tempo'] = doc['AdjTempo'] / \
+            stats[0]['All']['AdjTempo']['mean']
         doc['norm_Exp'] = doc['Exp'] / stats[0]['All']['Exp']['mean']
         doc['norm_Size'] = doc['Size'] / stats[0]['All']['Size']['mean']
         docs.append(doc)
@@ -105,9 +106,10 @@ def doubleBar(team1, year1, team2, year2):
     for doc in team_year_info1:
         doc.pop('_id')
         doc['norm_ADJ_EM'] = (doc['AdjEM']+100) / 100
-        doc['norm_OE'] = doc['AdjOE'] / stats[0]['All']['OE']['mean']
-        doc['norm_DE'] = stats[0]['All']['DE']['mean'] / doc['AdjDE']
-        doc['norm_Tempo'] = doc['AdjTempo'] / stats[0]['All']['Tempo']['mean']
+        doc['norm_OE'] = doc['AdjOE'] / stats[0]['All']['AdjOE']['mean']
+        doc['norm_DE'] = stats[0]['All']['AdjDE']['mean'] / doc['AdjDE']
+        doc['norm_Tempo'] = doc['AdjTempo'] / \
+            stats[0]['All']['AdjTempo']['mean']
         doc['norm_Exp'] = doc['Exp'] / stats[0]['All']['Exp']['mean']
         doc['norm_Size'] = doc['Size'] / stats[0]['All']['Size']['mean']
         docs.append(doc)
@@ -116,9 +118,10 @@ def doubleBar(team1, year1, team2, year2):
     for doc in team_year_info2:
         doc.pop('_id')
         doc['norm_ADJ_EM'] = (doc['AdjEM']+100) / 100
-        doc['norm_OE'] = doc['AdjOE'] / stats[0]['All']['OE']['mean']
-        doc['norm_DE'] = stats[0]['All']['DE']['mean'] / doc['AdjDE']
-        doc['norm_Tempo'] = doc['AdjTempo'] / stats[0]['All']['Tempo']['mean']
+        doc['norm_OE'] = doc['AdjOE'] / stats[0]['All']['AdjOE']['mean']
+        doc['norm_DE'] = stats[0]['All']['AdjDE']['mean'] / doc['AdjDE']
+        doc['norm_Tempo'] = doc['AdjTempo'] / \
+            stats[0]['All']['AdjTempo']['mean']
         doc['norm_Exp'] = doc['Exp'] / stats[0]['All']['Exp']['mean']
         doc['norm_Size'] = doc['Size'] / stats[0]['All']['Size']['mean']
         docs.append(doc)
