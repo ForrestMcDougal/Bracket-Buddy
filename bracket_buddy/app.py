@@ -6,7 +6,7 @@ import simplejson
 import dns
 
 # For deployment
-from bracket_buddy.stats import stats
+from bracket_buddy.team_stats import stats
 
 # For local testing
 # from team_stats import stats
