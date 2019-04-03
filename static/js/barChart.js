@@ -23,11 +23,11 @@ function makeBarChartInit(ctx) {
 					{
 						label: selTeam,
 						data: rankData,
-						backgroundColor: '#00009c',
-						borderColor: '#000000',
-						borderWidth: '2',
-						hoverBorderColor: 'BD3D8B',
-						hoverBackgroundColor: 'EBDF7C'
+						backgroundColor: data[0]['color1'],
+						borderColor: data[0]['color2'],
+						borderWidth: '3',
+						hoverBorderColor: data[0]['color1'],
+						hoverBackgroundColor: data[0]['color2'],
 					}
 				]
 			}
@@ -67,19 +67,20 @@ function makeDoubleBarChartInit(ctx) {
 					{
 						label: `${selYearHome} ${selTeamHome}`,
 						data: data1,
-						backgroundColor: '#7BAFD4',
-						borderColor: '#000000',
-						borderWidth: '2',
-						hoverBackgroundColor: [ '#355AB6', '#355AB6', '#355AB6', '#355AB6', '#355AB6', '#355AB6' ]
+						backgroundColor: data[0]['color1'],
+						borderColor: data[0]['color2'],
+						borderWidth: '3',
+						hoverBorderColor: data[0]['color1'],
+						hoverBackgroundColor: data[0]['color2'],
 					},
 					{
 						label: `${selYearAway} ${selTeamAway}`,
 						data: data2,
-						backgroundColor: '#BD3D8B',
-						borderColor: '#000000',
-						borderWidth: '2',
-						hoverBackgroundColor: [ '#E8CBEA', '#E8CBEA', '#E8CBEA', '#E8CBEA', '#E8CBEA', '#E8CBEA' ]
-					}
+						backgroundColor: data[1]['color1'],
+						borderColor: data[1]['color2'],
+						borderWidth: '3',
+						hoverBorderColor: data[1]['color1'],
+						hoverBackgroundColor: data[1]['color2'],					}
 				]
 			}
 		});
@@ -103,11 +104,11 @@ function makeBarChart(data, selTeam) {
 			{
 				label: selTeam,
 				data: rankData,
-				backgroundColor: '#00009c',
-				borderColor: '#000000',
-				borderWidth: '2',
-				hoverBorderColor: '#BD3D8B',
-				hoverBackgroundColor: [ '#EBDF7C', '#EBDF7C' ]
+				backgroundColor: data[0]['color1'],
+				borderColor: data[0]['color2'],
+				borderWidth: '3',
+				hoverBorderColor: data[0]['color1'],
+				hoverBackgroundColor: data[0]['color2'],
 			}
 		]
 	};
@@ -141,18 +142,20 @@ function makeDoubleBarChart(data, homeTeam, homeYear, awayTeam, awayYear) {
 			{
 				label: `${homeYear} ${homeTeam}`,
 				data: data1,
-				backgroundColor: '#7BAFD4',
-				borderColor: '#000000',
-				borderWidth: '2',
-				hoverBackgroundColor: [ '#355AB6', '#355AB6', '#355AB6', '#355AB6', '#355AB6', '#355AB6' ]
+				backgroundColor: data[0]['color1'],
+				borderColor: data[0]['color2'],
+				borderWidth: '3',
+				hoverBorderColor: data[0]['color1'],
+				hoverBackgroundColor: data[0]['color2'],
 			},
 			{
 				label: `${awayYear} ${awayTeam}`,
 				data: data2,
-				backgroundColor: '#BD3D8B',
-				borderColor: '#000000',
-				borderWidth: '2',
-				hoverBackgroundColor: [ '#E8CBEA', '#E8CBEA', '#E8CBEA', '#E8CBEA', '#E8CBEA', '#E8CBEA' ]
+				backgroundColor: data[1]['color1'],
+				borderColor: data[1]['color2'],
+				borderWidth: '3',
+				hoverBorderColor: data[1]['color1'],
+				hoverBackgroundColor: data[1]['color2'],
 			}
 		]
 	};

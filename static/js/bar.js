@@ -84,14 +84,14 @@ function getBarData(data) {
           backgroundColor: "#7BAFD4",
           borderColor: "#000000",
           borderWidth: "2",
-          hoverBackgroundColor: ["#355AB6","#355AB6","#355AB6","#355AB6","#355AB6"]
+          hoverBackgroundColor: ["#355AB6","#355AB6","#355AB6","#355AB6","#355AB6","355AB6"]
       },{ 
       label: 'Team2',
       data: rankData2,
       backgroundColor: "#BD3D8B",
       borderColor: "#000000",
       borderWidth: "2",
-      hoverBackgroundColor: ["#E8CBEA","#E8CBEA","#E8CBEA","#E8CBEA","#E8CBEA"]
+      hoverBackgroundColor: ["#E8CBEA","#E8CBEA","#E8CBEA","#E8CBEA","#E8CBEA","E8CBEA"]
 
       }]
     }
