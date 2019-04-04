@@ -31,9 +31,9 @@ function makeBarChartInit(ctx) {
 		let rankData = [];
 
 		rankData.push(data[0]['norm_ADJ_EM']);
+		rankData.push(data[0]['norm_Tempo']);
 		rankData.push(data[0]['norm_OE']);
 		rankData.push(data[0]['norm_DE']);
-		rankData.push(data[0]['norm_Tempo']);
 		rankData.push(data[0]['norm_Exp']);
 		rankData.push(data[0]['norm_Size']);
 
@@ -78,18 +78,17 @@ function makeDoubleBarChartInit(ctx) {
 		let data1 = [];
 		let data2 = [];
 
-		// offensive
 		data1.push(data[0]['norm_ADJ_EM']);
+		data1.push(data[0]['norm_Tempo']);
 		data1.push(data[0]['norm_OE']);
 		data1.push(data[0]['norm_DE']);
-		data1.push(data[0]['norm_Tempo']);
 		data1.push(data[0]['norm_Exp']);
 		data1.push(data[0]['norm_Size']);
 
 		data2.push(data[1]['norm_ADJ_EM']);
+		data2.push(data[1]['norm_Tempo']);
 		data2.push(data[1]['norm_OE']);
 		data2.push(data[1]['norm_DE']);
-		data2.push(data[1]['norm_Tempo']);
 		data2.push(data[1]['norm_Exp']);
 		data2.push(data[1]['norm_Size']);
 
@@ -137,11 +136,10 @@ function makeDoubleBarChartInit(ctx) {
 function makeBarChart(data, selTeam) {
 	let rankData = [];
 
-	// offensive
 	rankData.push(data[0]['norm_ADJ_EM']);
+	rankData.push(data[0]['norm_Tempo']);
 	rankData.push(data[0]['norm_OE']);
 	rankData.push(data[0]['norm_DE']);
-	rankData.push(data[0]['norm_Tempo']);
 	rankData.push(data[0]['norm_Exp']);
 	rankData.push(data[0]['norm_Size']);
 
@@ -180,16 +178,16 @@ function makeDoubleBarChart(data, homeTeam, homeYear, awayTeam, awayYear) {
 
 	// offensive
 	data1.push(data[0]['norm_ADJ_EM']);
+	data1.push(data[0]['norm_Tempo']);
 	data1.push(data[0]['norm_OE']);
 	data1.push(data[0]['norm_DE']);
-	data1.push(data[0]['norm_Tempo']);
 	data1.push(data[0]['norm_Exp']);
 	data1.push(data[0]['norm_Size']);
 
 	data2.push(data[1]['norm_ADJ_EM']);
+	data2.push(data[1]['norm_Tempo']);
 	data2.push(data[1]['norm_OE']);
 	data2.push(data[1]['norm_DE']);
-	data2.push(data[1]['norm_Tempo']);
 	data2.push(data[1]['norm_Exp']);
 	data2.push(data[1]['norm_Size']);
 

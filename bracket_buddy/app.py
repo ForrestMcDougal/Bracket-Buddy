@@ -87,13 +87,13 @@ def singleBar(team, year):
     docs = []
     for doc in team_year_info:
         doc.pop('_id')
-        doc['norm_ADJ_EM'] = (doc['AdjEM']+100) / 100
-        doc['norm_OE'] = doc['AdjOE'] / stats[0]['All']['AdjOE']['mean']
-        doc['norm_DE'] = stats[0]['All']['AdjDE']['mean'] / doc['AdjDE']
-        doc['norm_Tempo'] = doc['AdjTempo'] / \
-            stats[0]['All']['AdjTempo']['mean']
-        doc['norm_Exp'] = doc['Exp'] / stats[0]['All']['Exp']['mean']
-        doc['norm_Size'] = doc['Size'] / stats[0]['All']['Size']['mean']
+        doc['norm_ADJ_EM'] = (doc['AdjEM'] + 46.2684) / \
+            (46.2684 + -3.1317296679060123e-07)
+        doc['norm_OE'] = doc['AdjOE'] / 103.68342153493701
+        doc['norm_DE'] = 103.68341569301259 / doc['AdjDE']
+        doc['norm_Tempo'] = doc['AdjTempo'] / 66.02674951317297
+        doc['norm_Exp'] = doc['Exp'] / 1.6947193585337916
+        doc['norm_Size'] = doc['Size'] / 76.66733390607102
         docs.append(doc)
     return simplejson.dumps(docs, ignore_nan=True)
 
@@ -105,25 +105,25 @@ def doubleBar(team1, year1, team2, year2):
         {'TeamName': str(team1), 'Season': int(year1)})
     for doc in team_year_info1:
         doc.pop('_id')
-        doc['norm_ADJ_EM'] = (doc['AdjEM']+100) / 100
-        doc['norm_OE'] = doc['AdjOE'] / stats[0]['All']['AdjOE']['mean']
-        doc['norm_DE'] = stats[0]['All']['AdjDE']['mean'] / doc['AdjDE']
-        doc['norm_Tempo'] = doc['AdjTempo'] / \
-            stats[0]['All']['AdjTempo']['mean']
-        doc['norm_Exp'] = doc['Exp'] / stats[0]['All']['Exp']['mean']
-        doc['norm_Size'] = doc['Size'] / stats[0]['All']['Size']['mean']
+        doc['norm_ADJ_EM'] = (doc['AdjEM'] + 46.2684) / \
+            (46.2684 + -3.1317296679060123e-07)
+        doc['norm_OE'] = doc['AdjOE'] / 103.68342153493701
+        doc['norm_DE'] = 103.68341569301259 / doc['AdjDE']
+        doc['norm_Tempo'] = doc['AdjTempo'] / 66.02674951317297
+        doc['norm_Exp'] = doc['Exp'] / 1.6947193585337916
+        doc['norm_Size'] = doc['Size'] / 76.66733390607102
         docs.append(doc)
     team_year_info2 = mongo.db.basketball.find(
         {'TeamName': str(team2), 'Season': int(year2)})
     for doc in team_year_info2:
         doc.pop('_id')
-        doc['norm_ADJ_EM'] = (doc['AdjEM']+100) / 100
-        doc['norm_OE'] = doc['AdjOE'] / stats[0]['All']['AdjOE']['mean']
-        doc['norm_DE'] = stats[0]['All']['AdjDE']['mean'] / doc['AdjDE']
-        doc['norm_Tempo'] = doc['AdjTempo'] / \
-            stats[0]['All']['AdjTempo']['mean']
-        doc['norm_Exp'] = doc['Exp'] / stats[0]['All']['Exp']['mean']
-        doc['norm_Size'] = doc['Size'] / stats[0]['All']['Size']['mean']
+        doc['norm_ADJ_EM'] = (doc['AdjEM'] + 46.2684) / \
+            (46.2684 + -3.1317296679060123e-07)
+        doc['norm_OE'] = doc['AdjOE'] / 103.68342153493701
+        doc['norm_DE'] = 103.68341569301259 / doc['AdjDE']
+        doc['norm_Tempo'] = doc['AdjTempo'] / 66.02674951317297
+        doc['norm_Exp'] = doc['Exp'] / 1.6947193585337916
+        doc['norm_Size'] = doc['Size'] / 76.66733390607102
         docs.append(doc)
     return simplejson.dumps(docs, ignore_nan=True)
 
