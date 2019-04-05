@@ -1,4 +1,22 @@
-stats = [{'All': {'Season': {'count': 3492.0,
+import os
+
+import pandas as pd
+
+master_df = pd.DataFrame()
+years = [2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019]
+for year in years:
+    path = os.path.join('data', 'cleaned', f'master_{year}.csv')
+    df = pd.read_csv(path)
+    master_df = pd.concat([master_df, df], ignore_index=True)
+
+adj_em_list = list(master_df['AdjEM'])
+adj_oe_list = list(master_df['AdjOE'])
+adj_de_list = list(master_df['AdjDE'])
+adj_tempo_list = list(master_df['AdjTempo'])
+exp_list = list(master_df['Exp'])
+size_list = list(master_df['Size'])
+
+all_stats = [{'All': {'Season': {'count': 3492.0,
                              'mean': 2014.519759450172,
                              'std': 2.87202633370795,
                              'min': 2010.0,

@@ -41,10 +41,21 @@ function makeBarChartInit(ctx) {
 			tooltips: {
 				callbacks: {
 					label: function(tooltipItem) {
-						let avg = `${(Number(tooltipItem.yLabel) * 100).toFixed(2)}% of Average`;
+						let avg = `${Number(tooltipItem.yLabel).toFixed(2)}th percentile`;
 						return [ avg ].concat(...rawLabel(tooltipItem.xLabel, data, tooltipItem.datasetIndex));
 					}
 				}
+			},
+			scales: {
+				yAxes: [
+					{
+						display: true,
+						ticks: {
+							beginAtZero: true,
+							max: 100
+						}
+					}
+				]
 			}
 		};
 
@@ -96,10 +107,21 @@ function makeDoubleBarChartInit(ctx) {
 			tooltips: {
 				callbacks: {
 					label: function(tooltipItem) {
-						let avg = `${(Number(tooltipItem.yLabel) * 100).toFixed(2)}% of Average`;
+						let avg = `${Number(tooltipItem.yLabel).toFixed(2)}th percentile`;
 						return [ avg ].concat(...rawLabel(tooltipItem.xLabel, data, tooltipItem.datasetIndex));
 					}
 				}
+			},
+			scales: {
+				yAxes: [
+					{
+						display: true,
+						ticks: {
+							beginAtZero: true,
+							max: 100
+						}
+					}
+				]
 			}
 		};
 
@@ -147,10 +169,21 @@ function makeBarChart(data, selTeam) {
 		tooltips: {
 			callbacks: {
 				label: function(tooltipItem) {
-					let avg = `${(Number(tooltipItem.yLabel) * 100).toFixed(2)}% of Average`;
+					let avg = `${Number(tooltipItem.yLabel).toFixed(2)}th percentile`;
 					return [ avg ].concat(...rawLabel(tooltipItem.xLabel, data, tooltipItem.datasetIndex));
 				}
 			}
+		},
+		scales: {
+			yAxes: [
+				{
+					display: true,
+					ticks: {
+						beginAtZero: true,
+						max: 100
+					}
+				}
+			]
 		}
 	};
 
@@ -176,7 +209,6 @@ function makeDoubleBarChart(data, homeTeam, homeYear, awayTeam, awayYear) {
 	let data1 = [];
 	let data2 = [];
 
-	// offensive
 	data1.push(data[0]['norm_ADJ_EM']);
 	data1.push(data[0]['norm_Tempo']);
 	data1.push(data[0]['norm_OE']);
@@ -195,10 +227,21 @@ function makeDoubleBarChart(data, homeTeam, homeYear, awayTeam, awayYear) {
 		tooltips: {
 			callbacks: {
 				label: function(tooltipItem) {
-					let avg = `${(Number(tooltipItem.yLabel) * 100).toFixed(2)}% of Average`;
+					let avg = `${Number(tooltipItem.yLabel).toFixed(2)}th percentile`;
 					return [ avg ].concat(...rawLabel(tooltipItem.xLabel, data, tooltipItem.datasetIndex));
 				}
 			}
+		},
+		scales: {
+			yAxes: [
+				{
+					display: true,
+					ticks: {
+						beginAtZero: true,
+						max: 100
+					}
+				}
+			]
 		}
 	};
 
