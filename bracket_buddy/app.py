@@ -1,15 +1,11 @@
 import os
 
+from scipy import stats
 from flask import Flask, render_template
 from flask_pymongo import PyMongo
 import simplejson
-import dns
 
-# For deployment
-from bracket_buddy.team_stats import stats
-
-# For local testing
-# from team_stats import stats
+from bracket_buddy.team_stats import all_stats, adj_em_list, adj_oe_list, adj_de_list, adj_tempo_list, exp_list, size_list
 
 app = Flask(__name__)
 
@@ -87,13 +83,14 @@ def singleBar(team, year):
     docs = []
     for doc in team_year_info:
         doc.pop('_id')
-        doc['norm_ADJ_EM'] = (doc['AdjEM'] + 46.2684) / \
-            (46.2684 + -3.1317296679060123e-07)
-        doc['norm_OE'] = doc['AdjOE'] / 103.68342153493701
-        doc['norm_DE'] = 103.68341569301259 / doc['AdjDE']
-        doc['norm_Tempo'] = doc['AdjTempo'] / 66.02674951317297
-        doc['norm_Exp'] = doc['Exp'] / 1.6947193585337916
-        doc['norm_Size'] = doc['Size'] / 76.66733390607102
+        doc['norm_ADJ_EM'] = stats.percentileofscore(adj_em_list, doc['AdjEM'])
+        doc['norm_OE'] = stats.percentileofscore(adj_oe_list, doc['AdjOE'])
+        doc['norm_DE'] = 100 - \
+            stats.percentileofscore(adj_de_list, doc['AdjDE'])
+        doc['norm_Tempo'] = stats.percentileofscore(
+            adj_tempo_list, doc['AdjTempo'])
+        doc['norm_Exp'] = stats.percentileofscore(exp_list, doc['Exp'])
+        doc['norm_Size'] = stats.percentileofscore(size_list, doc['Size'])
         docs.append(doc)
     return simplejson.dumps(docs, ignore_nan=True)
 
@@ -105,25 +102,27 @@ def doubleBar(team1, year1, team2, year2):
         {'TeamName': str(team1), 'Season': int(year1)})
     for doc in team_year_info1:
         doc.pop('_id')
-        doc['norm_ADJ_EM'] = (doc['AdjEM'] + 46.2684) / \
-            (46.2684 + -3.1317296679060123e-07)
-        doc['norm_OE'] = doc['AdjOE'] / 103.68342153493701
-        doc['norm_DE'] = 103.68341569301259 / doc['AdjDE']
-        doc['norm_Tempo'] = doc['AdjTempo'] / 66.02674951317297
-        doc['norm_Exp'] = doc['Exp'] / 1.6947193585337916
-        doc['norm_Size'] = doc['Size'] / 76.66733390607102
+        doc['norm_ADJ_EM'] = stats.percentileofscore(adj_em_list, doc['AdjEM'])
+        doc['norm_OE'] = stats.percentileofscore(adj_oe_list, doc['AdjOE'])
+        doc['norm_DE'] = 100 - \
+            stats.percentileofscore(adj_de_list, doc['AdjDE'])
+        doc['norm_Tempo'] = stats.percentileofscore(
+            adj_tempo_list, doc['AdjTempo'])
+        doc['norm_Exp'] = stats.percentileofscore(exp_list, doc['Exp'])
+        doc['norm_Size'] = stats.percentileofscore(size_list, doc['Size'])
         docs.append(doc)
     team_year_info2 = mongo.db.basketball.find(
         {'TeamName': str(team2), 'Season': int(year2)})
     for doc in team_year_info2:
         doc.pop('_id')
-        doc['norm_ADJ_EM'] = (doc['AdjEM'] + 46.2684) / \
-            (46.2684 + -3.1317296679060123e-07)
-        doc['norm_OE'] = doc['AdjOE'] / 103.68342153493701
-        doc['norm_DE'] = 103.68341569301259 / doc['AdjDE']
-        doc['norm_Tempo'] = doc['AdjTempo'] / 66.02674951317297
-        doc['norm_Exp'] = doc['Exp'] / 1.6947193585337916
-        doc['norm_Size'] = doc['Size'] / 76.66733390607102
+        doc['norm_ADJ_EM'] = stats.percentileofscore(adj_em_list, doc['AdjEM'])
+        doc['norm_OE'] = stats.percentileofscore(adj_oe_list, doc['AdjOE'])
+        doc['norm_DE'] = 100 - \
+            stats.percentileofscore(adj_de_list, doc['AdjDE'])
+        doc['norm_Tempo'] = stats.percentileofscore(
+            adj_tempo_list, doc['AdjTempo'])
+        doc['norm_Exp'] = stats.percentileofscore(exp_list, doc['Exp'])
+        doc['norm_Size'] = stats.percentileofscore(size_list, doc['Size'])
         docs.append(doc)
     return simplejson.dumps(docs, ignore_nan=True)
 
@@ -138,20 +137,20 @@ def radar(team, year):
         master_temp = {}
         temp_doc = {}
         temp_doc['eFG_Pct_O'] = doc['eFG_Pct_O'] / \
-            stats[0]['All']['eFG_Pct_O']['mean']
-        temp_doc['TO_Pct_O'] = stats[0]['All']['TO_Pct_O']['mean'] / \
+            all_stats[0]['All']['eFG_Pct_O']['mean']
+        temp_doc['TO_Pct_O'] = all_stats[0]['All']['TO_Pct_O']['mean'] / \
             doc['TO_Pct_O']
         temp_doc['OR_Pct_O'] = doc['OR_Pct_O'] / \
-            stats[0]['All']['OR_Pct_O']['mean']
+            all_stats[0]['All']['OR_Pct_O']['mean']
         temp_doc['FT_Rate_O'] = doc['FT_Rate_O'] / \
-            stats[0]['All']['FT_Rate_O']['mean']
-        temp_doc['eFG_Pct_D'] = stats[0]['All']['eFG_Pct_D']['mean'] / \
+            all_stats[0]['All']['FT_Rate_O']['mean']
+        temp_doc['eFG_Pct_D'] = all_stats[0]['All']['eFG_Pct_D']['mean'] / \
             doc['eFG_Pct_D']
         temp_doc['TO_Pct_D'] = doc['TO_Pct_D'] / \
-            stats[0]['All']['TO_Pct_D']['mean']
-        temp_doc['OR_Pct_D'] = stats[0]['All']['OR_Pct_D']['mean'] / \
+            all_stats[0]['All']['TO_Pct_D']['mean']
+        temp_doc['OR_Pct_D'] = all_stats[0]['All']['OR_Pct_D']['mean'] / \
             doc['OR_Pct_D']
-        temp_doc['FT_Rate_D'] = stats[0]['All']['FT_Rate_D']['mean'] / \
+        temp_doc['FT_Rate_D'] = all_stats[0]['All']['FT_Rate_D']['mean'] / \
             doc['FT_Rate_D']
         master_temp['Team'] = temp_doc
         tournament_doc = {}
@@ -178,20 +177,20 @@ def radar_compare(team1, year1, team2, year2):
         master_temp = {}
         temp_doc = {}
         temp_doc['eFG_Pct_O'] = doc['eFG_Pct_O'] / \
-            stats[0]['All']['eFG_Pct_O']['mean']
-        temp_doc['TO_Pct_O'] = stats[0]['All']['TO_Pct_O']['mean'] / \
+            all_stats[0]['All']['eFG_Pct_O']['mean']
+        temp_doc['TO_Pct_O'] = all_stats[0]['All']['TO_Pct_O']['mean'] / \
             doc['TO_Pct_O']
         temp_doc['OR_Pct_O'] = doc['OR_Pct_O'] / \
-            stats[0]['All']['OR_Pct_O']['mean']
+            all_stats[0]['All']['OR_Pct_O']['mean']
         temp_doc['FT_Rate_O'] = doc['FT_Rate_O'] / \
-            stats[0]['All']['FT_Rate_O']['mean']
-        temp_doc['eFG_Pct_D'] = stats[0]['All']['eFG_Pct_D']['mean'] / \
+            all_stats[0]['All']['FT_Rate_O']['mean']
+        temp_doc['eFG_Pct_D'] = all_stats[0]['All']['eFG_Pct_D']['mean'] / \
             doc['eFG_Pct_D']
         temp_doc['TO_Pct_D'] = doc['TO_Pct_D'] / \
-            stats[0]['All']['TO_Pct_D']['mean']
-        temp_doc['OR_Pct_D'] = stats[0]['All']['OR_Pct_D']['mean'] / \
+            all_stats[0]['All']['TO_Pct_D']['mean']
+        temp_doc['OR_Pct_D'] = all_stats[0]['All']['OR_Pct_D']['mean'] / \
             doc['OR_Pct_D']
-        temp_doc['FT_Rate_D'] = stats[0]['All']['FT_Rate_D']['mean'] / \
+        temp_doc['FT_Rate_D'] = all_stats[0]['All']['FT_Rate_D']['mean'] / \
             doc['FT_Rate_D']
         master_temp['Team'] = temp_doc
         tournament_doc = {}
@@ -214,19 +213,19 @@ def radar_compare(team1, year1, team2, year2):
         temp_doc = {}
         temp_doc['eFG_Pct_O'] = doc['eFG_Pct_O'] / \
             stats[0]['All']['eFG_Pct_O']['mean']
-        temp_doc['TO_Pct_O'] = stats[0]['All']['TO_Pct_O']['mean'] / \
+        temp_doc['TO_Pct_O'] = all_stats[0]['All']['TO_Pct_O']['mean'] / \
             doc['TO_Pct_O']
         temp_doc['OR_Pct_O'] = doc['OR_Pct_O'] / \
-            stats[0]['All']['OR_Pct_O']['mean']
+            all_stats[0]['All']['OR_Pct_O']['mean']
         temp_doc['FT_Rate_O'] = doc['FT_Rate_O'] / \
-            stats[0]['All']['FT_Rate_O']['mean']
-        temp_doc['eFG_Pct_D'] = stats[0]['All']['eFG_Pct_D']['mean'] / \
+            all_stats[0]['All']['FT_Rate_O']['mean']
+        temp_doc['eFG_Pct_D'] = all_stats[0]['All']['eFG_Pct_D']['mean'] / \
             doc['eFG_Pct_D']
         temp_doc['TO_Pct_D'] = doc['TO_Pct_D'] / \
-            stats[0]['All']['TO_Pct_D']['mean']
-        temp_doc['OR_Pct_D'] = stats[0]['All']['OR_Pct_D']['mean'] / \
+            all_stats[0]['All']['TO_Pct_D']['mean']
+        temp_doc['OR_Pct_D'] = all_stats[0]['All']['OR_Pct_D']['mean'] / \
             doc['OR_Pct_D']
-        temp_doc['FT_Rate_D'] = stats[0]['All']['FT_Rate_D']['mean'] / \
+        temp_doc['FT_Rate_D'] = all_stats[0]['All']['FT_Rate_D']['mean'] / \
             doc['FT_Rate_D']
         master_temp['Team'] = temp_doc
         docs.append(master_temp)
