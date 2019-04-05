@@ -18,7 +18,7 @@ function makeDoughnutsInit(ctxO, ctxD) {
 		dData.push(data[0]['DEF_3PT'].toFixed(1));
 		dData.push(data[0]['DEF_FT'].toFixed(1));
 
-		let labels = [ '2PT FG Rate', '3PT FG Rate', 'FT Rate' ];
+		let labels = [ '2PT FG', '3PT FG', 'FT' ];
 
 		let dataOffense = {
 			labels: labels,
@@ -98,7 +98,7 @@ function makeDoughnuts(data) {
 	dData.push(data[0]['DEF_3PT'].toFixed(1));
 	dData.push(data[0]['DEF_FT'].toFixed(1));
 
-	let labels = [ '2PT FG Rate', '3PT FG Rate', 'FT Rate' ];
+	let labels = [ '2PT FG', '3PT FG', 'FT' ];
 
 	let dataOffense = {
 		labels: labels,
@@ -156,7 +156,7 @@ function makeDoughnutsCompareInit(ctxHomeO, ctxHomeD, ctxAwayO, ctxAwayD) {
 		awayDData.push(data[1]['DEF_3PT'].toFixed(1));
 		awayDData.push(data[1]['DEF_FT'].toFixed(1));
 
-		let labels = [ '2PT FG Rate', '3PT FG Rate', 'FT Rate' ];
+		let labels = [ '2PT FG', '3PT FG', 'FT' ];
 
 		let dataHomeOffense = {
 			labels: labels,
@@ -261,7 +261,7 @@ function makeDoughnutsCompare(data) {
 	awayDData.push(data[1]['DEF_3PT'].toFixed(1));
 	awayDData.push(data[1]['DEF_FT'].toFixed(1));
 
-	let labels = [ '2PT FG Rate', '3PT FG Rate', 'FT Rate' ];
+	let labels = [ '2PT FG', '3PT FG', 'FT' ];
 
 	let dataHomeOffense = {
 		labels: labels,
