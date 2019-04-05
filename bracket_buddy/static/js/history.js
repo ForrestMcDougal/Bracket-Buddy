@@ -8,6 +8,16 @@ function makeHistoryChartInit(chart) {
 		let yVal = data.map((d) => d[stat]);
 		let label = historyFilter.options[historyFilter.selectedIndex].getAttribute('data-label');
 
+		let options = {
+			tooltips: {
+				callbacks: {
+					label: function(tooltipItem) {
+						return `${Number(tooltipItem.yLabel).toFixed(2)}`;
+					}
+				}
+			}
+		};
+
 		historyChart = new Chart(chart, {
 			type: 'line',
 			data: {
@@ -21,7 +31,8 @@ function makeHistoryChartInit(chart) {
 						backgroundColor: data[0]['color2']
 					}
 				]
-			}
+			},
+			options: options
 		});
 	});
 }
@@ -31,6 +42,16 @@ function makeHistoryChart(data) {
 	let stat = historyFilter.value;
 	let yVal = data.map((d) => d[stat]);
 	let label = historyFilter.options[historyFilter.selectedIndex].getAttribute('data-label');
+
+	let options = {
+		tooltips: {
+			callbacks: {
+				label: function(tooltipItem) {
+					return `${Number(tooltipItem.yLabel).toFixed(2)}`;
+				}
+			}
+		}
+	};
 
 	historyChart.data = {
 		labels: years,
@@ -44,5 +65,6 @@ function makeHistoryChart(data) {
 			}
 		]
 	};
+	historyChart.options = options;
 	historyChart.update();
 }

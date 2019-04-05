@@ -41,7 +41,7 @@ function makeBarChartInit(ctx) {
 			tooltips: {
 				callbacks: {
 					label: function(tooltipItem) {
-						let avg = `${Number(tooltipItem.yLabel).toFixed(2)}th percentile`;
+						let avg = `Percentile: ${Number(tooltipItem.yLabel).toFixed(2)}`;
 						return [ avg ].concat(...rawLabel(tooltipItem.xLabel, data, tooltipItem.datasetIndex));
 					}
 				}
@@ -53,6 +53,10 @@ function makeBarChartInit(ctx) {
 						ticks: {
 							beginAtZero: true,
 							max: 100
+						},
+						scaleLabel: {
+							display: true,
+							labelString: 'Percentile'
 						}
 					}
 				]
@@ -107,7 +111,7 @@ function makeDoubleBarChartInit(ctx) {
 			tooltips: {
 				callbacks: {
 					label: function(tooltipItem) {
-						let avg = `${Number(tooltipItem.yLabel).toFixed(2)}th percentile`;
+						let avg = `Percentile: ${Number(tooltipItem.yLabel).toFixed(2)}`;
 						return [ avg ].concat(...rawLabel(tooltipItem.xLabel, data, tooltipItem.datasetIndex));
 					}
 				}
@@ -119,6 +123,10 @@ function makeDoubleBarChartInit(ctx) {
 						ticks: {
 							beginAtZero: true,
 							max: 100
+						},
+						scaleLabel: {
+							display: true,
+							labelString: 'Percentile'
 						}
 					}
 				]
@@ -169,7 +177,7 @@ function makeBarChart(data, selTeam) {
 		tooltips: {
 			callbacks: {
 				label: function(tooltipItem) {
-					let avg = `${Number(tooltipItem.yLabel).toFixed(2)}th percentile`;
+					let avg = `Percentile: ${Number(tooltipItem.yLabel).toFixed(2)}`;
 					return [ avg ].concat(...rawLabel(tooltipItem.xLabel, data, tooltipItem.datasetIndex));
 				}
 			}
@@ -181,6 +189,10 @@ function makeBarChart(data, selTeam) {
 					ticks: {
 						beginAtZero: true,
 						max: 100
+					},
+					scaleLabel: {
+						display: true,
+						labelString: 'Percentile'
 					}
 				}
 			]
@@ -227,7 +239,7 @@ function makeDoubleBarChart(data, homeTeam, homeYear, awayTeam, awayYear) {
 		tooltips: {
 			callbacks: {
 				label: function(tooltipItem) {
-					let avg = `${Number(tooltipItem.yLabel).toFixed(2)}th percentile`;
+					let avg = `Percentile: ${Number(tooltipItem.yLabel).toFixed(2)}`;
 					return [ avg ].concat(...rawLabel(tooltipItem.xLabel, data, tooltipItem.datasetIndex));
 				}
 			}
@@ -239,6 +251,10 @@ function makeDoubleBarChart(data, homeTeam, homeYear, awayTeam, awayYear) {
 					ticks: {
 						beginAtZero: true,
 						max: 100
+					},
+					scaleLabel: {
+						display: true,
+						labelString: 'Percentile'
 					}
 				}
 			]
