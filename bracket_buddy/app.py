@@ -212,7 +212,7 @@ def radar_compare(team1, year1, team2, year2):
         master_temp = {}
         temp_doc = {}
         temp_doc['eFG_Pct_O'] = doc['eFG_Pct_O'] / \
-            stats[0]['All']['eFG_Pct_O']['mean']
+            all_stats[0]['All']['eFG_Pct_O']['mean']
         temp_doc['TO_Pct_O'] = all_stats[0]['All']['TO_Pct_O']['mean'] / \
             doc['TO_Pct_O']
         temp_doc['OR_Pct_O'] = doc['OR_Pct_O'] / \
