@@ -278,6 +278,11 @@ function visualize(theData) {
 			.attr('data-axis', 'x')
 			.attr('class', 'aText x')
 			.text(xAxisText);
+		let corrX = theData.map((d) => +d[curX]);
+		let corrY = theData.map((d) => +d[curY]);
+
+		let corr = pearsonCorrelation(corrX, corrY);
+		correlation.innerHTML = `<h6>Correlation coefficient of ${corr.toFixed(3)}</h6>`;
 	});
 
 	d3.select('#y-axis-dropdown').on('change', function() {
@@ -321,6 +326,11 @@ function visualize(theData) {
 			.attr('data-axis', 'y')
 			.attr('class', 'aText y')
 			.text(yAxisText);
+		let corrX = theData.map((d) => +d[curX]);
+		let corrY = theData.map((d) => +d[curY]);
+
+		let corr = pearsonCorrelation(corrX, corrY);
+		correlation.innerHTML = `<h6>Correlation coefficient of ${corr.toFixed(3)}</h6>`;
 	});
 
 	function resize() {
