@@ -15,6 +15,14 @@ adj_de_list = list(master_df['AdjDE'])
 adj_tempo_list = list(master_df['AdjTempo'])
 exp_list = list(master_df['Exp'])
 size_list = list(master_df['Size'])
+e_fg_pct_o_list = list(master_df['eFG_Pct_O'])
+to_pct_o_list = list(master_df['TO_Pct_O'])
+or_pct_o_list = list(master_df['OR_Pct_O'])
+ft_rate_o_list = list(master_df['FT_Rate_O'])
+e_fg_pct_d_list = list(master_df['eFG_Pct_D'])
+to_pct_d_list = list(master_df['TO_Pct_D'])
+or_pct_d_list = list(master_df['OR_Pct_D'])
+ft_rate_d_list = list(master_df['FT_Rate_D'])
 
 all_stats = [{'All': {'Season': {'count': 3492.0,
                              'mean': 2014.519759450172,

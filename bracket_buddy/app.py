@@ -5,12 +5,11 @@ from flask import Flask, render_template
 from flask_pymongo import PyMongo
 import simplejson
 
-from bracket_buddy.team_stats import all_stats, adj_em_list, adj_oe_list, adj_de_list, adj_tempo_list, exp_list, size_list
+from bracket_buddy.team_stats import all_stats, adj_em_list, adj_oe_list, adj_de_list, adj_tempo_list, exp_list, size_list, e_fg_pct_o_list, to_pct_o_list, or_pct_o_list, ft_rate_o_list, e_fg_pct_d_list, to_pct_d_list, or_pct_d_list, ft_rate_d_list
 
 app = Flask(__name__)
 
-app.config["MONGO_URI"] = os.environ.get(
-    'MONGO_URI', 'mongodb://localhost:27017/ncaa')
+app.config["MONGO_URI"] = 'mongodb://localhost:27017/ncaa'
 mongo = PyMongo(app)
 
 
@@ -136,33 +135,59 @@ def radar(team, year):
         doc.pop('_id')
         master_temp = {}
         temp_doc = {}
-        temp_doc['eFG_Pct_O'] = doc['eFG_Pct_O'] / \
-            all_stats[0]['All']['eFG_Pct_O']['mean']
-        temp_doc['TO_Pct_O'] = all_stats[0]['All']['TO_Pct_O']['mean'] / \
-            doc['TO_Pct_O']
-        temp_doc['OR_Pct_O'] = doc['OR_Pct_O'] / \
-            all_stats[0]['All']['OR_Pct_O']['mean']
-        temp_doc['FT_Rate_O'] = doc['FT_Rate_O'] / \
-            all_stats[0]['All']['FT_Rate_O']['mean']
-        temp_doc['eFG_Pct_D'] = all_stats[0]['All']['eFG_Pct_D']['mean'] / \
-            doc['eFG_Pct_D']
-        temp_doc['TO_Pct_D'] = doc['TO_Pct_D'] / \
-            all_stats[0]['All']['TO_Pct_D']['mean']
-        temp_doc['OR_Pct_D'] = all_stats[0]['All']['OR_Pct_D']['mean'] / \
-            doc['OR_Pct_D']
-        temp_doc['FT_Rate_D'] = all_stats[0]['All']['FT_Rate_D']['mean'] / \
-            doc['FT_Rate_D']
+        temp_doc['eFG_Pct_O'] = stats.percentileofscore(
+            e_fg_pct_o_list, doc['eFG_Pct_O'])
+        temp_doc['TO_Pct_O'] = 100 - \
+            stats.percentileofscore(to_pct_o_list, doc['TO_Pct_O'])
+        temp_doc['OR_Pct_O'] = stats.percentileofscore(
+            or_pct_o_list, doc['OR_Pct_O'])
+        temp_doc['FT_Rate_O'] = stats.percentileofscore(
+            ft_rate_o_list, doc['FT_Rate_O'])
+        temp_doc['eFG_Pct_D'] = 100 - \
+            stats.percentileofscore(e_fg_pct_d_list, doc['eFG_Pct_D'])
+        temp_doc['TO_Pct_D'] = stats.percentileofscore(
+            to_pct_d_list, doc['TO_Pct_D'])
+        temp_doc['OR_Pct_D'] = 100 - \
+            stats.percentileofscore(or_pct_d_list, doc['OR_Pct_D'])
+        temp_doc['FT_Rate_D'] = 100 - \
+            stats.percentileofscore(ft_rate_d_list, doc['FT_Rate_D'])
         master_temp['Team'] = temp_doc
         tournament_doc = {}
-        tournament_doc['eFG_Pct_O'] = 1.0460424505970831
-        tournament_doc['TO_Pct_O'] = 1.073456866651516
-        tournament_doc['OR_Pct_O'] = 1.0629167804186908
-        tournament_doc['FT_Rate_O'] = 1.0338176225710891
-        tournament_doc['eFG_Pct_D'] = 1.0493121330945443
-        tournament_doc['TO_Pct_D'] = 1.0167173947951866
-        tournament_doc['OR_Pct_D'] = 1.0391702499951196
-        tournament_doc['FT_Rate_D'] = 1.0856409662284037
+        tournament_doc['eFG_Pct_O'] = stats.percentileofscore(
+            e_fg_pct_o_list, all_stats[1]['Tournament']['eFG_Pct_O']['mean'])
+        tournament_doc['TO_Pct_O'] = 100 - stats.percentileofscore(
+            to_pct_o_list, all_stats[1]['Tournament']['TO_Pct_O']['mean'])
+        tournament_doc['OR_Pct_O'] = stats.percentileofscore(
+            or_pct_o_list, all_stats[1]['Tournament']['OR_Pct_O']['mean'])
+        tournament_doc['FT_Rate_O'] = stats.percentileofscore(
+            ft_rate_o_list, all_stats[1]['Tournament']['FT_Rate_O']['mean'])
+        tournament_doc['eFG_Pct_D'] = 100 - stats.percentileofscore(
+            e_fg_pct_d_list, all_stats[1]['Tournament']['eFG_Pct_D']['mean'])
+        tournament_doc['TO_Pct_D'] = stats.percentileofscore(
+            to_pct_d_list, all_stats[1]['Tournament']['TO_Pct_D']['mean'])
+        tournament_doc['OR_Pct_D'] = 100 - stats.percentileofscore(
+            or_pct_d_list, all_stats[1]['Tournament']['OR_Pct_D']['mean'])
+        tournament_doc['FT_Rate_D'] = 100 - stats.percentileofscore(
+            ft_rate_d_list, all_stats[1]['Tournament']['FT_Rate_D']['mean'])
         master_temp['Tournament'] = tournament_doc
+        ff_doc = {}
+        ff_doc['eFG_Pct_O'] = stats.percentileofscore(
+            e_fg_pct_o_list, all_stats[2]['FinalFour']['eFG_Pct_O']['mean'])
+        ff_doc['TO_Pct_O'] = 100 - stats.percentileofscore(
+            to_pct_o_list, all_stats[2]['FinalFour']['TO_Pct_O']['mean'])
+        ff_doc['OR_Pct_O'] = stats.percentileofscore(
+            or_pct_o_list, all_stats[2]['FinalFour']['OR_Pct_O']['mean'])
+        ff_doc['FT_Rate_O'] = stats.percentileofscore(
+            ft_rate_o_list, all_stats[2]['FinalFour']['FT_Rate_O']['mean'])
+        ff_doc['eFG_Pct_D'] = 100 - stats.percentileofscore(
+            e_fg_pct_d_list, all_stats[2]['FinalFour']['eFG_Pct_D']['mean'])
+        ff_doc['TO_Pct_D'] = stats.percentileofscore(
+            to_pct_d_list, all_stats[2]['FinalFour']['TO_Pct_D']['mean'])
+        ff_doc['OR_Pct_D'] = 100 - stats.percentileofscore(
+            or_pct_d_list, all_stats[2]['FinalFour']['OR_Pct_D']['mean'])
+        ff_doc['FT_Rate_D'] = 100 - stats.percentileofscore(
+            ft_rate_d_list, all_stats[2]['FinalFour']['FT_Rate_D']['mean'])
+        master_temp['FinalFour'] = ff_doc
         docs.append(master_temp)
     return simplejson.dumps(docs, ignore_nan=True)
 
@@ -176,33 +201,59 @@ def radar_compare(team1, year1, team2, year2):
         doc.pop('_id')
         master_temp = {}
         temp_doc = {}
-        temp_doc['eFG_Pct_O'] = doc['eFG_Pct_O'] / \
-            all_stats[0]['All']['eFG_Pct_O']['mean']
-        temp_doc['TO_Pct_O'] = all_stats[0]['All']['TO_Pct_O']['mean'] / \
-            doc['TO_Pct_O']
-        temp_doc['OR_Pct_O'] = doc['OR_Pct_O'] / \
-            all_stats[0]['All']['OR_Pct_O']['mean']
-        temp_doc['FT_Rate_O'] = doc['FT_Rate_O'] / \
-            all_stats[0]['All']['FT_Rate_O']['mean']
-        temp_doc['eFG_Pct_D'] = all_stats[0]['All']['eFG_Pct_D']['mean'] / \
-            doc['eFG_Pct_D']
-        temp_doc['TO_Pct_D'] = doc['TO_Pct_D'] / \
-            all_stats[0]['All']['TO_Pct_D']['mean']
-        temp_doc['OR_Pct_D'] = all_stats[0]['All']['OR_Pct_D']['mean'] / \
-            doc['OR_Pct_D']
-        temp_doc['FT_Rate_D'] = all_stats[0]['All']['FT_Rate_D']['mean'] / \
-            doc['FT_Rate_D']
+        temp_doc['eFG_Pct_O'] = stats.percentileofscore(
+            e_fg_pct_o_list, doc['eFG_Pct_O'])
+        temp_doc['TO_Pct_O'] = 100 - \
+            stats.percentileofscore(to_pct_o_list, doc['TO_Pct_O'])
+        temp_doc['OR_Pct_O'] = stats.percentileofscore(
+            or_pct_o_list, doc['OR_Pct_O'])
+        temp_doc['FT_Rate_O'] = stats.percentileofscore(
+            ft_rate_o_list, doc['FT_Rate_O'])
+        temp_doc['eFG_Pct_D'] = 100 - \
+            stats.percentileofscore(e_fg_pct_d_list, doc['eFG_Pct_D'])
+        temp_doc['TO_Pct_D'] = stats.percentileofscore(
+            to_pct_d_list, doc['TO_Pct_D'])
+        temp_doc['OR_Pct_D'] = 100 - \
+            stats.percentileofscore(or_pct_d_list, doc['OR_Pct_D'])
+        temp_doc['FT_Rate_D'] = 100 - \
+            stats.percentileofscore(ft_rate_d_list, doc['FT_Rate_D'])
         master_temp['Team'] = temp_doc
         tournament_doc = {}
-        tournament_doc['eFG_Pct_O'] = 1.0460424505970831
-        tournament_doc['TO_Pct_O'] = 1.073456866651516
-        tournament_doc['OR_Pct_O'] = 1.0629167804186908
-        tournament_doc['FT_Rate_O'] = 1.0338176225710891
-        tournament_doc['eFG_Pct_D'] = 1.0493121330945443
-        tournament_doc['TO_Pct_D'] = 1.0167173947951866
-        tournament_doc['OR_Pct_D'] = 1.0391702499951196
-        tournament_doc['FT_Rate_D'] = 1.0856409662284037
+        tournament_doc['eFG_Pct_O'] = stats.percentileofscore(
+            e_fg_pct_o_list, all_stats[1]['Tournament']['eFG_Pct_O']['mean'])
+        tournament_doc['TO_Pct_O'] = 100 - stats.percentileofscore(
+            to_pct_o_list, all_stats[1]['Tournament']['TO_Pct_O']['mean'])
+        tournament_doc['OR_Pct_O'] = stats.percentileofscore(
+            or_pct_o_list, all_stats[1]['Tournament']['OR_Pct_O']['mean'])
+        tournament_doc['FT_Rate_O'] = stats.percentileofscore(
+            ft_rate_o_list, all_stats[1]['Tournament']['FT_Rate_O']['mean'])
+        tournament_doc['eFG_Pct_D'] = 100 - stats.percentileofscore(
+            e_fg_pct_d_list, all_stats[1]['Tournament']['eFG_Pct_D']['mean'])
+        tournament_doc['TO_Pct_D'] = stats.percentileofscore(
+            to_pct_d_list, all_stats[1]['Tournament']['TO_Pct_D']['mean'])
+        tournament_doc['OR_Pct_D'] = 100 - stats.percentileofscore(
+            or_pct_d_list, all_stats[1]['Tournament']['OR_Pct_D']['mean'])
+        tournament_doc['FT_Rate_D'] = 100 - stats.percentileofscore(
+            ft_rate_d_list, all_stats[1]['Tournament']['FT_Rate_D']['mean'])
         master_temp['Tournament'] = tournament_doc
+        ff_doc = {}
+        ff_doc['eFG_Pct_O'] = stats.percentileofscore(
+            e_fg_pct_o_list, all_stats[2]['FinalFour']['eFG_Pct_O']['mean'])
+        ff_doc['TO_Pct_O'] = 100 - stats.percentileofscore(
+            to_pct_o_list, all_stats[2]['FinalFour']['TO_Pct_O']['mean'])
+        ff_doc['OR_Pct_O'] = stats.percentileofscore(
+            or_pct_o_list, all_stats[2]['FinalFour']['OR_Pct_O']['mean'])
+        ff_doc['FT_Rate_O'] = stats.percentileofscore(
+            ft_rate_o_list, all_stats[2]['FinalFour']['FT_Rate_O']['mean'])
+        ff_doc['eFG_Pct_D'] = 100 - stats.percentileofscore(
+            e_fg_pct_d_list, all_stats[2]['FinalFour']['eFG_Pct_D']['mean'])
+        ff_doc['TO_Pct_D'] = stats.percentileofscore(
+            to_pct_d_list, all_stats[2]['FinalFour']['TO_Pct_D']['mean'])
+        ff_doc['OR_Pct_D'] = 100 - stats.percentileofscore(
+            or_pct_d_list, all_stats[2]['FinalFour']['OR_Pct_D']['mean'])
+        ff_doc['FT_Rate_D'] = 100 - stats.percentileofscore(
+            ft_rate_d_list, all_stats[2]['FinalFour']['FT_Rate_D']['mean'])
+        master_temp['FinalFour'] = ff_doc
         docs.append(master_temp)
 
     team_year_info = mongo.db.basketball.find(
@@ -211,22 +262,22 @@ def radar_compare(team1, year1, team2, year2):
         doc.pop('_id')
         master_temp = {}
         temp_doc = {}
-        temp_doc['eFG_Pct_O'] = doc['eFG_Pct_O'] / \
-            all_stats[0]['All']['eFG_Pct_O']['mean']
-        temp_doc['TO_Pct_O'] = all_stats[0]['All']['TO_Pct_O']['mean'] / \
-            doc['TO_Pct_O']
-        temp_doc['OR_Pct_O'] = doc['OR_Pct_O'] / \
-            all_stats[0]['All']['OR_Pct_O']['mean']
-        temp_doc['FT_Rate_O'] = doc['FT_Rate_O'] / \
-            all_stats[0]['All']['FT_Rate_O']['mean']
-        temp_doc['eFG_Pct_D'] = all_stats[0]['All']['eFG_Pct_D']['mean'] / \
-            doc['eFG_Pct_D']
-        temp_doc['TO_Pct_D'] = doc['TO_Pct_D'] / \
-            all_stats[0]['All']['TO_Pct_D']['mean']
-        temp_doc['OR_Pct_D'] = all_stats[0]['All']['OR_Pct_D']['mean'] / \
-            doc['OR_Pct_D']
-        temp_doc['FT_Rate_D'] = all_stats[0]['All']['FT_Rate_D']['mean'] / \
-            doc['FT_Rate_D']
+        temp_doc['eFG_Pct_O'] = stats.percentileofscore(
+            e_fg_pct_o_list, doc['eFG_Pct_O'])
+        temp_doc['TO_Pct_O'] = 100 - \
+            stats.percentileofscore(to_pct_o_list, doc['TO_Pct_O'])
+        temp_doc['OR_Pct_O'] = stats.percentileofscore(
+            or_pct_o_list, doc['OR_Pct_O'])
+        temp_doc['FT_Rate_O'] = stats.percentileofscore(
+            ft_rate_o_list, doc['FT_Rate_O'])
+        temp_doc['eFG_Pct_D'] = 100 - \
+            stats.percentileofscore(e_fg_pct_d_list, doc['eFG_Pct_D'])
+        temp_doc['TO_Pct_D'] = stats.percentileofscore(
+            to_pct_d_list, doc['TO_Pct_D'])
+        temp_doc['OR_Pct_D'] = 100 - \
+            stats.percentileofscore(or_pct_d_list, doc['OR_Pct_D'])
+        temp_doc['FT_Rate_D'] = 100 - \
+            stats.percentileofscore(ft_rate_d_list, doc['FT_Rate_D'])
         master_temp['Team'] = temp_doc
         docs.append(master_temp)
     return simplejson.dumps(docs, ignore_nan=True)

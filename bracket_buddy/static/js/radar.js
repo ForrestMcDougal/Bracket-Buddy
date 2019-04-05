@@ -4,11 +4,14 @@ let radarFourFactorsAway;
 let radarRank;
 let radarHomeRank;
 let radarAwayRank;
+let positionRadar;
 
 let chartColors = {
 	red: 'rgb(255, 99, 132)',
 	yellow: 'rgb(255, 205, 86)',
-	blue: 'rgb(54, 162, 235)'
+	blue: 'rgb(54, 162, 235)',
+	green: 'rgb(34,139,34)',
+	purple: 'rgb(128,0,128)'
 };
 
 let color = Chart.helpers.color;
@@ -26,6 +29,11 @@ function makeRadarFourFactorsInit(ctxFourFactors) {
 		let tourneyDataArr = [];
 		for (let i in tourneyData) {
 			tourneyDataArr.push(+tourneyData[i]);
+		}
+		let ffData = theData[0]['FinalFour'];
+		let ffDataArr = [];
+		for (let i in ffData) {
+			ffDataArr.push(+ffData[i]);
 		}
 
 		let radarData = {
@@ -52,7 +60,15 @@ function makeRadarFourFactorsInit(ctxFourFactors) {
 					backgroundColor: color(chartColors.blue).alpha(0.2).rgbString(),
 					borderColor: chartColors.blue,
 					pointBackgroundColor: chartColors.blue,
-					data: tourneyDataArr
+					data: tourneyDataArr,
+					hidden: true
+				},
+				{
+					label: 'Final Four Teams',
+					backgroundColor: color(chartColors.green).alpha(0.2).rgbString(),
+					borderColor: chartColors.green,
+					pointBackgroundColor: chartColors.green,
+					data: ffDataArr
 				}
 			]
 		};
@@ -63,13 +79,14 @@ function makeRadarFourFactorsInit(ctxFourFactors) {
 			options: {
 				scale: {
 					ticks: {
-						beginAtZero: true
+						beginAtZero: true,
+						max: 100
 					}
 				},
 				tooltips: {
 					callbacks: {
 						label: function(tooltipItem) {
-							let avg = `${(Number(tooltipItem.yLabel) * 100).toFixed(2)}% of Average`;
+							let avg = `Percentile: ${Number(tooltipItem.yLabel).toFixed(2)}`;
 							return avg;
 						}
 					}
@@ -89,6 +106,11 @@ function makeRadarFourFactors(theData, selTeam, selYear) {
 	let tourneyDataArr = [];
 	for (let i in tourneyData) {
 		tourneyDataArr.push(tourneyData[i]);
+	}
+	let ffData = theData[0]['FinalFour'];
+	let ffDataArr = [];
+	for (let i in ffData) {
+		ffDataArr.push(+ffData[i]);
 	}
 
 	let radarData = {
@@ -115,7 +137,15 @@ function makeRadarFourFactors(theData, selTeam, selYear) {
 				backgroundColor: color(chartColors.blue).alpha(0.2).rgbString(),
 				borderColor: chartColors.blue,
 				pointBackgroundColor: chartColors.blue,
-				data: tourneyDataArr
+				data: tourneyDataArr,
+				hidden: true
+			},
+			{
+				label: 'Final Four Teams',
+				backgroundColor: color(chartColors.green).alpha(0.2).rgbString(),
+				borderColor: chartColors.green,
+				pointBackgroundColor: chartColors.green,
+				data: ffDataArr
 			}
 		]
 	};
@@ -124,13 +154,14 @@ function makeRadarFourFactors(theData, selTeam, selYear) {
 	radarFourFactors.options = {
 		scale: {
 			ticks: {
-				beginAtZero: true
+				beginAtZero: true,
+				max: 100
 			}
 		},
 		tooltips: {
 			callbacks: {
 				label: function(tooltipItem) {
-					let avg = `${(Number(tooltipItem.yLabel) * 100).toFixed(2)}% of Average`;
+					let avg = `Percentile: ${Number(tooltipItem.yLabel).toFixed(2)}`;
 					return avg;
 				}
 			}
@@ -160,6 +191,11 @@ function makeRadarFourFactorsComparisonInit(ctxHomeFF, ctxAwayFF) {
 		for (let i in tourneyData) {
 			tourneyDataArr.push(tourneyData[i]);
 		}
+		let ffData = theData[0]['FinalFour'];
+		let ffDataArr = [];
+		for (let i in ffData) {
+			ffDataArr.push(+ffData[i]);
+		}
 
 		let radarDataHome = {
 			labels: [
@@ -185,7 +221,15 @@ function makeRadarFourFactorsComparisonInit(ctxHomeFF, ctxAwayFF) {
 					backgroundColor: color(chartColors.blue).alpha(0.2).rgbString(),
 					borderColor: chartColors.blue,
 					pointBackgroundColor: chartColors.blue,
-					data: tourneyDataArr
+					data: tourneyDataArr,
+					hidden: true
+				},
+				{
+					label: 'Final Four Teams',
+					backgroundColor: color(chartColors.green).alpha(0.2).rgbString(),
+					borderColor: chartColors.green,
+					pointBackgroundColor: chartColors.green,
+					data: ffDataArr
 				}
 			]
 		};
@@ -214,24 +258,30 @@ function makeRadarFourFactorsComparisonInit(ctxHomeFF, ctxAwayFF) {
 					backgroundColor: color(chartColors.blue).alpha(0.2).rgbString(),
 					borderColor: chartColors.blue,
 					pointBackgroundColor: chartColors.blue,
-					data: tourneyDataArr
+					data: tourneyDataArr,
+					hidden: true
+				},
+				{
+					label: 'Final Four Teams',
+					backgroundColor: color(chartColors.green).alpha(0.2).rgbString(),
+					borderColor: chartColors.green,
+					pointBackgroundColor: chartColors.green,
+					data: ffDataArr
 				}
 			]
 		};
-
-		let allVals = teamDataHomeArr.concat(...teamDataAwayArr).concat(...tourneyDataArr);
 
 		let options = {
 			scale: {
 				ticks: {
 					beginAtZero: true,
-					max: Math.max(...allVals)
+					max: 100
 				}
 			},
 			tooltips: {
 				callbacks: {
 					label: function(tooltipItem) {
-						let avg = `${(Number(tooltipItem.yLabel) * 100).toFixed(2)}% of Average`;
+						let avg = `Percentile: ${Number(tooltipItem.yLabel).toFixed(2)}`;
 						return avg;
 					}
 				}
@@ -268,6 +318,11 @@ function makeRadarFourFactorsComparison(theData, homeTeam, homeYear, awayTeam, a
 	for (let i in tourneyData) {
 		tourneyDataArr.push(tourneyData[i]);
 	}
+	let ffData = theData[0]['FinalFour'];
+	let ffDataArr = [];
+	for (let i in ffData) {
+		ffDataArr.push(+ffData[i]);
+	}
 
 	let radarDataHome = {
 		labels: [
@@ -293,7 +348,15 @@ function makeRadarFourFactorsComparison(theData, homeTeam, homeYear, awayTeam, a
 				backgroundColor: color(chartColors.blue).alpha(0.2).rgbString(),
 				borderColor: chartColors.blue,
 				pointBackgroundColor: chartColors.blue,
-				data: tourneyDataArr
+				data: tourneyDataArr,
+				hidden: true
+			},
+			{
+				label: 'Final Four Teams',
+				backgroundColor: color(chartColors.green).alpha(0.2).rgbString(),
+				borderColor: chartColors.green,
+				pointBackgroundColor: chartColors.green,
+				data: ffDataArr
 			}
 		]
 	};
@@ -322,24 +385,30 @@ function makeRadarFourFactorsComparison(theData, homeTeam, homeYear, awayTeam, a
 				backgroundColor: color(chartColors.blue).alpha(0.2).rgbString(),
 				borderColor: chartColors.blue,
 				pointBackgroundColor: chartColors.blue,
-				data: tourneyDataArr
+				data: tourneyDataArr,
+				hidden: true
+			},
+			{
+				label: 'Final Four Teams',
+				backgroundColor: color(chartColors.green).alpha(0.2).rgbString(),
+				borderColor: chartColors.green,
+				pointBackgroundColor: chartColors.green,
+				data: ffDataArr
 			}
 		]
 	};
-
-	let allVals = teamDataHomeArr.concat(...teamDataAwayArr).concat(...tourneyDataArr);
 
 	let options = {
 		scale: {
 			ticks: {
 				beginAtZero: true,
-				max: Math.max(...allVals)
+				max: 100
 			}
 		},
 		tooltips: {
 			callbacks: {
 				label: function(tooltipItem) {
-					let avg = `${(Number(tooltipItem.yLabel) * 100).toFixed(2)}% of Average`;
+					let avg = `Percentile: ${Number(tooltipItem.yLabel).toFixed(2)}`;
 					return avg;
 				}
 			}
