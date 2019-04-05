@@ -9,7 +9,8 @@ from bracket_buddy.team_stats import all_stats, adj_em_list, adj_oe_list, adj_de
 
 app = Flask(__name__)
 
-app.config["MONGO_URI"] = 'mongodb://localhost:27017/ncaa'
+app.config["MONGO_URI"] = os.environ.get(
+    'MONGO_URI', 'mongodb://localhost:27017/ncaa')
 mongo = PyMongo(app)
 
 
