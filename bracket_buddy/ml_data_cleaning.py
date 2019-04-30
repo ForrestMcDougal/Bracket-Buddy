@@ -93,7 +93,7 @@ for year in range(2010, 2020):
     print(year)
     df_path = os.path.join('data', 'cleaned', f'master_{year}.csv')
     df_year = pd.read_csv(df_path)
-    df_pruned = df_year[['TeamName', 'Season', 'AdjTempo', 'AdjOE', 'AdjDE', 'eFG_Pct_O', 'eFG_Pct_D',
+    df_pruned = df_year[['TeamName', 'Season', 'AdjTempo', 'AdjOE', 'AdjDE',                            'eFG_Pct_O', 'eFG_Pct_D',
                          'TO_Pct_O', 'TO_Pct_D', 'OR_Pct_O', 'OR_Pct_D', 'FT_Rate_O', 'FT_Rate_D',
                          'OFF_FT', 'OFF_2PT', 'OFF_3PT', 'DEF_FT', 'DEF_2PT', 'DEF_3PT', 'Size',
                          'Hgt1', 'Hgt2', 'Hgt3', 'Hgt4', 'Hgt5', 'HgtEff', 'Exp', 'Bench', 'Pts1', 'Pts2',
