@@ -12,6 +12,8 @@ kenpom_df = pd.read_csv(kenpom_path)
 output_df = pd.DataFrame()
 
 for i, row in all_games_df.iterrows():
+    if i % 100 == 0:
+        print(i)
     try:
         home_team = name_map[row['home']]
         away_team = name_map[row['away']]
@@ -24,16 +26,14 @@ for i, row in all_games_df.iterrows():
         away_kenpom = temp_df.loc[temp_df.TeamName == away_team]
         data_columns = {}
         for col in home_kenpom.columns:
-            data_columns[f'h_{col}'] = [home_kenpom[col]]
+            data_columns[f'h_{col}'] = [home_kenpom.loc[:, col].values[0]]
         for col in away_kenpom.columns:
-            data_columns[f'a_{col}'] = [away_kenpom[col]]
+            data_columns[f'a_{col}'] = [away_kenpom.loc[:, col].values[0]]
         data_columns['hca'] = [hca]
         data_columns['home_points'] = [row['home_points']]
         data_columns['away_points'] = [row['away_points']]
-        output_df = pd.concat([output_df, pd.DataFrame(data_columns)],
-                              ignore_index=True)
-        if i % 100 == 0:
-            print(i)
+        output_df = output_df.append(pd.DataFrame.from_dict(data_columns),
+                                     ignore_index=True, sort=False)
     except:
         pass
 
