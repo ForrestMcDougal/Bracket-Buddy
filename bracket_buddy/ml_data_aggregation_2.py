@@ -29,19 +29,18 @@ for i, row in all_games_df.iterrows():
         temp_df = kenpom_df.loc[kenpom_df.Season == row['year']]
         home_kenpom = temp_df.loc[temp_df.TeamName == home_team]
         away_kenpom = temp_df.loc[temp_df.TeamName == away_team]
-        data_columns = {}
         for col in home_kenpom.columns:
-            data_columns[f'h_{col}'].append(home_kenpom[col])
+            data_columns[f'h_{col}'].append(home_kenpom.loc[0, col])
         for col in away_kenpom.columns:
-            data_columns[f'a_{col}'].append(away_kenpom[col])
+            data_columns[f'a_{col}'].append(away_kenpom.loc[0, col])
         data_columns['hca'].append(hca)
         data_columns['home_points'].append(row['home_points'])
         data_columns['away_points'].append(row['away_points'])
         if i % 100 == 0:
             print(i)
     except:
-        pass
+        print(i)
 
-output_df = pd.DataFrame(data_columns)
+output_df = pd.DataFrame.from_dict(data_columns)
 output_path = os.path.join('data', 'ml_data', 'model_data.csv')
 output_df.to_csv(output_path)
