@@ -1,0 +1,35 @@
+,year,arena,location,team,opponent,team_points,opponent_points
+0,2019,Burr Gymnasium,Home,HOWARD,Washington Adventist,115,91
+1,2019,Burr Gymnasium,Home,HOWARD,Central Pennsylvania College,99,71
+2,2019,Burr Gymnasium,Home,HOWARD,Regent,108,51
+3,2019,Mullins Center,Away,HOWARD,massachusetts,68,63
+4,2019,The SIU Arena,Away,HOWARD,southern-illinois,69,83
+5,2019,Jack Stephens Center,Away,HOWARD,arkansas-little-rock,76,97
+6,2019,Jack Stephens Center,Neutral,HOWARD,california-baptist,86,84
+7,2019,Holmes Convocation Center,Away,HOWARD,appalachian-state,86,100
+8,2019,Burr Gymnasium,Home,HOWARD,american,85,83
+9,2019,Charles E. Smith Center,Away,HOWARD,george-washington,64,70
+10,2019,Rose Hill Gym,Away,HOWARD,fordham,67,74
+11,2019,Worthen Arena,Away,HOWARD,ball-state,71,98
+12,2019,St. Elizabeths East Entertainment & Sports Arena,Home,HOWARD,hampton,82,89
+13,2019,Capital One Arena,Away,HOWARD,georgetown,67,102
+14,2019,Burr Gymnasium,Home,HOWARD,florida-am,72,82
+15,2019,Hytche Athletic Center,Away,HOWARD,maryland-eastern-shore,79,39
+16,2019,Burr Gymnasium,Home,HOWARD,bethune-cookman,63,71
+17,2019,Burr Gymnasium,Home,HOWARD,morgan-state,86,89
+18,2019,SHM Memorial Center,Away,HOWARD,south-carolina-state,71,67
+19,2019,Burr Gymnasium,Home,HOWARD,harvard,71,84
+20,2019,Burr Gymnasium,Home,HOWARD,delaware-state,80,74
+21,2019,Burr Gymnasium,Home,HOWARD,maryland-eastern-shore,72,57
+22,2019,Burr Gymnasium,Home,HOWARD,norfolk-state,78,80
+23,2019,Al Lawson Center,Away,HOWARD,florida-am,70,66
+24,2019,Moore Gymnasium,Away,HOWARD,bethune-cookman,79,73
+25,2019,Burr Gymnasium,Home,HOWARD,north-carolina-at,81,85
+26,2019,Burr Gymnasium,Home,HOWARD,north-carolina-central,90,98
+27,2019,Physical Education Complex,Away,HOWARD,coppin-state,74,73
+28,2019,Hill Field House,Away,HOWARD,morgan-state,75,69
+29,2019,Tiger Arena,Away,HOWARD,savannah-state,81,76
+30,2019,Echols Memorial Hall,Away,HOWARD,norfolk-state,98,95
+31,2019,Norfolk Scope,Neutral,HOWARD,bethune-cookman,80,71
+32,2019,Norfolk Scope,Neutral,HOWARD,norfolk-state,69,75
+33,2019,The HTC Center,Away,HOWARD,coastal-carolina,72,81
