@@ -1,7 +1,8 @@
 import os
 import pandas as pd
 
-input_path = os.path.join('data', 'ml_data', 'sref_kenpom_map.csv')
+input_path = os.path.join('bracket_buddy', 'data', 'ml_data',
+                          'sref_kenpom_map.csv')
 name_map_df = pd.read_csv(input_path)
 
 name_map = dict()
@@ -9,7 +10,8 @@ name_map = dict()
 for _, row in name_map_df.iterrows():
     name_map[row['sportsref']] = row['KenPom']
 
-home_court_path = os.path.join('data', 'ml_data', 'HomeCourtData.xlsx')
+home_court_path = os.path.join('bracket_buddy', 'data', 'ml_data',
+                               'HomeCourtData.xlsx')
 home_court_df = pd.read_excel(home_court_path)
 
 home_court = dict()

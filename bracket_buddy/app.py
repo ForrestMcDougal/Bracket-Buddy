@@ -5,6 +5,7 @@ from flask import Flask, render_template
 from flask_pymongo import PyMongo
 import simplejson
 
+from bracket_buddy.ml_backend import monte_carlo
 from bracket_buddy.team_stats import all_stats, adj_em_list, adj_oe_list, adj_de_list, adj_tempo_list, exp_list, size_list, e_fg_pct_o_list, to_pct_o_list, or_pct_o_list, ft_rate_o_list, e_fg_pct_d_list, to_pct_d_list, or_pct_d_list, ft_rate_d_list
 
 app = Flask(__name__)
@@ -282,6 +283,12 @@ def radar_compare(team1, year1, team2, year2):
         master_temp['Team'] = temp_doc
         docs.append(master_temp)
     return simplejson.dumps(docs, ignore_nan=True)
+
+
+@app.route('/api/predictions/<team1>/<year1>/<team2>/<year2>')
+def predict(team1, year1, team2, year2):
+    output = monte_carlo(year1, team1, year2, team2, mongo)
+    return simplejson.dumps(output, ignore_nan=True)
 
 
 @app.route('/')
