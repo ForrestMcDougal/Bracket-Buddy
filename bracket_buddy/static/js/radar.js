@@ -57,9 +57,9 @@ function makeRadarFourFactorsInit(ctxFourFactors) {
 				},
 				{
 					label: 'Tournament Teams',
-					backgroundColor: color(chartColors.blue).alpha(0.2).rgbString(),
-					borderColor: chartColors.blue,
-					pointBackgroundColor: chartColors.blue,
+					backgroundColor: color(chartColors.purple).alpha(0.2).rgbString(),
+					borderColor: chartColors.purple,
+					pointBackgroundColor: chartColors.purple,
 					data: tourneyDataArr,
 					hidden: true
 				},
@@ -134,9 +134,9 @@ function makeRadarFourFactors(theData, selTeam, selYear) {
 			},
 			{
 				label: 'Tournament Teams',
-				backgroundColor: color(chartColors.blue).alpha(0.2).rgbString(),
-				borderColor: chartColors.blue,
-				pointBackgroundColor: chartColors.blue,
+				backgroundColor: color(chartColors.purple).alpha(0.2).rgbString(),
+				borderColor: chartColors.purple,
+				pointBackgroundColor: chartColors.purple,
 				data: tourneyDataArr,
 				hidden: true
 			},
@@ -217,47 +217,17 @@ function makeRadarFourFactorsComparisonInit(ctxHomeFF, ctxAwayFF) {
 					data: teamDataHomeArr
 				},
 				{
-					label: 'Tournament Teams',
+					label: `${selYearAway} ${selTeamAway}`,
 					backgroundColor: color(chartColors.blue).alpha(0.2).rgbString(),
 					borderColor: chartColors.blue,
 					pointBackgroundColor: chartColors.blue,
-					data: tourneyDataArr,
-					hidden: true
-				},
-				{
-					label: 'Final Four Teams',
-					backgroundColor: color(chartColors.green).alpha(0.2).rgbString(),
-					borderColor: chartColors.green,
-					pointBackgroundColor: chartColors.green,
-					data: ffDataArr
-				}
-			]
-		};
-
-		let radarDataAway = {
-			labels: [
-				'Off Effective FG %',
-				'Off TO%',
-				'Off Off Rebound %',
-				'Off FT Rate',
-				'Def Effective FG %',
-				'Def TO%',
-				'Def Off Rebound %',
-				'Def FT Rate'
-			],
-			datasets: [
-				{
-					label: `${selYearAway} ${selTeamAway}`,
-					backgroundColor: color(chartColors.red).alpha(0.2).rgbString(),
-					borderColor: chartColors.red,
-					pointBackgroundColor: chartColors.red,
 					data: teamDataAwayArr
 				},
 				{
 					label: 'Tournament Teams',
-					backgroundColor: color(chartColors.blue).alpha(0.2).rgbString(),
-					borderColor: chartColors.blue,
-					pointBackgroundColor: chartColors.blue,
+					backgroundColor: color(chartColors.purple).alpha(0.2).rgbString(),
+					borderColor: chartColors.purple,
+					pointBackgroundColor: chartColors.purple,
 					data: tourneyDataArr,
 					hidden: true
 				},
@@ -266,10 +236,49 @@ function makeRadarFourFactorsComparisonInit(ctxHomeFF, ctxAwayFF) {
 					backgroundColor: color(chartColors.green).alpha(0.2).rgbString(),
 					borderColor: chartColors.green,
 					pointBackgroundColor: chartColors.green,
-					data: ffDataArr
+					data: ffDataArr,
+					hidden: true
 				}
+				
 			]
 		};
+
+		// let radarDataAway = {
+		// 	labels: [
+		// 		'Off Effective FG %',
+		// 		'Off TO%',
+		// 		'Off Off Rebound %',
+		// 		'Off FT Rate',
+		// 		'Def Effective FG %',
+		// 		'Def TO%',
+		// 		'Def Off Rebound %',
+		// 		'Def FT Rate'
+		// 	],
+		// 	datasets: [
+		// 		{
+		// 			label: `${selYearAway} ${selTeamAway}`,
+		// 			backgroundColor: color(chartColors.red).alpha(0.2).rgbString(),
+		// 			borderColor: chartColors.red,
+		// 			pointBackgroundColor: chartColors.red,
+		// 			data: teamDataAwayArr
+		// 		},
+		// 		{
+		// 			label: 'Tournament Teams',
+		// 			backgroundColor: color(chartColors.blue).alpha(0.2).rgbString(),
+		// 			borderColor: chartColors.blue,
+		// 			pointBackgroundColor: chartColors.blue,
+		// 			data: tourneyDataArr,
+		// 			hidden: true
+		// 		},
+		// 		{
+		// 			label: 'Final Four Teams',
+		// 			backgroundColor: color(chartColors.green).alpha(0.2).rgbString(),
+		// 			borderColor: chartColors.green,
+		// 			pointBackgroundColor: chartColors.green,
+		// 			data: ffDataArr
+		// 		}
+		// 	]
+		// };
 
 		let options = {
 			scale: {
@@ -294,11 +303,11 @@ function makeRadarFourFactorsComparisonInit(ctxHomeFF, ctxAwayFF) {
 			options: options
 		});
 
-		radarFourFactorsAway = new Chart(ctxAwayFF, {
-			type: 'radar',
-			data: radarDataAway,
-			options: options
-		});
+		// radarFourFactorsAway = new Chart(ctxAwayFF, {
+		// 	type: 'radar',
+		// 	data: radarDataAway,
+		// 	options: options
+		// });
 	});
 }
 
@@ -344,47 +353,17 @@ function makeRadarFourFactorsComparison(theData, homeTeam, homeYear, awayTeam, a
 				data: teamDataHomeArr
 			},
 			{
-				label: 'Tournament Teams',
+				label: `${awayYear} ${awayTeam}`,
 				backgroundColor: color(chartColors.blue).alpha(0.2).rgbString(),
 				borderColor: chartColors.blue,
 				pointBackgroundColor: chartColors.blue,
-				data: tourneyDataArr,
-				hidden: true
-			},
-			{
-				label: 'Final Four Teams',
-				backgroundColor: color(chartColors.green).alpha(0.2).rgbString(),
-				borderColor: chartColors.green,
-				pointBackgroundColor: chartColors.green,
-				data: ffDataArr
-			}
-		]
-	};
-
-	let radarDataAway = {
-		labels: [
-			'Off Effective FG %',
-			'Off TO%',
-			'Off Off Rebound %',
-			'Off FT Rate',
-			'Def Effective FG %',
-			'Def TO%',
-			'Def Off Rebound %',
-			'Def FT Rate'
-		],
-		datasets: [
-			{
-				label: `${awayYear} ${awayTeam}`,
-				backgroundColor: color(chartColors.red).alpha(0.2).rgbString(),
-				borderColor: chartColors.red,
-				pointBackgroundColor: chartColors.red,
 				data: teamDataAwayArr
 			},
 			{
 				label: 'Tournament Teams',
-				backgroundColor: color(chartColors.blue).alpha(0.2).rgbString(),
-				borderColor: chartColors.blue,
-				pointBackgroundColor: chartColors.blue,
+				backgroundColor: color(chartColors.purple).alpha(0.2).rgbString(),
+				borderColor: chartColors.purple,
+				pointBackgroundColor: chartColors.purple,
 				data: tourneyDataArr,
 				hidden: true
 			},
@@ -395,8 +374,46 @@ function makeRadarFourFactorsComparison(theData, homeTeam, homeYear, awayTeam, a
 				pointBackgroundColor: chartColors.green,
 				data: ffDataArr
 			}
+			
 		]
 	};
+
+	// let radarDataAway = {
+	// 	labels: [
+	// 		'Off Effective FG %',
+	// 		'Off TO%',
+	// 		'Off Off Rebound %',
+	// 		'Off FT Rate',
+	// 		'Def Effective FG %',
+	// 		'Def TO%',
+	// 		'Def Off Rebound %',
+	// 		'Def FT Rate'
+	// 	],
+	// 	datasets: [
+	// 		{
+	// 			label: `${awayYear} ${awayTeam}`,
+	// 			backgroundColor: color(chartColors.red).alpha(0.2).rgbString(),
+	// 			borderColor: chartColors.red,
+	// 			pointBackgroundColor: chartColors.red,
+	// 			data: teamDataAwayArr
+	// 		},
+	// 		{
+	// 			label: 'Tournament Teams',
+	// 			backgroundColor: color(chartColors.blue).alpha(0.2).rgbString(),
+	// 			borderColor: chartColors.blue,
+	// 			pointBackgroundColor: chartColors.blue,
+	// 			data: tourneyDataArr,
+	// 			hidden: true
+	// 		},
+	// 		{
+	// 			label: 'Final Four Teams',
+	// 			backgroundColor: color(chartColors.green).alpha(0.2).rgbString(),
+	// 			borderColor: chartColors.green,
+	// 			pointBackgroundColor: chartColors.green,
+	// 			data: ffDataArr
+	// 		}
+	// 	]
+	// };
 
 	let options = {
 		scale: {
@@ -419,9 +436,9 @@ function makeRadarFourFactorsComparison(theData, homeTeam, homeYear, awayTeam, a
 	radarFourFactorsHome.options = options;
 	radarFourFactorsHome.update();
 
-	radarFourFactorsAway.data = radarDataAway;
-	radarFourFactorsAway.options = options;
-	radarFourFactorsAway.update();
+	// radarFourFactorsAway.data = radarDataAway;
+	// radarFourFactorsAway.options = options;
+	// radarFourFactorsAway.update();
 }
 
 function makeRadarRankInit(ctxRank) {
@@ -663,41 +680,58 @@ function makeRadarRankCompareInit(ctxHome, ctxAway) {
 			labels: rankLabel,
 			datasets: [
 				{
-					label: 'Offense',
+					label: `Offense ${selTeamHome}`,
 					backgroundColor: color(chartColors.red).alpha(0.2).rgbString(),
 					borderColor: chartColors.red,
 					pointBackgroundColor: chartColors.red,
 					data: rankDataO_H
 				},
 				{
-					label: 'Defense',
-					backgroundColor: color(chartColors.blue).alpha(0.2).rgbString(),
-					borderColor: chartColors.blue,
-					pointBackgroundColor: chartColors.blue,
-					data: rankDataD_H
-				}
-			]
-		};
-
-		let radarDataAway = {
-			labels: rankLabel,
-			datasets: [
-				{
-					label: 'Offense',
-					backgroundColor: color(chartColors.red).alpha(0.2).rgbString(),
-					borderColor: chartColors.red,
-					pointBackgroundColor: chartColors.red,
-					data: rankDataO_A
+					label: `Defense ${selTeamHome}`,
+					backgroundColor: color(chartColors.purple).alpha(0.2).rgbString(),
+					borderColor: chartColors.purple,
+					pointBackgroundColor: chartColors.purple,
+					data: rankDataD_H,
+					hidden: true
 				},
 				{
-					label: 'Defense',
+					label: `Offense ${selTeamAway}`,
+					backgroundColor: color(chartColors.green).alpha(0.2).rgbString(),
+					borderColor: chartColors.green,
+					pointBackgroundColor: chartColors.green,
+					data: rankDataO_A,
+					hidden:true
+				},
+				{
+					label: `Defense ${selTeamAway}`,
 					backgroundColor: color(chartColors.blue).alpha(0.2).rgbString(),
 					borderColor: chartColors.blue,
 					pointBackgroundColor: chartColors.blue,
 					data: rankDataD_A
 				}
+
 			]
 		};
+
+		// let radarDataAway = {
+		// 	labels: rankLabel,
+		// 	datasets: [
+		// 		{
+		// 			label: 'Offense',
+		// 			backgroundColor: color(chartColors.red).alpha(0.2).rgbString(),
+		// 			borderColor: chartColors.red,
+		// 			pointBackgroundColor: chartColors.red,
+		// 			data: rankDataO_A
+		// 		},
+		// 		{
+		// 			label: 'Defense',
+		// 			backgroundColor: color(chartColors.blue).alpha(0.2).rgbString(),
+		// 			borderColor: chartColors.blue,
+		// 			pointBackgroundColor: chartColors.blue,
+		// 			data: rankDataD_A
+		// 		}
+		// 	]
+		// };
 
 		radarHomeRank = new Chart(ctxHome, {
 			type: 'radar',
@@ -720,26 +754,26 @@ function makeRadarRankCompareInit(ctxHome, ctxAway) {
 			}
 		});
 
-		radarAwayRank = new Chart(ctxAway, {
-			type: 'radar',
-			data: radarDataAway,
-			options: {
-				scale: {
-					ticks: {
-						reverse: true,
-						min: 1,
-						max: 353
-					}
-				},
-				tooltips: {
-					callbacks: {
-						label: function(tooltipItem) {
-							return `Rank: ${Number(tooltipItem.yLabel)}`;
-						}
-					}
-				}
-			}
-		});
+		// radarAwayRank = new Chart(ctxAway, {
+		// 	type: 'radar',
+		// 	data: radarDataAway,
+		// 	options: {
+		// 		scale: {
+		// 			ticks: {
+		// 				reverse: true,
+		// 				min: 1,
+		// 				max: 353
+		// 			}
+		// 		},
+		// 		tooltips: {
+		// 			callbacks: {
+		// 				label: function(tooltipItem) {
+		// 					return `Rank: ${Number(tooltipItem.yLabel)}`;
+		// 				}
+		// 			}
+		// 		}
+		// 	}
+		// });
 	});
 }
 
@@ -823,6 +857,20 @@ function makeRadarRankCompare(data) {
 				borderColor: chartColors.blue,
 				pointBackgroundColor: chartColors.blue,
 				data: rankDataD_H
+			},
+			{
+				label: 'Offense',
+				backgroundColor: color(chartColors.red).alpha(0.2).rgbString(),
+				borderColor: chartColors.red,
+				pointBackgroundColor: chartColors.red,
+				data: rankDataO_A
+			},
+			{
+				label: 'Defense',
+				backgroundColor: color(chartColors.blue).alpha(0.2).rgbString(),
+				borderColor: chartColors.blue,
+				pointBackgroundColor: chartColors.blue,
+				data: rankDataD_A
 			}
 		]
 	};
