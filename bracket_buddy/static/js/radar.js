@@ -230,6 +230,13 @@ function makeRadarFourFactorsComparisonInit(ctxHomeFF, ctxAwayFF) {
 					borderColor: chartColors.green,
 					pointBackgroundColor: chartColors.green,
 					data: ffDataArr
+				},
+				{
+					label: `${selYearAway} ${selTeamAway}`,
+					backgroundColor: color(chartColors.black).alpha(0.2).rgbString(),
+					borderColor: chartColors.red,
+					pointBackgroundColor: chartColors.red,
+					data: teamDataAwayArr
 				}
 			]
 		};
@@ -357,6 +364,13 @@ function makeRadarFourFactorsComparison(theData, homeTeam, homeYear, awayTeam, a
 				borderColor: chartColors.green,
 				pointBackgroundColor: chartColors.green,
 				data: ffDataArr
+			}
+			{
+				label: `${awayYear} ${awayTeam}`,
+				backgroundColor: color(chartColors.red.black).alpha(0.2).rgbString(),
+				borderColor: chartColors.red,
+				pointBackgroundColor: chartColors.red,
+				data: teamDataAwayArr
 			}
 		]
 	};
