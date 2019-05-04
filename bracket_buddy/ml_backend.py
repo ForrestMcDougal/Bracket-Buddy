@@ -6,6 +6,7 @@ import pandas as pd
 import tensorflow as tf
 from keras.backend import clear_session
 from keras.models import load_model
+from KDEpy import FFTKDE
 
 from bracket_buddy.ml_data_stats import mean as ml_stats_mean, std as ml_stats_std
 from bracket_buddy.year_team_std import year_team_std
@@ -30,7 +31,7 @@ cols = ['AdjTempo', 'AdjOE', 'AdjDE', 'eFG_Pct_O', 'eFG_Pct_D',
 
 def get_random_number():
     rand = random.random()
-    rand = (rand * 2) - 1
+    rand = ((rand * 2) - 1) / 20
     return rand
 
 
@@ -52,63 +53,80 @@ def prepare_data(year1, team1, year2, team2, mongo):
 def randomize_data(year1, team1, year2, team2, data):
     data_std = year_team_std[year1].get(team1, year_team_std['all'])
     cols_len = len(cols)
-    data[0] += get_random_number() * data_std['Pace']
-    data[1] += get_random_number() * data_std['ORtg']
-    data[2] += get_random_number() * data_std['DRtg']
-    data[3] += get_random_number() * data_std['OeFG%']
-    data[4] += get_random_number() * data_std['DeFG%']
-    data[5] += get_random_number() * data_std['OTOV%']
-    data[6] += get_random_number() * data_std['DTOV%']
-    data[7] += get_random_number() * data_std['OORB%']
-    data[8] += get_random_number() * data_std['DDRB%']
-    data[9] += get_random_number() * data_std['OFT/FGA']
-    data[10] += get_random_number() * data_std['DFT/FGA']
-    data[41] += get_random_number() * data_std['hFG%']
-    data[42] += get_random_number() * data_std['h3P%']
-    data[43] += get_random_number() * data_std['hFT%']
-    data[44] += get_random_number() * data_std['BLK%']
-    data[49] += get_random_number() * data_std['h3PA']
-    data[51] += get_random_number() * data_std['AST%']
-    data[53] += get_random_number() * data_std['STL%']
+    data_copy = data.copy()
+    data_copy[0] += get_random_number() * data_std['Pace']
+    data_copy[1] += get_random_number() * data_std['ORtg']
+    data_copy[2] += get_random_number() * data_std['DRtg']
+    data_copy[3] += get_random_number() * data_std['OeFG%']
+    data_copy[4] += get_random_number() * data_std['DeFG%']
+    data_copy[5] += get_random_number() * data_std['OTOV%']
+    data_copy[6] += get_random_number() * data_std['DTOV%']
+    data_copy[7] += get_random_number() * data_std['OORB%']
+    data_copy[8] += get_random_number() * data_std['DDRB%']
+    data_copy[9] += get_random_number() * data_std['OFT/FGA']
+    data_copy[10] += get_random_number() * data_std['DFT/FGA']
+    data_copy[41] += get_random_number() * data_std['hFG%']
+    data_copy[42] += get_random_number() * data_std['h3P%']
+    data_copy[43] += get_random_number() * data_std['hFT%']
+    data_copy[44] += get_random_number() * data_std['BLK%']
+    data_copy[49] += get_random_number() * data_std['h3PA']
+    data_copy[51] += get_random_number() * data_std['AST%']
+    data_copy[53] += get_random_number() * data_std['STL%']
     data_std = year_team_std[year2].get(team2, year_team_std['all'])
-    data[0 + cols_len] += get_random_number() * data_std['Pace']
-    data[1 + cols_len] += get_random_number() * data_std['ORtg']
-    data[2 + cols_len] += get_random_number() * data_std['DRtg']
-    data[3 + cols_len] += get_random_number() * data_std['OeFG%']
-    data[4 + cols_len] += get_random_number() * data_std['DeFG%']
-    data[5 + cols_len] += get_random_number() * data_std['OTOV%']
-    data[6 + cols_len] += get_random_number() * data_std['DTOV%']
-    data[7 + cols_len] += get_random_number() * data_std['OORB%']
-    data[8 + cols_len] += get_random_number() * data_std['DDRB%']
-    data[9 + cols_len] += get_random_number() * data_std['OFT/FGA']
-    data[10 + cols_len] += get_random_number() * data_std['DFT/FGA']
-    data[41 + cols_len] += get_random_number() * data_std['hFG%']
-    data[42 + cols_len] += get_random_number() * data_std['h3P%']
-    data[43 + cols_len] += get_random_number() * data_std['hFT%']
-    data[44 + cols_len] += get_random_number() * data_std['BLK%']
-    data[49 + cols_len] += get_random_number() * data_std['h3PA']
-    data[51 + cols_len] += get_random_number() * data_std['AST%']
-    data[53 + cols_len] += get_random_number() * data_std['STL%']
+    data_copy[0 + cols_len] += get_random_number() * data_std['Pace']
+    data_copy[1 + cols_len] += get_random_number() * data_std['ORtg']
+    data_copy[2 + cols_len] += get_random_number() * data_std['DRtg']
+    data_copy[3 + cols_len] += get_random_number() * data_std['OeFG%']
+    data_copy[4 + cols_len] += get_random_number() * data_std['DeFG%']
+    data_copy[5 + cols_len] += get_random_number() * data_std['OTOV%']
+    data_copy[6 + cols_len] += get_random_number() * data_std['DTOV%']
+    data_copy[7 + cols_len] += get_random_number() * data_std['OORB%']
+    data_copy[8 + cols_len] += get_random_number() * data_std['DDRB%']
+    data_copy[9 + cols_len] += get_random_number() * data_std['OFT/FGA']
+    data_copy[10 + cols_len] += get_random_number() * data_std['DFT/FGA']
+    data_copy[41 + cols_len] += get_random_number() * data_std['hFG%']
+    data_copy[42 + cols_len] += get_random_number() * data_std['h3P%']
+    data_copy[43 + cols_len] += get_random_number() * data_std['hFT%']
+    data_copy[44 + cols_len] += get_random_number() * data_std['BLK%']
+    data_copy[49 + cols_len] += get_random_number() * data_std['h3PA']
+    data_copy[51 + cols_len] += get_random_number() * data_std['AST%']
+    data_copy[53 + cols_len] += get_random_number() * data_std['STL%']
 
-    return data
+    return data_copy
 
 
 def monte_carlo(year1, team1, year2, team2, mongo):
     output = {}
     data = prepare_data(year1, team1, year2, team2, mongo)
     data_df = pd.DataFrame(data.reshape(1, 111))
-    rand_data = randomize_data(year1, team1, year2, team2, data)
-    for i in range(99):
-        rand_data = randomize_data(year1, team1, year2, team2, data)
+    data_copy = data.copy()
+    num_trials = 99
+    for i in range(num_trials):
+        rand_data = randomize_data(year1, team1, year2, team2, data_copy)
         data_df.loc[len(data_df)] = rand_data
     data_df -= ml_stats_mean
     data_df = data_df / ml_stats_std
     global graph
     with graph.as_default():
         prediction = model.predict(data_df)
+    estimator = FFTKDE(kernel='gaussian', bw='silverman')
+    over_under = [x for x in prediction[:, 0] + prediction[:, 1]]
+    spread = [x for x in prediction[:, 0] - prediction[:, 1]]
+    home_wins = 0
+    for i in range(num_trials + 1):
+        if prediction[i, 0] > prediction[i, 1]:
+            home_wins += 1
+    home_win_pct = home_wins / (num_trials + 1)
+    est_win_pct = round((home_win_pct * 200) - 100)
+    output['est_win_pct'] = str(est_win_pct)
+    oe_x, oe_y = estimator.fit(over_under, weights=None).evaluate()
+    s_x, s_y = estimator.fit(spread, weights=None).evaluate()
     output['home_points'] = [str(x) for x in prediction[:, 0]]
     output['away_points'] = [str(x) for x in prediction[:, 1]]
-    output['over_under'] = [str(x)
-                            for x in prediction[:, 0] + prediction[:, 1]]
-    output['spread'] = [str(x) for x in prediction[:, 0] - prediction[:, 1]]
+    output['over_under_x'] = [str(x) for x in oe_x]
+    output['over_under_y'] = [str(x) for x in oe_y]
+    output['spread_x'] = [str(x) for x in s_x]
+    output['spread_y'] = [str(x) for x in s_y]
+    output['over_under'] = str(round(np.mean(over_under), 1))
+    output['spread'] = str(round(np.mean(spread), 1))
     return output
