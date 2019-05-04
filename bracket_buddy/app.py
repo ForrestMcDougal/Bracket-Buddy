@@ -318,6 +318,10 @@ def team_page():
 def comparison_page():
     return render_template('comparison.html')
 
+@app.route('/predict')
+def prediction_page():
+    return render_template('predict.html')
+
 
 @app.route('/reference')
 def reference_page():

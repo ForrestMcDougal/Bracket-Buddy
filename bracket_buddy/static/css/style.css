@@ -3,12 +3,10 @@
 }
 .jumbotron {
   position: relative;
-	top:100px;
   margin: 0;
   background: white;
   background-image: url(../images/header.jpg);
   background-position: bottom;
-	vertical-align: bottom;
   background-size: cover;
-  height: 200px;}
+  height: 250px;}
 }
