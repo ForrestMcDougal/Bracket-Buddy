@@ -170,7 +170,7 @@ function makeRadarFourFactors(theData, selTeam, selYear) {
 	radarFourFactors.update();
 }
 
-function makeRadarFourFactorsComparisonInit(ctxHomeFF, ctxAwayFF) {
+function makeRadarFourFactorsComparisonInit(ctxHomeFF) {
 	let selTeamHome = homeTeamDropdown.value;
 	let selYearHome = homeYearDropdown.value;
 	let selTeamAway = awayTeamDropdown.value;
@@ -239,7 +239,6 @@ function makeRadarFourFactorsComparisonInit(ctxHomeFF, ctxAwayFF) {
 					data: ffDataArr,
 					hidden: true
 				}
-				
 			]
 		};
 
@@ -374,7 +373,6 @@ function makeRadarFourFactorsComparison(theData, homeTeam, homeYear, awayTeam, a
 				pointBackgroundColor: chartColors.green,
 				data: ffDataArr
 			}
-			
 		]
 	};
 
@@ -700,7 +698,7 @@ function makeRadarRankCompareInit(ctxHome, ctxAway) {
 					borderColor: chartColors.green,
 					pointBackgroundColor: chartColors.green,
 					data: rankDataO_A,
-					hidden:true
+					hidden: true
 				},
 				{
 					label: `Defense ${selTeamAway}`,
@@ -709,7 +707,6 @@ function makeRadarRankCompareInit(ctxHome, ctxAway) {
 					pointBackgroundColor: chartColors.blue,
 					data: rankDataD_A
 				}
-
 			]
 		};
 
