@@ -5,61 +5,160 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/reference.css') }}">
+  <link href="https://fonts.googleapis.com/css?family=Graduate" rel="stylesheet">
+  <link rel="stylesheet" href="https://bootswatch.com/4/materia/bootstrap.css" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
   <title>NCAA Team Data</title>
 </head>
-
 <body>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light mb-3 sticky-top">
-    <a class="navbar-brand active" href="#" id="home">NCAA DATA <span class="sr-only">(current)</span></a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
+  <div class="container-full-bg">
+    <div class="jumbotron jumbotron-fluid jumbotron-img">
+    </div>
+  </div>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-3">
+    <a class="navbar-brand active" href="/" style="font-family: 'Graduate';">
+      <img src="../static/images/basketball2.svg" width="30" height="30" class="d-inline-block align-top" alt="Designed by Freepik from www.flaticon.com">
+      Bracket Buddy
+    </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
       <span class="navbar-toggler-icon"></span>
     </button>
-
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
+      <ul class="navbar-nav mr-auto style="font-family: 'Graduate';"">
         <li class="nav-item">
-          <a id="team-page" class="nav-link" href="/team">Team Page</a>
+          <a id="predict" class="nav-link" href="/predict">Predict Winner</a>
         </li>
         <li class="nav-item">
-          <a id="compare-teams" class="nav-link" href="/comparison">Comparison</a>
+          <a id="team-page" class="nav-link" href="/team">Team Statistics</a>
         </li>
         <li class="nav-item">
-          <a id="compare-scatter" class="nav-link" href="/scatter">Explore</a>
+          <a id="compare-teams" class="nav-link" href="/comparison">Compare Teams</a>
         </li>
         <li class="nav-item">
-          <a id="reference" class="nav-link" href="/reference">Reference</a>
+          <a id="compare-scatter" class="nav-link" href="/scatter">Deep Dive</a>
         </li>
       </ul>
     </div>
   </nav>
-  
   <div class="container">
-    <div class="jumbotron">
-      <div id="background">
-        <h1 class="display-4">Bracket Buddy </h1>
-        <!-- <img src="/mmlogo.png" height="155" width="300" alt="mm_logo"> -->
-        <p class="lead">March Madness is the best time of the year. 68 teams enter a single-elimination tournament with
-          the chance to win 6 games and call themselves a National Champion. Every year, fans spend hours obsessively
-          filling out their bracket to predict winners for every game of the tournament. In 2019 it was estimated that
-          over 70 MILLION brackets were submitted online and zero of these were 100% accurate.</p>
-        <hr class="my-4">
-        <p>The purpose of this project is to give fans an interactive tool to utilize when filling out their brackets.
-          The data comes from kenpom.com, a respected advanced basketball analytics website that is now used by the NCAA
-          selection committee when seeding teams for the tournament.</p>
-        <p>Navigate through the website and uncover your own hidden trends. You can find:</p>
-        <ul>
-          <li>Detailed profiles on all 353 teams for every year since 2010</li>
-          <li>A page to compare any two teams since 2010 </li>
-          <li>An interactive scatter plot allowing you to filter over 36 different statistical fields</li>
-          <li>Ability to compare a team against past final four and championship teams</li>
-          <li>A reference page explaining each of the statistics</li>
-        </ul>
+      <div class="collapse" id="collapseInfo" style="opacity: '70%'">
+        <div class="card card-body">
+          <div id="background">
+            <p>March Madness is the best time of the year. 68 teams enter a single-elimination tournament with
+              the chance to win 6 games and call themselves a National Champion. Every year, fans spend hours obsessively
+              filling out their bracket to predict winners for every game of the tournament. In 2019 it was estimated that
+              over 70 MILLION brackets were submitted online and zero of these were 100% accurate.</p>
+            <p>The purpose of this project is to give fans an interactive tool to utilize when filling out their brackets.
+              The data comes from kenpom.com, a respected advanced basketball analytics website that is now used by the NCAA
+              selection committee when seeding teams for the tournament.</p>
+            <p>Navigate through the website and uncover your own hidden trends. You can find:</p>
+            <ul>
+              <li>Detailed profiles on all 353 teams for every year since 2010</li>
+              <li>A page to compare any two teams since 2010 </li>
+              <li>An interactive scatter plot allowing you to filter over 36 different statistical fields</li>
+              <li>Ability to compare a team against past final four and championship teams</li>
+              <li>A reference page explaining each of the statistics</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+<div class="container">
+<div class="row">
+  <div class="col-md-6">
+    <div class="row">
+      <div class="card mb-3">
+        <a href="/predict">
+        <div class="row no-gutters">
+        <div class="col-md-6">
+          <img src="../static/images/predict.jpg" class="card-img" alt="Predict the winner">
+        </div>
+      <div class="col-md-6">
+        <div class="card-body" height="100px">
+          <h5 class="card-title">Predict the winner!</h5>
+          <p class="card-text">Use machine learning to predict which NCAA Division 1 team will prevail over another.</p>
+        </div>
+      </div>
+      </div>
+      </a>
       </div>
     </div>
   </div>
+  <div class="col-md-6">
+    <div class="row">
+      <div class="card mb-3">
+        <a href="/comparison">
+          <div class="row no-gutters">
+            <div class="col-md-6">
+            <img src="../static/images/headtohead.png" class="card-img" alt="Compare teams">
+            </div>
+            <div class="col-md-6">
+              <div class="card-body"  height="100px">
+                <h5 class="card-title">Head to Head</h5>
+                <p class="card-text">Pit any NCAA Division 1 from 2010 on against any other in a virtual 'game'.</p>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-6">
+    <div class="row">
+      <div class="card mb-3">
+      <a href="/team">
+        <div class="row no-gutters">
+          <div class="col-md-6">
+          <img src="../static/images/team.jpg" class="card-img" alt="Favorite Team stats">
+          </div>
+          <div class="col-md-6">
+            <div class="card-body" height="100px">
+              <h5 class="card-title">Team Statistics</h5>
+              <p class="card-text">See all the stats of your favorite NCAA Division 1 team</p>
+            </div>
+          </div>
+        </div>
+      </a>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="row">
+      <div class="card mb-3">
+        <a href="/scatter">
+        <div class="row no-gutters">
+          <div class="col-md-6">
+            <img src="../static/images/march_madness_logo.jpg" class="card-img" alt="Deep dive into statistics">
+          </div>
+          <div class="col-md-6">
+            <div class="card-body" height="100px">
+              <h5 class="card-title">Deep Dive</h5>
+              <p class="card-text">Pick two stats, and see how your team stacks up.</p>
+            </div>
+          </div>
+        </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</div><!--row-->
+</div>
+<nav class="navbar navbar-dark bg-dark navbar-expand-lg">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar2">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div id="navbar2" class="collapse navbar-collapse d-flex justify-content-end">
+  <ul class="navbar-nav mr-auto d-flex justify-content-end">
+    <li class="nav-item d-flex justify-content-right">
+      <a id="reference" class="nav-link" href="/reference">Reference</a>
+    </li>
+    <li class="nav-item d-flex justify-content-right">
+    <a class="nav-link" data-toggle="collapse" href="#collapseInfo" role="button" aria-expanded="false" aria-controls="collapseExample">About</a></li>
+  </ul>
+  </div>
+</nav>
 
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
     integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
