@@ -7,8 +7,8 @@
   margin: 0;
   background: white;
   background-image: url(../images/predict.jpg);
-  background-position: top;
-	vertical-align: middle;
+  background-position: center;
+	vertical-align: inherit;
   background-size: cover;
-  height: 340px;}
+  height: 250px;}
 }
