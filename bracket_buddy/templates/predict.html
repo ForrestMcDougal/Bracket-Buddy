@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://bootswatch.com/4/materia/bootstrap.css" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css?family=Graduate" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <title>Bracket Buddy - Predict a Winner</title>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand active flex-grow-1" href="/" style="font-family: 'Graduate';">
+      <img src="../static/images/basketball2.svg" width="30" height="30" class="d-inline-block align-top" alt="Designed by Freepik from www.flaticon.com">
+      Bracket Buddy
+    </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a id="predict" class="nav-link" href="/predict">Predict Winner</a>
+        </li>
+        <li class="nav-item">
+          <a id="team-page" class="nav-link" href="/team">Team Statistics</a>
+        </li>
+        <li class="nav-item">
+          <a id="compare-teams" class="nav-link" href="/comparison">Head to Head</a>
+        </li>
+        <li class="nav-item">
+          <a id="compare-scatter" class="nav-link" href="/scatter">Deep Dive</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+    <form class="d-flex w-100 justify-content-end form-inline">
+      <div class="form-group row" id="change-team">
+          <label for="team-year-filter-1" class="my-1 mr-2">Year 1</label>
+          <div>
+            <select id="home-year-dropdown" name="team-year-filter-1" class="custom-select my-1 mr-sm-2">
+            </select>
+          </div>
+          <label for="team-filter-1" class="my-1 mr-2">Team 1</label>
+          <div>
+            <select id="home-team-dropdown" name="team-filter-1" class="custom-select my-1 mr-sm-2">
+            </select>
+          </div>
+        <label for="team-year-filter-2" class="my-1 mr-2">Year 2</label>
+        <div>
+          <select id="away-year-dropdown" name="team-year-filter-2" class="custom-select my-1 mr-sm-2">
+          </select>
+        </div>
+        <label for="team-filter-2" class="my-1 mr-2">Team 2</label>
+        <div>
+          <select id="away-team-dropdown" name="team-filter-2" class="custom-select my-1 mr-sm-2">
+          </select>
+        </div>
+    </div>
+  </form>
+  </nav>
+<a class="text-muted" data-toggle="collapse" href="#collapseInfo" role="button"><h5>Head-to-Head Comparison</h5></a>
+
+<div class="collapse" id="collapseInfo" style="opacity: '70%'">
+<div class="container" id="barContainer" style="padding-top: 10px;">
+  <canvas id="doubleBar" height="110px"></canvas>
+</div>
+
+  <h4 style="text-align: center">Four Factors</h4>
+  <div class="row">
+    <div class="col-md-6 col-sm-12 col-xs-6" id="home-radar-ff">
+      <canvas id="homeRadarFF" aspectRatio="1"></canvas>
+    </div>
+    <div class="col-md-6 col-sm-12 col-xs-6" id="away-radar-ff">
+      <canvas id="awayRadarFF" aspectRatio="1"></canvas>
+    </div>
+  </div>
+  <hr style="border: 1px solid black;" />
+  <hr style="border: 1px solid black;" />
+  <h4 style="text-align: center">National Rankings</h4>
+  <div class="row">
+    <div class="col-md-6 col-sm-12 col-xs-6" id="home-radar-rank">
+      <canvas id="homeRadarRank" aspectRatio="1"></canvas>
+    </div>
+    <div class="col-md-6 col-sm-12 col-xs-6" id="away-radar-rank">
+      <canvas id="awayRadarRank" aspectRatio="1"></canvas>
+    </div>
+  </div>
+  <hr style="border: 1px solid black;" />
+  <hr style="border: 1px solid black;" />
+  <h4 style="text-align: center">Offensive Point Distribution</h4>
+  <div class="row">
+    <div class="col-md-6 col-sm-6 col-xs-6" id="home-o-donut">
+      <canvas id="homeODonut" aspectRatio="1"></canvas>
+    </div>
+    <div class="col-md-6 col-sm-6 col-xs-6" id="away-o-donut">
+      <canvas id="awayODonut" aspectRatio="1"></canvas>
+    </div>
+  </div>
+  <hr style="border: 1px solid black;" />
+  <hr style="border: 1px solid black;" />
+  <h4 style="text-align: center">Defensive Point Distribution</h4>
+  <div class="row">
+    <div class="col-md-6 col-sm-6 col-xs-6" id="home-d-donut">
+      <canvas id="homeDDonut" aspectRatio="1"></canvas>
+    </div>
+    <div class="col-md-6 col-sm-6 col-xs-6" id="away-d-donut">
+      <canvas id="awayDDonut" aspectRatio="1"></canvas>
+    </div>
+  </div>
+</div>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+
+  <script src="{{ url_for('static', filename='js/radar.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/barChart.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/doughnuts.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/comparison.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/dropdowns.js') }}"></script>
+
+
+
+</body>
+
+</html>

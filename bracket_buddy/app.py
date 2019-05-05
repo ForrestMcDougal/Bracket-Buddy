@@ -308,6 +308,9 @@ def index():
 def comparison():
     return render_template('scatter.html')
 
+@app.route('/scatter2')
+def comparison2():
+    return render_template('scatter2.html')
 
 @app.route('/team')
 def team_page():

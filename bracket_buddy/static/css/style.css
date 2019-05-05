@@ -1,7 +1,7 @@
 #content {
 	text-align: center;
 }
-.jumbotron {
+.mainjumbo {
   position: relative;
   margin: 0;
   background: white;
@@ -10,3 +10,21 @@
   background-size: cover;
   height: 250px;}
 }
+
+/* select {
+  display: block;
+  width: 100%;
+  padding: 0.25rem 1.5rem;
+  clear: both;
+  font-weight: 400;
+  color: #212121;
+  text-align: left;
+  white-space: nowrap;
+  background-color: transparent;
+  border: 0;
+}
+select {
+  display: block;
+  padding: 0.25rem 1.5rem;
+  color: #212121;
+} */
