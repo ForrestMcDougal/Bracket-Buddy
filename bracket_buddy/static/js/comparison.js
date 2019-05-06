@@ -13,8 +13,8 @@ let scatterChart = document.querySelector('#mlScatter');
 teamChange.addEventListener('change', showPage);
 
 makeDoubleBarChartInit(ctxDoubleBar);
-makeRadarRankCompareInit(ctxRadarRankHome, ctxRadarRankAway);
-makeRadarFourFactorsComparisonInit(ctxFFHome, ctxFFAway);
+makeRadarRankCompareInit(ctxRadarRankHome);
+makeRadarFourFactorsComparisonInit(ctxFFHome);
 makeMLScatterInit(scatterChart);
 makePDFsInit(ctxOverUnderPDF, ctxSpreadPDF);
 
@@ -32,6 +32,6 @@ function showPage() {
 		.then((data) => makeRadarFourFactorsComparison(data, homeTeam, homeYear, awayTeam, awayYear));
 	d3.json(`/api/predictions/${homeTeam}/${homeYear}/${awayTeam}/${awayYear}`).then((data) => {
 		makeMLScatter(data, homeTeam, homeYear, awayTeam, awayYear);
-    makePDFS(data);
+		makePDFS(data);
 	});
 }

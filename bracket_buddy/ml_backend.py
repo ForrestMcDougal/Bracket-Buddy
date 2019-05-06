@@ -32,6 +32,7 @@ cols = ['AdjTempo', 'AdjOE', 'AdjDE', 'eFG_Pct_O', 'eFG_Pct_D',
 def get_random_number():
     rand = random.random()
     rand = (rand * 2) - 1
+    return rand
 
 
 def prepare_data(year1, team1, year2, team2, mongo):
