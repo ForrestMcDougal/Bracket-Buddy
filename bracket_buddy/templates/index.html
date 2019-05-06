@@ -8,15 +8,15 @@
   <link href="https://fonts.googleapis.com/css?family=Graduate" rel="stylesheet">
   <link rel="stylesheet" href="https://bootswatch.com/4/materia/bootstrap.css" />
   <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-  <title>NCAA Team Data</title>
+  <title>Bracket Buddy - NCAA D1 Men Stats and Predictions</title>
 </head>
 <body>
   <div class="container-full-bg">
-    <div class="jumbotron jumbotron-fluid jumbotron-img">
+    <div class="jumbotron mainjumbo jumbotron-fluid jumbotron-img">
     </div>
   </div>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-3">
-    <a class="navbar-brand active" href="/" style="font-family: 'Graduate';">
+    <a class="navbar-brand active flex-grow-1" href="/" style="font-family: 'Graduate';">
       <img src="../static/images/basketball2.svg" width="30" height="30" class="d-inline-block align-top" alt="Designed by Freepik from www.flaticon.com">
       Bracket Buddy
     </a>
@@ -24,7 +24,7 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto style="font-family: 'Graduate';"">
+      <ul class="navbar-nav mr-auto">
         <li class="nav-item">
           <a id="predict" class="nav-link" href="/predict">Predict Winner</a>
         </li>
@@ -32,7 +32,7 @@
           <a id="team-page" class="nav-link" href="/team">Team Statistics</a>
         </li>
         <li class="nav-item">
-          <a id="compare-teams" class="nav-link" href="/comparison">Compare Teams</a>
+          <a id="compare-teams" class="nav-link" href="/comparison">Head to Head</a>
         </li>
         <li class="nav-item">
           <a id="compare-scatter" class="nav-link" href="/scatter">Deep Dive</a>
@@ -74,7 +74,7 @@
           <img src="../static/images/predict.jpg" class="card-img" alt="Predict the winner">
         </div>
       <div class="col-md-6">
-        <div class="card-body" height="100px">
+        <div class="card-body" >
           <h5 class="card-title">Predict the winner!</h5>
           <p class="card-text">Use machine learning to predict which NCAA Division 1 team will prevail over another.</p>
         </div>
@@ -93,7 +93,7 @@
             <img src="../static/images/headtohead.png" class="card-img" alt="Compare teams">
             </div>
             <div class="col-md-6">
-              <div class="card-body"  height="100px">
+              <div class="card-body"  >
                 <h5 class="card-title">Head to Head</h5>
                 <p class="card-text">Pit any NCAA Division 1 from 2010 on against any other in a virtual 'game'.</p>
               </div>
@@ -110,11 +110,11 @@
       <div class="card mb-3">
       <a href="/team">
         <div class="row no-gutters">
-          <div class="col-md-6">
+          <div class="col-md-6 mb-3">
           <img src="../static/images/team.jpg" class="card-img" alt="Favorite Team stats">
           </div>
-          <div class="col-md-6">
-            <div class="card-body" height="100px">
+          <div class="col-md-6 mb-3">
+            <div class="card-body" >
               <h5 class="card-title">Team Statistics</h5>
               <p class="card-text">See all the stats of your favorite NCAA Division 1 team</p>
             </div>
@@ -128,17 +128,17 @@
     <div class="row">
       <div class="card mb-3">
         <a href="/scatter">
-        <div class="row no-gutters">
-          <div class="col-md-6">
-            <img src="../static/images/march_madness_logo.jpg" class="card-img" alt="Deep dive into statistics">
-          </div>
-          <div class="col-md-6">
-            <div class="card-body" height="100px">
-              <h5 class="card-title">Deep Dive</h5>
-              <p class="card-text">Pick two stats, and see how your team stacks up.</p>
+          <div class="row">
+            <div class="col-md-6 mb-3">
+            <img src="../static/images/headerraw.jpg" class="card-img" alt="Deep Dive">
+            </div>
+            <div class="col-md-6 mb-3">
+              <div class="card-body">
+                <h5 class="card-title">Deep Dive</h5>
+                <p class="card-text">Pick two stats and see how your team stacks up against the rest.</p>
+              </div>
             </div>
           </div>
-        </div>
         </a>
       </div>
     </div>
