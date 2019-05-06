@@ -18,6 +18,13 @@ function makePDFsInit(ctxOU, ctxSpread) {
 		let maxOE = Math.max(...oe_x).toFixed(0) + 1;
 
 		let optionsSpread = {
+			tooltips: {
+				callbacks: {
+					label: function(tooltipItem) {
+						return `${Number(tooltipItem.yLabel).toFixed(2)}%`;
+					}
+				}
+			},
 			scales: {
 				xAxes: [
 					{
@@ -31,10 +38,12 @@ function makePDFsInit(ctxOU, ctxSpread) {
 							},
 							min: minSpread,
 							max: maxSpread,
-							stepWidth: 10,
-							maxTicksLimit: 10,
 							precision: 0,
 							maxRotation: 0
+						},
+						scaleLabel: {
+							display: true,
+							labelString: 'Spread'
 						}
 					}
 				],
@@ -43,6 +52,10 @@ function makePDFsInit(ctxOU, ctxSpread) {
 						gridLines: {
 							display: false,
 							color: 'black'
+						},
+						scaleLabel: {
+							display: true,
+							labelString: 'Probability (%)'
 						}
 					}
 				]
@@ -50,6 +63,13 @@ function makePDFsInit(ctxOU, ctxSpread) {
 		};
 
 		let optionsOE = {
+			tooltips: {
+				callbacks: {
+					label: function(tooltipItem) {
+						return `${Number(tooltipItem.yLabel).toFixed(2)}%`;
+					}
+				}
+			},
 			scales: {
 				xAxes: [
 					{
@@ -63,10 +83,12 @@ function makePDFsInit(ctxOU, ctxSpread) {
 							},
 							min: minOE,
 							max: maxOE,
-							stepWidth: 10,
-							maxTicksLimit: 10,
 							precision: 0,
 							maxRotation: 0
+						},
+						scaleLabel: {
+							display: true,
+							labelString: 'Over Under'
 						}
 					}
 				],
@@ -75,6 +97,10 @@ function makePDFsInit(ctxOU, ctxSpread) {
 						gridLines: {
 							display: false,
 							color: 'black'
+						},
+						scaleLabel: {
+							display: true,
+							labelString: 'Probability (%)'
 						}
 					}
 				]
@@ -87,7 +113,8 @@ function makePDFsInit(ctxOU, ctxSpread) {
 				labels: oe_x,
 				datasets: [
 					{
-						label: 'Over Under',
+						borderColor: '#000000',
+						label: `Over Under: ${data['over_under']}`,
 						data: oe_y,
 						fill: true
 					}
@@ -102,7 +129,8 @@ function makePDFsInit(ctxOU, ctxSpread) {
 				labels: spread_x,
 				datasets: [
 					{
-						label: 'Spread',
+						borderColor: '#000000',
+						label: `Spread: ${data['spread']}`,
 						data: spread_y,
 						fill: true
 					}
@@ -125,6 +153,13 @@ function makePDFs(data) {
 	let maxOE = Math.max(...oe_x).toFixed(0) + 1;
 
 	let optionsSpread = {
+		tooltips: {
+			callbacks: {
+				label: function(tooltipItem) {
+					return `${Number(tooltipItem.yLabel).toFixed(2)}%`;
+				}
+			}
+		},
 		scales: {
 			xAxes: [
 				{
@@ -138,10 +173,12 @@ function makePDFs(data) {
 						},
 						min: minSpread,
 						max: maxSpread,
-						stepWidth: 10,
-						maxTicksLimit: 10,
 						precision: 0,
 						maxRotation: 0
+					},
+					scaleLabel: {
+						display: true,
+						labelString: 'Spread'
 					}
 				}
 			],
@@ -150,6 +187,10 @@ function makePDFs(data) {
 					gridLines: {
 						display: false,
 						color: 'black'
+					},
+					scaleLabel: {
+						display: true,
+						labelString: 'Probability (%)'
 					}
 				}
 			]
@@ -157,6 +198,13 @@ function makePDFs(data) {
 	};
 
 	let optionsOE = {
+		tooltips: {
+			callbacks: {
+				label: function(tooltipItem) {
+					return `${Number(tooltipItem.yLabel).toFixed(2)}%`;
+				}
+			}
+		},
 		scales: {
 			xAxes: [
 				{
@@ -170,10 +218,12 @@ function makePDFs(data) {
 						},
 						min: minOE,
 						max: maxOE,
-						stepWidth: 10,
-						maxTicksLimit: 10,
 						precision: 0,
 						maxRotation: 0
+					},
+					scaleLabel: {
+						display: true,
+						labelString: 'Over Under'
 					}
 				}
 			],
@@ -182,6 +232,10 @@ function makePDFs(data) {
 					gridLines: {
 						display: false,
 						color: 'black'
+					},
+					scaleLabel: {
+						display: true,
+						labelString: 'Probability (%)'
 					}
 				}
 			]
@@ -192,7 +246,8 @@ function makePDFs(data) {
 		labels: oe_x,
 		datasets: [
 			{
-				label: 'Over Under',
+				borderColor: '#000000',
+				label: `Over Under: ${data['over_under']}`,
 				data: oe_y,
 				fill: true
 			}
@@ -203,7 +258,8 @@ function makePDFs(data) {
 		labels: spread_x,
 		datasets: [
 			{
-				label: 'Spread',
+				borderColor: '#000000',
+				label: `Spread: ${data['spread']}`,
 				data: spread_y,
 				fill: true
 			}
