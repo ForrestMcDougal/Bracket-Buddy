@@ -41,13 +41,15 @@ def prepare_data(year1, team1, year2, team2, mongo):
         {'TeamName': str(team1), 'Season': int(year1)})
     for col in cols:
         data.append(team_year_info[col])
+    tc1 = team_year_info['color1']
     team_year_info = mongo.db.basketball.find_one(
         {'TeamName': str(team2), 'Season': int(year2)})
     for col in cols:
         data.append(team_year_info[col])
+    tc2 = team_year_info['color1']
     data.append(home_court.get(str(team1), 0))
     data = np.array(data)
-    return data
+    return data, tc1, tc2
 
 
 def randomize_data(year1, team1, year2, team2, data):
@@ -95,9 +97,9 @@ def randomize_data(year1, team1, year2, team2, data):
     return data_copy
 
 
-def monte_carlo(year1, team1, year2, team2, mongo):
+def bootstrap(year1, team1, year2, team2, mongo):
     output = {}
-    data = prepare_data(year1, team1, year2, team2, mongo)
+    data, tc1, tc2 = prepare_data(year1, team1, year2, team2, mongo)
     data_df = pd.DataFrame(data.reshape(1, 111))
     data_copy = data.copy()
     num_trials = 99
@@ -119,14 +121,36 @@ def monte_carlo(year1, team1, year2, team2, mongo):
     home_win_pct = home_wins / (num_trials + 1)
     est_win_pct = round((home_win_pct * 200) - 100)
     output['est_win_pct'] = str(est_win_pct)
-    oe_x, oe_y = estimator.fit(over_under, weights=None).evaluate()
-    s_x, s_y = estimator.fit(spread, weights=None).evaluate()
+    grid_min_oe = np.floor(np.min(over_under))
+    grid_max_oe = np.ceil(np.max(over_under))
+    grid_min_s = np.floor(np.min(spread))
+    grid_max_s = np.ceil(np.max(spread))
+    grid_oe = int(grid_max_oe - grid_min_oe) * 20
+    grid_s = int(grid_max_s - grid_min_s) * 20
+    oe_x, oe_y = estimator.fit(over_under, weights=None).evaluate(grid_oe)
+    oe_df = pd.DataFrame({'x': oe_x, 'y': oe_y})
+    oe_df['x_round'] = round(oe_df['x'])
+    oe_x_group = oe_df.groupby('x_round')
+    oe_ys = oe_x_group['y'].sum()
+    oe_x = list(oe_ys.index)
+    oe_y = list(oe_ys)
+    sum_oe_y = sum(oe_y)
+    oe_y_norm = [x / sum_oe_y for x in oe_y]
+    s_x, s_y = estimator.fit(spread, weights=None).evaluate(grid_s)
+    s_df = pd.DataFrame({'x': s_x, 'y': s_y})
+    s_df['x_round'] = round(s_df['x'])
+    s_x_group = s_df.groupby('x_round')
+    s_ys = s_x_group['y'].sum()
+    s_x = list(s_ys.index)
+    s_y = list(s_ys)
+    sum_s_y = sum(s_y)
+    s_y_norm = [x / sum_s_y for x in s_y]
     output['home_points'] = [str(x) for x in prediction[:, 0]]
     output['away_points'] = [str(x) for x in prediction[:, 1]]
     output['over_under_x'] = [str(x) for x in oe_x]
-    output['over_under_y'] = [str(x) for x in oe_y]
+    output['over_under_y'] = [str(x * 100) for x in oe_y_norm]
     output['spread_x'] = [str(x) for x in s_x]
-    output['spread_y'] = [str(x) for x in s_y]
+    output['spread_y'] = [str(x * 100) for x in s_y_norm]
     output['over_under'] = str(round(np.mean(over_under), 1))
     output['spread'] = str(round(np.mean(spread), 1))
     return output
