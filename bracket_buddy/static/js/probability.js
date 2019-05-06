@@ -87,7 +87,7 @@ function makePDFsInit(ctxOU, ctxSpread) {
 				labels: oe_x,
 				datasets: [
 					{
-						label: 'Over Under',
+						label: `Over Under: ${data['over_under']}`,
 						data: oe_y,
 						fill: true
 					}
@@ -102,7 +102,7 @@ function makePDFsInit(ctxOU, ctxSpread) {
 				labels: spread_x,
 				datasets: [
 					{
-						label: 'Spread',
+						label: `Spread: ${data['spread']}`,
 						data: spread_y,
 						fill: true
 					}
@@ -192,7 +192,7 @@ function makePDFs(data) {
 		labels: oe_x,
 		datasets: [
 			{
-				label: 'Over Under',
+				label: `Over Under: ${data['over_under']}`,
 				data: oe_y,
 				fill: true
 			}
@@ -203,7 +203,7 @@ function makePDFs(data) {
 		labels: spread_x,
 		datasets: [
 			{
-				label: 'Spread',
+				label: `Spread: ${data['spread']}`,
 				data: spread_y,
 				fill: true
 			}

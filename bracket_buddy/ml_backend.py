@@ -31,7 +31,7 @@ cols = ['AdjTempo', 'AdjOE', 'AdjDE', 'eFG_Pct_O', 'eFG_Pct_D',
 
 def get_random_number():
     rand = random.random()
-    rand = ((rand * 2) - 1) / 20
+    rand = ((rand * 2) - 1) / 50
     return rand
 
 
