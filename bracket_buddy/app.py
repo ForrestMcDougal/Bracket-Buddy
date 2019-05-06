@@ -34,6 +34,21 @@ def team_data(team):
         docs.append(doc)
     return simplejson.dumps(docs, ignore_nan=True)
 
+@app.route("/api/team/")
+def unique_teams():
+    teams = mongo.db.basketball.distinct('TeamName')
+    all_teams = []
+    for team in teams:
+        all_teams.append(team)
+    return simplejson.dumps(all_teams, ignore_nan=True)
+
+@app.route("/api/year/")
+def unique_year():
+    year_info = mongo.db.basketball.distinct('Season')
+    years = []
+    for year in year_info:
+        years.append(year)
+    return simplejson.dumps(years)
 
 @app.route("/api/year/<year>")
 def year_data(year):
@@ -300,6 +315,9 @@ def index():
 def comparison():
     return render_template('scatter.html')
 
+@app.route('/scatter2')
+def comparison2():
+    return render_template('scatter2.html')
 
 @app.route('/team')
 def team_page():
@@ -309,6 +327,10 @@ def team_page():
 @app.route('/comparison')
 def comparison_page():
     return render_template('comparison.html')
+
+@app.route('/predict')
+def prediction_page():
+    return render_template('predict.html')
 
 
 @app.route('/reference')
