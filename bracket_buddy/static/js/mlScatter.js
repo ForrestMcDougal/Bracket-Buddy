@@ -72,9 +72,10 @@ function makeMLScatterInit(ctx) {
 	});
 }
 
-function makeMLScatter(data) {
+function makeMLScatter(predictData, team1, year1, team2, year2) {
 	let homePoints = predictData['home_points'].map((d) => +d);
 	let awayPoints = predictData['away_points'].map((d) => +d);
+	let colors = predictData['scatter_color'].map((d) => d);
 	let minHome = Math.min(...homePoints);
 	let maxHome = Math.max(...homePoints);
 	let minAway = Math.min(...awayPoints);
@@ -87,8 +88,12 @@ function makeMLScatter(data) {
 	}
 	let options = {
 		tooltips: {
-			label: function(tooltipItem) {
-				return `${team1}: ${Number(tooltipItem.xLabel)}, ${team2}: ${Number(tooltipItem.yLabel)}`;
+			callbacks: {
+				label: function(tooltipItem, data) {
+					return `${team1}: ${Number(tooltipItem.xLabel).toFixed()}, ${team2}: ${Number(
+						tooltipItem.yLabel
+					).toFixed()}`;
+				}
 			}
 		},
 		scales: {
@@ -105,7 +110,7 @@ function makeMLScatter(data) {
 			yAxes: {
 				scaleLabel: {
 					displayString: true,
-					labelString: `${teams2} Points`
+					labelString: `${team2} Points`
 				},
 				ticks: {
 					min: overallMin,
@@ -117,12 +122,8 @@ function makeMLScatter(data) {
 	mlScatter.data = {
 		datasets: [
 			{
-				data: [
-					{
-						x: homePoints,
-						y: awayPoints
-					}
-				]
+				data: dataPoints,
+				pointBackgroundColor: colors
 			}
 		]
 	};
