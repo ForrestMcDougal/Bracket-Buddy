@@ -8,12 +8,14 @@ let ctxRadarRankHome = document.querySelector('#homeRadarRank');
 let ctxOverUnderPDF = document.querySelector('#overUnderPDF');
 let ctxSpreadPDF = document.querySelector('#spreadPDF');
 let teamChange = document.querySelector('#change-team');
+let scatterChart = document.querySelector('#mlScatter');
 
 teamChange.addEventListener('change', showPage);
 
 makeDoubleBarChartInit(ctxDoubleBar);
-makeRadarRankCompareInit(ctxRadarRankHome);
-makeRadarFourFactorsComparisonInit(ctxFFHome);
+makeRadarRankCompareInit(ctxRadarRankHome, ctxRadarRankAway);
+makeRadarFourFactorsComparisonInit(ctxFFHome, ctxFFAway);
+makeMLScatterInit(scatterChart);
 makePDFsInit(ctxOverUnderPDF, ctxSpreadPDF);
 
 function showPage() {
@@ -28,5 +30,8 @@ function showPage() {
 	d3
 		.json(`/api/radar/compare/${homeTeam}/${homeYear}/${awayTeam}/${awayYear}`)
 		.then((data) => makeRadarFourFactorsComparison(data, homeTeam, homeYear, awayTeam, awayYear));
-	d3.json(`/api/predictions/${homeTeam}/${homeYear}/${awayTeam}/${awayYear}`).then((data) => makePDFs(data));
+	d3.json(`/api/predictions/${homeTeam}/${homeYear}/${awayTeam}/${awayYear}`).then((data) => {
+		makeMLScatter(data, homeTeam, homeYear, awayTeam, awayYear);
+    makePDFS(data);
+	});
 }

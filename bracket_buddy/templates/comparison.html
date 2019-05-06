@@ -779,6 +779,9 @@
             </div>
     </form>
   </nav>
+  <div class="container" id="scatterContainer">
+    <canvas id="mlScatter" aspectRaio="1"></canvas>
+    </div>
   <div class="container" id="barContainer" style="padding-top: 10px;">
     <canvas id="doubleBar" height="110px"></canvas>
   </div>
@@ -816,6 +819,7 @@
     crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+  <script src="{{ url_for('static', filename='js/mlScatter.js') }}"></script>
   <script src="{{ url_for('static', filename='js/probability.js') }}"></script>
   <script src="{{ url_for('static', filename='js/radar.js') }}"></script>
   <script src="{{ url_for('static', filename='js/barChart.js') }}"></script>
