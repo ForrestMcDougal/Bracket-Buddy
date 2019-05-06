@@ -12,13 +12,16 @@ let ctxAwayODoughnut = document.querySelector('#awayODonut');
 let ctxHomeDDoughnut = document.querySelector('#homeDDonut');
 let ctxAwayDDoughnut = document.querySelector('#awayDDonut');
 let teamChange = document.querySelector('#change-team');
+let scatterChart = document.querySelector('#mlScatter');
+
 
 teamChange.addEventListener('change', showPage);
 
 makeDoubleBarChartInit(ctxDoubleBar);
 makeRadarRankCompareInit(ctxRadarRankHome, ctxRadarRankAway);
 makeRadarFourFactorsComparisonInit(ctxFFHome, ctxFFAway);
-makeDoughnutsCompareInit(ctxHomeODoughnut, ctxHomeDDoughnut, ctxAwayODoughnut, ctxAwayDDoughnut);
+// makeDoughnutsCompareInit(ctxHomeODoughnut, ctxHomeDDoughnut, ctxAwayODoughnut, ctxAwayDDoughnut);
+makeMLScatterInit(scatterChart);
 
 function showPage() {
 	let homeTeam = homeTeamDropdown.value;
