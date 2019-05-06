@@ -31,7 +31,7 @@ cols = ['AdjTempo', 'AdjOE', 'AdjDE', 'eFG_Pct_O', 'eFG_Pct_D',
 
 def get_random_number():
     rand = random.random()
-    rand = ((rand * 2) - 1) / 50
+    rand = (rand * 2) - 1
     return rand
 
 
@@ -59,40 +59,36 @@ def randomize_data(year1, team1, year2, team2, data):
     data_copy[0] += get_random_number() * data_std['Pace']
     data_copy[1] += get_random_number() * data_std['ORtg']
     data_copy[2] += get_random_number() * data_std['DRtg']
-    data_copy[3] += get_random_number() * data_std['OeFG%']
-    data_copy[4] += get_random_number() * data_std['DeFG%']
+    data_copy[3] += get_random_number() * data_std['OeFG%'] * 100
+    data_copy[4] += get_random_number() * data_std['DeFG%'] * 100
     data_copy[5] += get_random_number() * data_std['OTOV%']
     data_copy[6] += get_random_number() * data_std['DTOV%']
     data_copy[7] += get_random_number() * data_std['OORB%']
     data_copy[8] += get_random_number() * data_std['DDRB%']
-    data_copy[9] += get_random_number() * data_std['OFT/FGA']
-    data_copy[10] += get_random_number() * data_std['DFT/FGA']
-    data_copy[41] += get_random_number() * data_std['hFG%']
-    data_copy[42] += get_random_number() * data_std['h3P%']
-    data_copy[43] += get_random_number() * data_std['hFT%']
+    data_copy[9] += get_random_number() * data_std['OFT/FGA'] * 100
+    data_copy[10] += get_random_number() * data_std['DFT/FGA'] * 100
+    data_copy[42] += get_random_number() * data_std['h3P%'] * 100
+    data_copy[43] += get_random_number() * data_std['hFT%'] * 100
     data_copy[44] += get_random_number() * data_std['BLK%']
-    data_copy[49] += get_random_number() * data_std['h3PA']
     data_copy[51] += get_random_number() * data_std['AST%']
-    data_copy[53] += get_random_number() * data_std['STL%']
+    data_copy[53] += get_random_number() * data_std['STL%'] / 100
     data_std = year_team_std[year2].get(team2, year_team_std['all'])
     data_copy[0 + cols_len] += get_random_number() * data_std['Pace']
     data_copy[1 + cols_len] += get_random_number() * data_std['ORtg']
     data_copy[2 + cols_len] += get_random_number() * data_std['DRtg']
-    data_copy[3 + cols_len] += get_random_number() * data_std['OeFG%']
-    data_copy[4 + cols_len] += get_random_number() * data_std['DeFG%']
+    data_copy[3 + cols_len] += get_random_number() * data_std['OeFG%'] * 100
+    data_copy[4 + cols_len] += get_random_number() * data_std['DeFG%'] * 100
     data_copy[5 + cols_len] += get_random_number() * data_std['OTOV%']
     data_copy[6 + cols_len] += get_random_number() * data_std['DTOV%']
     data_copy[7 + cols_len] += get_random_number() * data_std['OORB%']
     data_copy[8 + cols_len] += get_random_number() * data_std['DDRB%']
-    data_copy[9 + cols_len] += get_random_number() * data_std['OFT/FGA']
-    data_copy[10 + cols_len] += get_random_number() * data_std['DFT/FGA']
-    data_copy[41 + cols_len] += get_random_number() * data_std['hFG%']
-    data_copy[42 + cols_len] += get_random_number() * data_std['h3P%']
-    data_copy[43 + cols_len] += get_random_number() * data_std['hFT%']
+    data_copy[9 + cols_len] += get_random_number() * data_std['OFT/FGA'] * 100
+    data_copy[10 + cols_len] += get_random_number() * data_std['DFT/FGA'] * 100
+    data_copy[42 + cols_len] += get_random_number() * data_std['h3P%'] * 100
+    data_copy[43 + cols_len] += get_random_number() * data_std['hFT%'] * 100
     data_copy[44 + cols_len] += get_random_number() * data_std['BLK%']
-    data_copy[49 + cols_len] += get_random_number() * data_std['h3PA']
     data_copy[51 + cols_len] += get_random_number() * data_std['AST%']
-    data_copy[53 + cols_len] += get_random_number() * data_std['STL%']
+    data_copy[53 + cols_len] += get_random_number() * data_std['STL%'] / 100
 
     return data_copy
 
