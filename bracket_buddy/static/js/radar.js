@@ -605,7 +605,7 @@ function makeRadarRank(data) {
 	radarRank.update();
 }
 
-function makeRadarRankCompareInit(ctxHome, ctxAway) {
+function makeRadarRankCompareInit(ctxHome) {
 	let selTeamHome = homeTeamDropdown.value;
 	let selYearHome = homeYearDropdown.value;
 	let selTeamAway = awayTeamDropdown.value;
@@ -710,26 +710,6 @@ function makeRadarRankCompareInit(ctxHome, ctxAway) {
 			]
 		};
 
-		// let radarDataAway = {
-		// 	labels: rankLabel,
-		// 	datasets: [
-		// 		{
-		// 			label: 'Offense',
-		// 			backgroundColor: color(chartColors.red).alpha(0.2).rgbString(),
-		// 			borderColor: chartColors.red,
-		// 			pointBackgroundColor: chartColors.red,
-		// 			data: rankDataO_A
-		// 		},
-		// 		{
-		// 			label: 'Defense',
-		// 			backgroundColor: color(chartColors.blue).alpha(0.2).rgbString(),
-		// 			borderColor: chartColors.blue,
-		// 			pointBackgroundColor: chartColors.blue,
-		// 			data: rankDataD_A
-		// 		}
-		// 	]
-		// };
-
 		radarHomeRank = new Chart(ctxHome, {
 			type: 'radar',
 			data: radarDataHome,
@@ -750,31 +730,10 @@ function makeRadarRankCompareInit(ctxHome, ctxAway) {
 				}
 			}
 		});
-
-		// radarAwayRank = new Chart(ctxAway, {
-		// 	type: 'radar',
-		// 	data: radarDataAway,
-		// 	options: {
-		// 		scale: {
-		// 			ticks: {
-		// 				reverse: true,
-		// 				min: 1,
-		// 				max: 353
-		// 			}
-		// 		},
-		// 		tooltips: {
-		// 			callbacks: {
-		// 				label: function(tooltipItem) {
-		// 					return `Rank: ${Number(tooltipItem.yLabel)}`;
-		// 				}
-		// 			}
-		// 		}
-		// 	}
-		// });
 	});
 }
 
-function makeRadarRankCompare(data) {
+function makeRadarRankCompare(data, selTeamHome, selTeamAway) {
 	let rankDataO_H = [];
 	let rankDataD_H = [];
 	let rankDataO_A = [];
@@ -842,48 +801,30 @@ function makeRadarRankCompare(data) {
 		labels: rankLabel,
 		datasets: [
 			{
-				label: 'Offense',
+				label: `Offense ${selTeamHome}`,
 				backgroundColor: color(chartColors.red).alpha(0.2).rgbString(),
 				borderColor: chartColors.red,
 				pointBackgroundColor: chartColors.red,
 				data: rankDataO_H
 			},
 			{
-				label: 'Defense',
-				backgroundColor: color(chartColors.blue).alpha(0.2).rgbString(),
-				borderColor: chartColors.blue,
-				pointBackgroundColor: chartColors.blue,
-				data: rankDataD_H
+				label: `Defense ${selTeamHome}`,
+				backgroundColor: color(chartColors.purple).alpha(0.2).rgbString(),
+				borderColor: chartColors.purple,
+				pointBackgroundColor: chartColors.purple,
+				data: rankDataD_H,
+				hidden: true
 			},
 			{
-				label: 'Offense',
-				backgroundColor: color(chartColors.red).alpha(0.2).rgbString(),
-				borderColor: chartColors.red,
-				pointBackgroundColor: chartColors.red,
-				data: rankDataO_A
+				label: `Offense ${selTeamAway}`,
+				backgroundColor: color(chartColors.green).alpha(0.2).rgbString(),
+				borderColor: chartColors.green,
+				pointBackgroundColor: chartColors.green,
+				data: rankDataO_A,
+				hidden: true
 			},
 			{
-				label: 'Defense',
-				backgroundColor: color(chartColors.blue).alpha(0.2).rgbString(),
-				borderColor: chartColors.blue,
-				pointBackgroundColor: chartColors.blue,
-				data: rankDataD_A
-			}
-		]
-	};
-
-	let radarDataAway = {
-		labels: rankLabel,
-		datasets: [
-			{
-				label: 'Offense',
-				backgroundColor: color(chartColors.red).alpha(0.2).rgbString(),
-				borderColor: chartColors.red,
-				pointBackgroundColor: chartColors.red,
-				data: rankDataO_A
-			},
-			{
-				label: 'Defense',
+				label: `Defense ${selTeamAway}`,
 				backgroundColor: color(chartColors.blue).alpha(0.2).rgbString(),
 				borderColor: chartColors.blue,
 				pointBackgroundColor: chartColors.blue,
@@ -912,7 +853,4 @@ function makeRadarRankCompare(data) {
 	radarHomeRank.data = radarDataHome;
 	radarHomeRank.options = options;
 	radarHomeRank.update();
-	radarAwayRank.data = radarDataAway;
-	radarAwayRank.options = options;
-	radarAwayRank.update();
 }

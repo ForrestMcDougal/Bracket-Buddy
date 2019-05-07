@@ -9,6 +9,51 @@ let ctxOverUnderPDF = document.querySelector('#overUnderPDF');
 let ctxSpreadPDF = document.querySelector('#spreadPDF');
 let teamChange = document.querySelector('#change-team');
 let scatterChart = document.querySelector('#mlScatter');
+let homeTeamNameSpan = document.querySelector('#homeTeamName');
+let awayTeamNameSpan = document.querySelector('#awayTeamName');
+let homeTeamScoreSpan = document.querySelector('#homeTeamScore');
+let awayTeamScoreSpan = document.querySelector('#awayTeamScore');
+
+YEARS.forEach((year) => {
+	let option = document.createElement('option');
+	option.text = year;
+	option.value = year;
+	homeYearDropdown.insertAdjacentHTML(
+		'beforeend',
+		`
+  <option value="${year}">${year}</option>
+`
+	);
+	awayYearDropdown.insertAdjacentHTML(
+		'beforeend',
+		`
+  <option value="${year}">${year}</option>
+`
+	);
+});
+
+TEAMS.forEach((team) => {
+	let option = document.createElement('option');
+	option.text = team;
+	option.value = team;
+	homeTeamDropdown.insertAdjacentHTML(
+		'beforeend',
+		`
+  <option value="${team}">${team}</option>
+`
+	);
+	awayTeamDropdown.insertAdjacentHTML(
+		'beforeend',
+		`
+  <option value="${team}">${team}</option>
+`
+	);
+});
+
+homeYearDropdown.value = '2019';
+awayYearDropdown.value = '2019';
+homeTeamDropdown.value = 'Duke';
+awayTeamDropdown.value = 'North Carolina';
 
 teamChange.addEventListener('change', showPage);
 
@@ -16,7 +61,7 @@ makeDoubleBarChartInit(ctxDoubleBar);
 makeRadarRankCompareInit(ctxRadarRankHome);
 makeRadarFourFactorsComparisonInit(ctxFFHome);
 makeMLScatterInit(scatterChart);
-makePDFsInit(ctxOverUnderPDF, ctxSpreadPDF);
+makePDFsInit(ctxOverUnderPDF, ctxSpreadPDF, homeTeamNameSpan, awayTeamNameSpan, homeTeamScoreSpan, awayTeamScoreSpan);
 
 function showPage() {
 	let homeTeam = homeTeamDropdown.value;
@@ -25,13 +70,17 @@ function showPage() {
 	let awayYear = awayYearDropdown.value;
 	d3.json(`/api/barDouble/${homeTeam}/${homeYear}/${awayTeam}/${awayYear}`).then((data) => {
 		makeDoubleBarChart(data, homeTeam, homeYear, awayTeam, awayYear);
-		makeRadarRankCompare(data);
+		makeRadarRankCompare(data, homeTeam, awayTeam);
 	});
 	d3
 		.json(`/api/radar/compare/${homeTeam}/${homeYear}/${awayTeam}/${awayYear}`)
 		.then((data) => makeRadarFourFactorsComparison(data, homeTeam, homeYear, awayTeam, awayYear));
 	d3.json(`/api/predictions/${homeTeam}/${homeYear}/${awayTeam}/${awayYear}`).then((data) => {
+		homeTeamNameSpan.innerHTML = `${homeYear} ${homeTeam}`;
+		awayTeamNameSpan.innerHTML = `${awayYear} ${awayTeam}`;
+		homeTeamScoreSpan.innerHTML = `${data['home_point_prediction']}`;
+		awayTeamScoreSpan.innerHTML = `${data['away_point_prediction']}`;
 		makeMLScatter(data, homeTeam, homeYear, awayTeam, awayYear);
-		makePDFS(data);
+		makePDFs(data);
 	});
 }
