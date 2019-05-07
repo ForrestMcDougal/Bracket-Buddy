@@ -13,8 +13,8 @@ function makeMLScatterInit(ctx) {
 		let maxHome = Math.max(...homePoints);
 		let minAway = Math.min(...awayPoints);
 		let maxAway = Math.max(...awayPoints);
-		let overallMin = Math.min(minHome, minAway) - 1;
-		let overallMax = Math.max(maxHome, maxAway) + 1;
+		let overallMin = Math.min(minHome, minAway);
+		let overallMax = Math.max(maxHome, maxAway);
 		let dataPoints = [];
 		for (let i = 0; i < homePoints.length; i++) {
 			dataPoints.push({ x: homePoints[i], y: awayPoints[i] });
@@ -23,18 +23,21 @@ function makeMLScatterInit(ctx) {
 			tooltips: {
 				callbacks: {
 					label: function(tooltipItem, data) {
-						return `${team1}: ${Number(tooltipItem.xLabel).toFixed()}, ${team2}: ${Number(
+						return `${year1} ${team1}: ${Number(tooltipItem.xLabel).toFixed()}, ${year2} ${team2}: ${Number(
 							tooltipItem.yLabel
 						).toFixed()}`;
 					}
 				}
-			},
+            },
+            legend: {
+                display: false
+            },
 			scales: {
 				xAxes: [
 					{
 						scaleLabel: {
-							displayString: true,
-							labelString: `${team1} Points`
+							display: true,
+							labelString: `${year1} ${team1} Points`
 						},
 						ticks: {
 							suggestedMin: overallMin,
@@ -45,8 +48,8 @@ function makeMLScatterInit(ctx) {
 				yAxes: [
 					{
 						scaleLabel: {
-							displayString: true,
-							labelString: `${team2} Points`
+							display: true,
+							labelString: `${year2} ${team2} Points`
 						},
 						ticks: {
 							suggestedMin: overallMin,
@@ -80,8 +83,8 @@ function makeMLScatter(predictData, team1, year1, team2, year2) {
 	let maxHome = Math.max(...homePoints);
 	let minAway = Math.min(...awayPoints);
 	let maxAway = Math.max(...awayPoints);
-	let overallMin = Math.min([ minHome, minAway ]) - 5;
-	let overallMax = Math.max([ maxHome, maxAway ]) + 5;
+	let overallMin = Math.min([ minHome, minAway ]);
+	let overallMax = Math.max([ maxHome, maxAway ]);
 	let dataPoints = [];
 	for (let i = 0; i < homePoints.length; i++) {
 		dataPoints.push({ x: homePoints[i], y: awayPoints[i] });
@@ -90,26 +93,29 @@ function makeMLScatter(predictData, team1, year1, team2, year2) {
 		tooltips: {
 			callbacks: {
 				label: function(tooltipItem, data) {
-					return `${team1}: ${Number(tooltipItem.xLabel).toFixed()}, ${team2}: ${Number(
+					return `${year1} ${team1}: ${Number(tooltipItem.xLabel).toFixed()}, ${year2} ${team2}: ${Number(
 						tooltipItem.yLabel
 					).toFixed()}`;
 				}
 			}
-		},
+        },
+        legend: {
+            display:false
+        },
 		scales: {
 			xAxes: {
 				scaleLabel: {
-					displayString: true,
+					display: true,
 					labelString: `${team1} Points`
 				},
 				ticks: {
-					min: overallMin,
-					max: overallMax
+					suggestedMin: overallMin,
+					suggestedMax: overallMax
 				}
 			},
 			yAxes: {
 				scaleLabel: {
-					displayString: true,
+					display: true,
 					labelString: `${team2} Points`
 				},
 				ticks: {
