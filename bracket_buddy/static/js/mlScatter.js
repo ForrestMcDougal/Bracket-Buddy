@@ -97,12 +97,12 @@ function makeMLScatter(predictData, team1, year1, team2, year2) {
 		tooltips: {
 			callbacks: {
 				label: function(tooltipItem, data) {
-					return `${year1} ${team1}: ${Number(tooltipItem.xLabel).toFixed()}, ${year2} ${team2}: ${Number(
-						tooltipItem.yLabel
-					).toFixed()}`;
+					return [
+						`${team1}: ${Number(tooltipItem.xLabel).toFixed()}`,
+						`${team2}: ${Number(tooltipItem.yLabel).toFixed()}`
+					];
 				}
 			}
-
 		},
 		legend: {
 			display: false
