@@ -1,6 +1,4 @@
 const teamSelect = document.querySelector('#team-select');
-teamSelect.addEventListener('change', showGraph);
-
 const teamGroup = document.querySelector('#tournament-dropdown');
 const yearDropdown = document.querySelector('#year-dropdown');
 const xAxisDropdown = document.querySelector('#x-axis-dropdown');
@@ -10,6 +8,40 @@ const teamYearDropdown = document.querySelector('#team-year-dropdown');
 const legendSpan = document.querySelector('#legend-selected-team');
 const correlation = document.querySelector('#correlation');
 
+YEARS.forEach((year) => {
+	let option = document.createElement('option');
+	option.text = year;
+	option.value = year;
+	yearDropdown.insertAdjacentHTML(
+		'beforeend',
+		`
+  <option value="${year}">${year}</option>
+`
+	);
+	teamYearDropdown.insertAdjacentHTML(
+		'beforeend',
+		`
+  <option value="${year}">${year}</option>
+`
+	);
+});
+
+TEAMS.forEach((team) => {
+	let option = document.createElement('option');
+	option.text = team;
+	option.value = team;
+	teamDropdown.insertAdjacentHTML(
+		'beforeend',
+		`
+  <option value="${team}">${team}</option>
+`
+	);
+});
+
+yearDropdown.value = '2019';
+teamYearDropdown.value = '2019';
+
+teamSelect.addEventListener('change', showGraph);
 teamGroup.addEventListener('change', showGraph);
 yearDropdown.addEventListener('change', showGraph);
 

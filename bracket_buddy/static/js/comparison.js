@@ -14,6 +14,47 @@ let awayTeamNameSpan = document.querySelector('#awayTeamName');
 let homeTeamScoreSpan = document.querySelector('#homeTeamScore');
 let awayTeamScoreSpan = document.querySelector('#awayTeamScore');
 
+YEARS.forEach((year) => {
+	let option = document.createElement('option');
+	option.text = year;
+	option.value = year;
+	homeYearDropdown.insertAdjacentHTML(
+		'beforeend',
+		`
+  <option value="${year}">${year}</option>
+`
+	);
+	awayYearDropdown.insertAdjacentHTML(
+		'beforeend',
+		`
+  <option value="${year}">${year}</option>
+`
+	);
+});
+
+TEAMS.forEach((team) => {
+	let option = document.createElement('option');
+	option.text = team;
+	option.value = team;
+	homeTeamDropdown.insertAdjacentHTML(
+		'beforeend',
+		`
+  <option value="${team}">${team}</option>
+`
+	);
+	awayTeamDropdown.insertAdjacentHTML(
+		'beforeend',
+		`
+  <option value="${team}">${team}</option>
+`
+	);
+});
+
+homeYearDropdown.value = '2019';
+awayYearDropdown.value = '2019';
+homeTeamDropdown.value = 'Duke';
+awayTeamDropdown.value = 'North Carolina';
+
 teamChange.addEventListener('change', showPage);
 
 makeDoubleBarChartInit(ctxDoubleBar);
