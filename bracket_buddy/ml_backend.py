@@ -14,7 +14,7 @@ from bracket_buddy.name_map import home_court
 import bracket_buddy.ml_data_stats
 
 clear_session()
-model_path = os.path.join('bracket_buddy', 'data', 'ml_data', 'first_model.h5')
+model_path = os.path.join('bracket_buddy', 'production_model.h5')
 model = load_model(model_path)
 graph = tf.get_default_graph()
 
