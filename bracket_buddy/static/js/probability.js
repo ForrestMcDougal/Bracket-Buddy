@@ -25,7 +25,12 @@ function makePDFsInit(ctxOU, ctxSpread, homeTeamNameSpan, awayTeamNameSpan, home
 			tooltips: {
 				callbacks: {
 					label: function(tooltipItem) {
-						return `${Number(tooltipItem.yLabel).toFixed(2)}%`;
+						let underArr = spread_y.slice(0, tooltipItem.index);
+						let under = underArr.reduce(function(a, b) {
+							return a + b;
+						}, 0);
+						let over = 100 - under;
+						return [ `Under: ${under.toFixed(2)}%`, `Over: ${over.toFixed(2)}%` ];
 					}
 				}
 			},
@@ -70,7 +75,12 @@ function makePDFsInit(ctxOU, ctxSpread, homeTeamNameSpan, awayTeamNameSpan, home
 			tooltips: {
 				callbacks: {
 					label: function(tooltipItem) {
-						return `${Number(tooltipItem.yLabel).toFixed(2)}%`;
+						let underArr = oe_y.slice(0, tooltipItem.index);
+						let under = underArr.reduce(function(a, b) {
+							return a + b;
+						}, 0);
+						let over = 100 - under;
+						return [ `Under: ${under.toFixed(2)}%`, `Over: ${over.toFixed(2)}%` ];
 					}
 				}
 			},
@@ -160,7 +170,12 @@ function makePDFs(data) {
 		tooltips: {
 			callbacks: {
 				label: function(tooltipItem) {
-					return `${Number(tooltipItem.yLabel).toFixed(2)}%`;
+					let underArr = spread_y.slice(0, tooltipItem.index);
+					let under = underArr.reduce(function(a, b) {
+						return a + b;
+					}, 0);
+					let over = 100 - under;
+					return [ `Under: ${under.toFixed(2)}%`, `Over: ${over.toFixed(2)}%` ];
 				}
 			}
 		},
@@ -205,7 +220,12 @@ function makePDFs(data) {
 		tooltips: {
 			callbacks: {
 				label: function(tooltipItem) {
-					return `${Number(tooltipItem.yLabel).toFixed(2)}%`;
+					let underArr = oe_y.slice(0, tooltipItem.index);
+					let under = underArr.reduce(function(a, b) {
+						return a + b;
+					}, 0);
+					let over = 100 - under;
+					return [ `Under: ${under.toFixed(2)}%`, `Over: ${over.toFixed(2)}%` ];
 				}
 			}
 		},

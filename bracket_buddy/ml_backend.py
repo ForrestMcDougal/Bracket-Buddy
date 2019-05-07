@@ -98,7 +98,7 @@ def bootstrap(year1, team1, year2, team2, mongo):
     data, tc1, tc2 = prepare_data(year1, team1, year2, team2, mongo)
     data_df = pd.DataFrame(data.reshape(1, 111))
     data_copy = data.copy()
-    num_trials = 499
+    num_trials = 99
     for i in range(num_trials):
         rand_data = randomize_data(year1, team1, year2, team2, data_copy)
         data_df.loc[len(data_df)] = rand_data
@@ -121,8 +121,8 @@ def bootstrap(year1, team1, year2, team2, mongo):
     grid_max_oe = np.ceil(np.max(over_under))
     grid_min_s = np.floor(np.min(spread))
     grid_max_s = np.ceil(np.max(spread))
-    grid_oe = int(grid_max_oe - grid_min_oe)
-    grid_s = int(grid_max_s - grid_min_s)
+    grid_oe = int(grid_max_oe - grid_min_oe) * 100
+    grid_s = int(grid_max_s - grid_min_s) * 100
     oe_x, oe_y = estimator.fit(over_under, weights=None).evaluate(grid_oe)
     oe_df = pd.DataFrame({'x': oe_x, 'y': oe_y})
     oe_df['x_round'] = round(oe_df['x'])
@@ -151,6 +151,8 @@ def bootstrap(year1, team1, year2, team2, mongo):
     output['spread'] = str(round(np.mean(spread), 1))
     output['scatter_color'] = [tc1 if prediction[x, 0] >
                                prediction[x, 1] else tc2 for x in range(len(prediction[:, 0]))]
+    output['scatter_marker'] = ['circle' if prediction[x, 0] >
+                                prediction[x, 1] else 'rect' for x in range(len(prediction[:, 0]))]
     output['home_point_prediction'] = str(int(round(
         np.mean([x for x in prediction[:, 0]]))))
     output['away_point_prediction'] = str(int(round(
