@@ -1,12 +1,16 @@
 let over_under_pdf;
 let spread_pdf;
 
-function makePDFsInit(ctxOU, ctxSpread) {
+function makePDFsInit(ctxOU, ctxSpread, homeTeamNameSpan, awayTeamNameSpan, homeTeamScoreSpan, awayTeamScoreSpan) {
 	let homeTeam = homeTeamDropdown.value;
 	let homeYear = homeYearDropdown.value;
 	let awayTeam = awayTeamDropdown.value;
 	let awayYear = awayYearDropdown.value;
 	d3.json(`/api/predictions/${homeTeam}/${homeYear}/${awayTeam}/${awayYear}`).then((data) => {
+		homeTeamNameSpan.innerHTML = `${homeYear} ${homeTeam}`;
+		awayTeamNameSpan.innerHTML = `${awayYear} ${awayTeam}`;
+		homeTeamScoreSpan.innerHTML = `${data['home_point_prediction']}`;
+		awayTeamScoreSpan.innerHTML = `${data['away_point_prediction']}`;
 		let spread_x = data['spread_x'].map((d) => +d);
 		let spread_y = data['spread_y'].map((d) => +d);
 		let oe_x = data['over_under_x'].map((d) => +d);

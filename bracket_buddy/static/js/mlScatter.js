@@ -23,17 +23,21 @@ function makeMLScatterInit(ctx) {
 			tooltips: {
 				callbacks: {
 					label: function(tooltipItem, data) {
-						return `${team1}: ${Number(tooltipItem.xLabel).toFixed()}, ${team2}: ${Number(
-							tooltipItem.yLabel
-						).toFixed()}`;
+						return [
+							`${team1}: ${Number(tooltipItem.xLabel).toFixed()}`,
+							`${team2}: ${Number(tooltipItem.yLabel).toFixed()}`
+						];
 					}
 				}
+			},
+			legend: {
+				display: false
 			},
 			scales: {
 				xAxes: [
 					{
 						scaleLabel: {
-							displayString: true,
+							display: true,
 							labelString: `${team1} Points`
 						},
 						ticks: {
@@ -45,7 +49,7 @@ function makeMLScatterInit(ctx) {
 				yAxes: [
 					{
 						scaleLabel: {
-							displayString: true,
+							display: true,
 							labelString: `${team2} Points`
 						},
 						ticks: {
@@ -96,10 +100,13 @@ function makeMLScatter(predictData, team1, year1, team2, year2) {
 				}
 			}
 		},
+		legend: {
+			display: false
+		},
 		scales: {
 			xAxes: {
 				scaleLabel: {
-					displayString: true,
+					display: true,
 					labelString: `${team1} Points`
 				},
 				ticks: {
@@ -109,7 +116,7 @@ function makeMLScatter(predictData, team1, year1, team2, year2) {
 			},
 			yAxes: {
 				scaleLabel: {
-					displayString: true,
+					display: true,
 					labelString: `${team2} Points`
 				},
 				ticks: {

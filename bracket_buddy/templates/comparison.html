@@ -777,30 +777,48 @@
             </div>
     </form>
   </nav>
-  <div class="container" id="scatterContainer">
-    <canvas id="mlScatter" aspectRaio="1"></canvas>
+  <div class="container">
+    <div class="row mt-4">
+      <div class="col-md-6 col-sm-6 col-xs-6 home-team-name">
+        <span class="team-name" id="homeTeamName"></span>
+      </div>
+      <div class="col-md-6 col-sm-6 col-xs-6 away-team-name">
+        <span class="team-name" id="awayTeamName"></span>
+      </div>
     </div>
-  <div class="container" id="barContainer" style="padding-top: 10px;">
-    <canvas id="doubleBar" height="110px"></canvas>
-  </div>
-  <hr style="border: 1px solid black;" />
-  <hr style="border: 1px solid black;" />
-  <div class="row">
-    <div class="col-md-6 col-sm-12 col-xs-12" id="home-radar-ff">
-        <h4 style="text-align: center">Four Factors</h4>
-      <canvas id="homeRadarFF" aspectRatio="1"></canvas>
+    <div class="row">
+      <div class="col-md-6 col-sm-6 col-xs-6 home-team-score">
+        <span class="team-score" id="homeTeamScore"></span>
+      </div>
+      <div class="col-md-6 col-sm-6 col-xs-6 away-team-score">
+        <span class="team-score" id="awayTeamScore"></span>
+      </div>
     </div>
-    <div class="col-md-6 col-sm-12 col-xs-12" id="home-radar-rank">
-        <h4 style="text-align: center">National Rankings</h4>
-      <canvas id="homeRadarRank" aspectRatio="1"></canvas>
+    <div class="row" id="scatterContainer">
+      <div class="col-md-6 offset-md-3 mt-4">
+        <canvas id="mlScatter" aspectRatio="1"></canvas>
+      </div>
     </div>
-  </div>
-  <div class="row">
-    <div class="col-md-6 col-sm-12 col-xs-12" id="over-under-pdf">
-      <canvas id="overUnderPDF" aspectRatio="1"></canvas>
+    <div class="row mt-3">
+      <div class="col-md-6 col-sm-12 col-xs-12" id="over-under-pdf">
+        <canvas id="overUnderPDF" aspectRatio="1"></canvas>
+      </div>
+      <div class="col-md-6 col-sm-12 col-xs-12" id="spread-pdf">
+        <canvas id="spreadPDF" aspectRatio="1"></canvas>
+      </div>
     </div>
-    <div class="col-md-6 col-sm-12 col-xs-12" id="spread-pdf">
-      <canvas id="spreadPDF" aspectRatio="1"></canvas>
+    <div class="container" id="barContainer" style="padding-top: 10px;">
+      <canvas id="doubleBar" height="110px"></canvas>
+    </div>
+    <div class="row mt-4">
+      <div class="col-md-6 col-sm-12 col-xs-12" id="home-radar-ff">
+          <h4 style="text-align: center">Four Factors</h4>
+        <canvas id="homeRadarFF" aspectRatio="1"></canvas>
+      </div>
+      <div class="col-md-6 col-sm-12 col-xs-12" id="home-radar-rank">
+          <h4 style="text-align: center">National Rankings</h4>
+        <canvas id="homeRadarRank" aspectRatio="1"></canvas>
+      </div>
     </div>
   </div>
   
@@ -821,7 +839,6 @@
   <script src="{{ url_for('static', filename='js/probability.js') }}"></script>
   <script src="{{ url_for('static', filename='js/radar.js') }}"></script>
   <script src="{{ url_for('static', filename='js/barChart.js') }}"></script>
-  <script src="{{ url_for('static', filename='js/doughnuts.js') }}"></script>
   <script src="{{ url_for('static', filename='js/comparison.js') }}"></script>
 </body>
 
