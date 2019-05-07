@@ -105,4 +105,4 @@ venv.bak/
 .mypy_cache/
 
 # data
-bracket_buddy/data/*
+/bracket_buddy/data/*
