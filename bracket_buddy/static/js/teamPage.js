@@ -9,6 +9,33 @@ let ctxRankingRadar = document.querySelector('#rankRadar');
 let teamChange = document.querySelector('#change-team');
 let historyFilter = document.querySelector('#history-filter');
 
+YEARS.forEach((year) => {
+	let option = document.createElement('option');
+	option.text = year;
+	option.value = year;
+	teamYearDropdown.insertAdjacentHTML(
+		'beforeend',
+		`
+  <option value="${year}">${year}</option>
+`
+	);
+});
+
+TEAMS.forEach((team) => {
+	let option = document.createElement('option');
+	option.text = team;
+	option.value = team;
+	teamDropdown.insertAdjacentHTML(
+		'beforeend',
+		`
+  <option value="${team}">${team}</option>
+`
+	);
+});
+
+teamYearDropdown.value = '2019';
+teamDropdown.value = 'Duke';
+
 teamChange.addEventListener('change', showPage);
 
 historyFilter.addEventListener('change', () => {

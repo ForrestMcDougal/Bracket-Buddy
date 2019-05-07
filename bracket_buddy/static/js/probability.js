@@ -1,12 +1,16 @@
 let over_under_pdf;
 let spread_pdf;
 
-function makePDFsInit(ctxOU, ctxSpread) {
+function makePDFsInit(ctxOU, ctxSpread, homeTeamNameSpan, awayTeamNameSpan, homeTeamScoreSpan, awayTeamScoreSpan) {
 	let homeTeam = homeTeamDropdown.value;
 	let homeYear = homeYearDropdown.value;
 	let awayTeam = awayTeamDropdown.value;
 	let awayYear = awayYearDropdown.value;
 	d3.json(`/api/predictions/${homeTeam}/${homeYear}/${awayTeam}/${awayYear}`).then((data) => {
+		homeTeamNameSpan.innerHTML = `${homeYear} ${homeTeam}`;
+		awayTeamNameSpan.innerHTML = `${awayYear} ${awayTeam}`;
+		homeTeamScoreSpan.innerHTML = `${data['home_point_prediction']}`;
+		awayTeamScoreSpan.innerHTML = `${data['away_point_prediction']}`;
 		let spread_x = data['spread_x'].map((d) => +d);
 		let spread_y = data['spread_y'].map((d) => +d);
 		let oe_x = data['over_under_x'].map((d) => +d);
@@ -21,7 +25,12 @@ function makePDFsInit(ctxOU, ctxSpread) {
 			tooltips: {
 				callbacks: {
 					label: function(tooltipItem) {
-						return `${Number(tooltipItem.yLabel).toFixed(2)}%`;
+						let underArr = spread_y.slice(0, tooltipItem.index);
+						let under = underArr.reduce(function(a, b) {
+							return a + b;
+						}, 0);
+						let over = 100 - under;
+						return [ `Under: ${under.toFixed(2)}%`, `Over: ${over.toFixed(2)}%` ];
 					}
 				}
 			},
@@ -66,7 +75,12 @@ function makePDFsInit(ctxOU, ctxSpread) {
 			tooltips: {
 				callbacks: {
 					label: function(tooltipItem) {
-						return `${Number(tooltipItem.yLabel).toFixed(2)}%`;
+						let underArr = oe_y.slice(0, tooltipItem.index);
+						let under = underArr.reduce(function(a, b) {
+							return a + b;
+						}, 0);
+						let over = 100 - under;
+						return [ `Under: ${under.toFixed(2)}%`, `Over: ${over.toFixed(2)}%` ];
 					}
 				}
 			},
@@ -156,7 +170,12 @@ function makePDFs(data) {
 		tooltips: {
 			callbacks: {
 				label: function(tooltipItem) {
-					return `${Number(tooltipItem.yLabel).toFixed(2)}%`;
+					let underArr = spread_y.slice(0, tooltipItem.index);
+					let under = underArr.reduce(function(a, b) {
+						return a + b;
+					}, 0);
+					let over = 100 - under;
+					return [ `Under: ${under.toFixed(2)}%`, `Over: ${over.toFixed(2)}%` ];
 				}
 			}
 		},
@@ -201,7 +220,12 @@ function makePDFs(data) {
 		tooltips: {
 			callbacks: {
 				label: function(tooltipItem) {
-					return `${Number(tooltipItem.yLabel).toFixed(2)}%`;
+					let underArr = oe_y.slice(0, tooltipItem.index);
+					let under = underArr.reduce(function(a, b) {
+						return a + b;
+					}, 0);
+					let over = 100 - under;
+					return [ `Under: ${under.toFixed(2)}%`, `Over: ${over.toFixed(2)}%` ];
 				}
 			}
 		},

@@ -9,6 +9,7 @@ function makeMLScatterInit(ctx) {
 		let homePoints = predictData['home_points'].map((d) => +d);
 		let awayPoints = predictData['away_points'].map((d) => +d);
 		let colors = predictData['scatter_color'].map((d) => d);
+		let markers = predictData['scatter_marker'].map((d) => d);
 		let minHome = Math.min(...homePoints);
 		let maxHome = Math.max(...homePoints);
 		let minAway = Math.min(...awayPoints);
@@ -23,15 +24,16 @@ function makeMLScatterInit(ctx) {
 			tooltips: {
 				callbacks: {
 					label: function(tooltipItem, data) {
-						return `${year1} ${team1}: ${Number(tooltipItem.xLabel).toFixed()}, ${year2} ${team2}: ${Number(
-							tooltipItem.yLabel
-						).toFixed()}`;
+						return [
+							`${team1}: ${Number(tooltipItem.xLabel).toFixed()}`,
+							`${team2}: ${Number(tooltipItem.yLabel).toFixed()}`
+						];
 					}
 				}
-            },
-            legend: {
-                display: false
-            },
+			},
+			legend: {
+				display: false
+			},
 			scales: {
 				xAxes: [
 					{
@@ -66,7 +68,8 @@ function makeMLScatterInit(ctx) {
 				datasets: [
 					{
 						data: dataPoints,
-						pointBackgroundColor: colors
+						pointBackgroundColor: colors,
+						pointStyle: markers
 					}
 				]
 			},
@@ -79,6 +82,7 @@ function makeMLScatter(predictData, team1, year1, team2, year2) {
 	let homePoints = predictData['home_points'].map((d) => +d);
 	let awayPoints = predictData['away_points'].map((d) => +d);
 	let colors = predictData['scatter_color'].map((d) => d);
+	let markers = predictData['scatter_marker'].map((d) => d);
 	let minHome = Math.min(...homePoints);
 	let maxHome = Math.max(...homePoints);
 	let minAway = Math.min(...awayPoints);
@@ -98,10 +102,11 @@ function makeMLScatter(predictData, team1, year1, team2, year2) {
 					).toFixed()}`;
 				}
 			}
-        },
-        legend: {
-            display:false
-        },
+
+		},
+		legend: {
+			display: false
+		},
 		scales: {
 			xAxes: {
 				scaleLabel: {
@@ -129,7 +134,8 @@ function makeMLScatter(predictData, team1, year1, team2, year2) {
 		datasets: [
 			{
 				data: dataPoints,
-				pointBackgroundColor: colors
+				pointBackgroundColor: colors,
+				pointStyle: markers
 			}
 		]
 	};

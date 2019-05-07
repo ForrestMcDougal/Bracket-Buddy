@@ -2,13 +2,13 @@
 	text-align: center;
 }
 .mainjumbo {
-  position: relative;
-  margin: 0;
-  background: white;
-  background-image: url(../images/header.jpg);
-  background-position: bottom;
-  background-size: cover;
-  height: 250px;}
+	position: relative;
+	margin: 0;
+	background: white;
+	background-image: url(../images/header.jpg);
+	background-position: bottom;
+	background-size: cover;
+	height: 250px;
 }
 
 footer {
@@ -21,20 +21,38 @@ footer {
   padding-top: 20px;
 }
 
-/* select {
-  display: block;
-  width: 100%;
-  padding: 0.25rem 1.5rem;
-  clear: both;
-  font-weight: 400;
-  color: #212121;
-  text-align: left;
-  white-space: nowrap;
-  background-color: transparent;
-  border: 0;
+.mainjumbo2 {
+	position: relative;
+	margin: 0;
+	background: #000;
+	background-image: url(../images/team.jpg);
+	background-position: center;
+	background-size: cover;
+	height: 250px;
 }
-select {
-  display: block;
-  padding: 0.25rem 1.5rem;
-  color: #212121;
-} */
+
+.team-name {
+	text-align: center;
+	font-size: large;
+}
+
+.team-score {
+	text-align: center;
+	font-size: large;
+}
+
+.home-team-name {
+	text-align: center;
+}
+
+.away-team-name {
+	text-align: center;
+}
+
+.home-team-score {
+	text-align: center;
+}
+
+.away-team-score {
+	text-align: center;
+}
