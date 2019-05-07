@@ -371,7 +371,8 @@ function makeRadarFourFactorsComparison(theData, homeTeam, homeYear, awayTeam, a
 				backgroundColor: color(chartColors.green).alpha(0.2).rgbString(),
 				borderColor: chartColors.green,
 				pointBackgroundColor: chartColors.green,
-				data: ffDataArr
+				data: ffDataArr,
+				hidden: true
 			}
 		]
 	};
