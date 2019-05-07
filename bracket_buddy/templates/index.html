@@ -41,7 +41,7 @@
     </div>
   </nav>
   <div class="container">
-      <div class="collapse" id="collapseInfo" style="opacity: '70%'">
+      <div class="collapse bg-light" id="collapseInfo" style="opacity: '70%'">
         <div class="card card-body">
           <div id="background">
             <p>March Madness is the best time of the year. 68 teams enter a single-elimination tournament with
@@ -63,88 +63,82 @@
         </div>
       </div>
     </div>
-<div class="container">
-<div class="row">
-  <div class="col-md-6">
-    <div class="row">
-      <div class="card mb-3">
-        <a href="/predict">
-        <div class="row no-gutters">
-        <div class="col-md-6">
-          <img src="../static/images/predict.jpg" class="card-img" alt="Predict the winner">
-        </div>
-      <div class="col-md-6">
-        <div class="card-body" >
-          <h5 class="card-title">Predict the winner!</h5>
-          <p class="card-text">Use machine learning to predict which NCAA Division 1 team will prevail over another.</p>
-        </div>
-      </div>
-      </div>
-      </a>
-      </div>
-    </div>
-  </div>
-  <div class="col-md-6">
-    <div class="row">
-      <div class="card mb-3">
-        <a href="/comparison">
-          <div class="row no-gutters">
-            <div class="col-md-6">
-            <img src="../static/images/headtohead.png" class="card-img" alt="Compare teams">
-            </div>
-            <div class="col-md-6">
-              <div class="card-body"  >
-                <h5 class="card-title">Head to Head</h5>
-                <p class="card-text">Pit any NCAA Division 1 from 2010 on against any other in a virtual 'game'.</p>
+
+    <div class="container-fluid content-row">
+      <div class="row">
+        <div class="col-md-6 col-sm-3">
+          <div class="card mb-3 h-100">
+            <a href="/predict">
+              <div class="row">
+                <div class="col-md-6 mb-3">
+                <img src="../static/images/predict.jpg" class="card-img" alt="Deep Dive">
+                </div>
+                <div class="col-md-6 mb-3">
+                  <div class="card-body">
+                    <h5 class="card-title">Predict the Winner!</h5>
+                    <p class="card-text">Use machine learning to predict which NCAA Division 1 team will prevail over another.</p>
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
-        </a>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="row">
-  <div class="col-md-6">
-    <div class="row">
-      <div class="card mb-3">
-      <a href="/team">
-        <div class="row no-gutters">
-          <div class="col-md-6 mb-3">
-          <img src="../static/images/team.jpg" class="card-img" alt="Favorite Team stats">
-          </div>
-          <div class="col-md-6 mb-3">
-            <div class="card-body" >
-              <h5 class="card-title">Team Statistics</h5>
-              <p class="card-text">See all the stats of your favorite NCAA Division 1 team</p>
-            </div>
+            </a>
           </div>
         </div>
-      </a>
-      </div>
-    </div>
-  </div>
-  <div class="col-md-6">
-    <div class="row">
-      <div class="card mb-3">
-        <a href="/scatter">
-          <div class="row">
-            <div class="col-md-6 mb-3">
-            <img src="../static/images/headerraw.jpg" class="card-img" alt="Deep Dive">
-            </div>
-            <div class="col-md-6 mb-3">
-              <div class="card-body">
-                <h5 class="card-title">Deep Dive</h5>
-                <p class="card-text">Pick two stats and see how your team stacks up against the rest.</p>
+        <div class="col-md-6 col-sm-3">
+          <div class="card mb-3 h-100">
+            <a href="/comparison">
+              <div class="row">
+                <div class="col-md-6 mb-3">
+                <img src="../static/images/headtohead.png" class="card-img" alt="Head to Head">
+                </div>
+                <div class="col-md-6 mb-3">
+                  <div class="card-body">
+                    <h5 class="card-title">Head to Head</h5>
+                    <p class="card-text">See all the stats of your favorite NCAA Division 1 team.</p>
+                  </div>
+                </div>
               </div>
-            </div>
+            </a>
           </div>
-        </a>
-      </div>
+        </div>
+
+
+
+        <div class="col-md-6 col-sm-3">
+          <div class="card mb-3 h-100">
+            <a href="/team">
+              <div class="row">
+                <div class="col-md-6 mb-3">
+                <img src="../static/images/team.jpg" class="card-img" alt="Team Statistics">
+                </div>
+                <div class="col-md-6 mb-3">
+                  <div class="card-body">
+                    <h5 class="card-title">Team Statistics</h5>
+                    <p class="card-text">See all the stats of your favorite NCAA Division 1 team.</p>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+        <div class="col-md-6 col-sm-3">
+          <div class="card mb-3 h-100">
+            <a href="/scatter">
+              <div class="row">
+                <div class="col-md-6 mb-3">
+                <img src="../static/images/headerraw.jpg" class="card-img" alt="Deep Dive">
+                </div>
+                <div class="col-md-6 mb-3">
+                  <div class="card-body">
+                    <h5 class="card-title">Deep Dive</h5>
+                    <p class="card-text">Pick two stats and see how your team stacks up against the rest.</p>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div><!--row-->
     </div>
-  </div>
-</div><!--row-->
-</div>
 <nav class="navbar navbar-dark bg-dark navbar-expand-lg">
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar2">
     <span class="navbar-toggler-icon"></span>
