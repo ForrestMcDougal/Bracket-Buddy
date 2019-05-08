@@ -12,13 +12,13 @@
 }
 
 footer {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
+	position: fixed;
+	bottom: 0;
+	width: 100%;
 }
 
 .col-md-6 {
-  padding-top: 20px;
+	padding-top: 20px;
 }
 
 .mainjumbo2 {
@@ -33,30 +33,26 @@ footer {
 
 .team-name {
 	text-align: center;
-	font-size: large;
+	font-size: 30px;
 }
 
 .team-score {
 	text-align: center;
-	font-size: large;
+	font-size: 30px;
 }
 
 .home-team-name {
-  text-align: center;
-  font-size: 50px;
+	text-align: center;
 }
 
 .away-team-name {
-  text-align: center;
-  font-size: 50px;
+	text-align: center;
 }
 
 .home-team-score {
-  text-align: center;
-  font-size: 50px;
+	text-align: center;
 }
 
 .away-team-score {
-  text-align: center;
-  font-size: 50px;
+	text-align: center;
 }
