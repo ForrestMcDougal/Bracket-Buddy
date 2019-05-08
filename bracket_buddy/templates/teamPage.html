@@ -39,12 +39,12 @@
   <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
     <form class="d-flex w-100 justify-content-center pl-5 form-inline">
         <div class="form-group row" id="change-team">
-              <label for="team-year-filter" class="my-1 mr-2">Year</label>
+              <label for="team-year-filter" class="my-1 mr-2"><strong>Year</strong></label>
               <div>
                 <select id="team-year-dropdown" name="team-year-filter" class="custom-select my-1 mr-sm-2">
                 </select>
             </div>
-              <label for="team-filter" class="my-1 mr-2">Team</label>
+              <label for="team-filter" class="my-1 mr-2"><strong>Team</strong></label>
               <div>
                 <select id="team-dropdown" name="team-filter" class="custom-select my-1 mr-sm-2">
                 </select>
@@ -61,11 +61,12 @@
         <canvas id="teamFourFactorsRadar" aspectRatio="1"></canvas>
       </div>
     </div>
-    <div class="row">
+    <div class="form-row form-inline pt-2">
       <div class="col-md-3 col-sm-6 col-xs-12">
-        <label for="history-filter">Change Stat</label>
+        <div class="form-group form-inline">
+        <label class="pr-1" for="history-filter"><strong>Change Stat </strong></label>
         <div>
-          <select id="history-filter" name="history-filter" class="dropdown">
+          <select id="history-filter" name="history-filter" class="form-control my-1 mr-sm-2">
             <option value="AdjEM" data-label="Adj. Efficiency Margin" selected>Adj. Efficiency Margin</option>
             <option value="Tempo" data-label="Tempo">Tempo</option>
             <option value="AdjTempo" data-label="Adj. Tempo">Adj. Tempo</option>
@@ -105,6 +106,7 @@
           </select>
         </div>
       </div>
+    </div>
     </div>
     <div class="row">
       <div class="col-md-6 col-sm-12 col-xs-12" id="historyContainer">
