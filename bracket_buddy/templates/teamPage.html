@@ -8,8 +8,8 @@
   <link rel="stylesheet" href="https://bootswatch.com/4/materia/bootstrap.css" />
   <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <link href="https://fonts.googleapis.com/css?family=Graduate" rel="stylesheet">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
   <title>Bracket Buddy - Team Page</title>
 </head>
 <body>
@@ -24,10 +24,10 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-            <a id="team-page" class="nav-link" href="/team">Team Statistics</a>
+            <a id="compare-teams" class="nav-link" href="/comparison">Predict Winner</a>
           </li>
-        <li class="nav-item">
-            <a id="compare-teams" class="nav-link" href="/comparison">Head to Head</a>
+          <li class="nav-item">
+            <a id="team-page" class="nav-link" href="/team">Team Statistics</a>
           </li>
           <li class="nav-item">
             <a id="compare-scatter" class="nav-link" href="/scatter">Deep Dive</a>
@@ -39,7 +39,7 @@
     </div>
   </nav>
   <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
-    <form class="d-flex w-100 justify-content-end form-inline">
+    <form class="d-flex w-100 justify-content-start pl-5 form-inline">
         <div class="form-group row" id="change-team">
               <label for="team-year-filter" class="my-1 mr-2">Year</label>
               <div>

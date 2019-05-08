@@ -8,45 +8,42 @@
     <link rel="stylesheet" href="https://bootswatch.com/4/materia/bootstrap.css" />
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
       <link href="https://fonts.googleapis.com/css?family=Graduate" rel="stylesheet">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
     <title>Bracket Buddy - Reference</title>
   </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-3">
-        <a class="navbar-brand active flex-grow-1" href="/" style="font-family: 'Graduate';">
-          <img src="../static/images/basketball2.svg" width="30" height="30" class="d-inline-block align-top" alt="Designed by Freepik from www.flaticon.com">
-          Bracket Buddy
-        </a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-              <a id="team-page" class="nav-link" href="/team">Team Statistics</a>
-            </li> 
-            <li class="nav-item">
-              <a id="compare-teams" class="nav-link" href="/comparison">Head to Head</a>
-            </li>
-            <li class="nav-item">
-              <a id="compare-scatter" class="nav-link" href="/scatter">Deep Dive</a>
-            </li>
-            <li class="nav-item">
-              <a id="reference" class="nav-link" href="/reference">Reference</a>
-            </li>
-            
-            
-            
-          </ul>
-        </div>
-      </nav>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand active flex-grow-1" href="/" style="font-family: 'Graduate';">
+      <img src="../static/images/basketball2.svg" width="30" height="30" class="d-inline-block align-top" alt="Designed by Freepik from www.flaticon.com">
+      Bracket Buddy
+    </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+            <a id="compare-teams" class="nav-link" href="/comparison">Predict Winner</a>
+          </li>
+          <li class="nav-item">
+            <a id="team-page" class="nav-link" href="/team">Team Statistics</a>
+          </li>
+          <li class="nav-item">
+            <a id="compare-scatter" class="nav-link" href="/scatter">Deep Dive</a>
+          </li>
+        <li class="nav-item">
+          <a id="reference" class="nav-link" href="/reference">Reference</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
   <div id="content">
     <h1>Statistics Reference</h1><br>
     <h5>Adjusted EM (Adjusted Efficiency Margin)</h5>
     <ul>
-      <p>Adjusted Offensive Efficiency - Adjusted Defensive Efficiency, ideally the overall gauge of a team's quality. 
+      <p>Adjusted Offensive Efficiency - Adjusted Defensive Efficiency, ideally the overall gauge of a team's quality.
       </p>
     </ul>
     <h5>Adjusted D Efficiency</h5>

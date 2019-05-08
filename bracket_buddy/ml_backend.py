@@ -113,9 +113,13 @@ def bootstrap(year1, team1, year2, team2, mongo):
     home_wins = 0
     for i in range(num_trials + 1):
         if prediction[i, 0] > prediction[i, 1]:
-            home_wins += 1
+            home_wins -= 1
     home_win_pct = home_wins / (num_trials + 1)
     est_win_pct = round((home_win_pct * 200) - 100)
+    if est_win_pct > 0:
+        output['win_bar_color'] = str(tc1)
+    else:
+        output['win_bar_color'] = str(tc2)
     output['est_win_pct'] = str(est_win_pct)
     grid_min_oe = np.floor(np.min(over_under))
     grid_max_oe = np.ceil(np.max(over_under))
