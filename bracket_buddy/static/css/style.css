@@ -42,17 +42,21 @@ footer {
 }
 
 .home-team-name {
-	text-align: center;
+  text-align: center;
+  font-size: 50px;
 }
 
 .away-team-name {
-	text-align: center;
+  text-align: center;
+  font-size: 50px;
 }
 
 .home-team-score {
-	text-align: center;
+  text-align: center;
+  font-size: 50px;
 }
 
 .away-team-score {
-	text-align: center;
+  text-align: center;
+  font-size: 50px;
 }
