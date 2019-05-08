@@ -57,6 +57,6 @@ final_fours = {
         'Texas Tech': False,
         'Michigan St.': False,
         'Auburn': False,
-        'Virginia': False
+        'Virginia': True
     }
 }

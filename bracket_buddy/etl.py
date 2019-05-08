@@ -44,7 +44,7 @@ def find_conference(team):
 
 
 for year in years:
-    data_path = os.path.join('data', 'cleaned', f'master_{year}.csv')
+    data_path = os.path.join('team_data', f'master_{year}.csv')
     data = pd.read_csv(data_path)
     for index, row in data.iterrows():
         record = row.to_dict()
