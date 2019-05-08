@@ -5,7 +5,7 @@ import pandas as pd
 master_df = pd.DataFrame()
 years = [2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019]
 for year in years:
-    path = os.path.join('bracket_buddy', 'data', 'cleaned', f'master_{year}.csv')
+    path = os.path.join('bracket_buddy', 'team_data', f'master_{year}.csv')
     df = pd.read_csv(path)
     master_df = pd.concat([master_df, df], ignore_index=True)
 
