@@ -2,13 +2,6 @@
 	text-align: center;
 }
 
-#container {
-    width: 1200px;
-    height: 300px;
-    margin: 0;
-    padding: 0;
-}
-
 .mainjumbo {
 	position: relative;
 	margin: 0;
@@ -25,28 +18,16 @@ footer {
 	width: 100%;
 }
 
-.col-md-6 {
-	padding-top: 20px;
-}
-
-.mainjumbo2 {
-	position: relative;
-	margin: 0;
-	background: #000;
-	background-image: url(../images/team.jpg);
-	background-position: center;
-	background-size: cover;
-	height: 250px;
-}
-
 .team-name {
 	text-align: center;
-	font-size: 30px;
+	font-size: 1.5rem;
+	font-family: "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 }
 
 .team-score {
 	text-align: center;
-	font-size: 30px;
+	font-size: 1.5rem;
+	font-family: "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 }
 
 .home-team-name {

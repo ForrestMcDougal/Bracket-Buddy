@@ -10,7 +10,9 @@
     <link href="https://fonts.googleapis.com/css?family=Graduate" rel="stylesheet">
   <title>Bracket Buddy - Predict a Winner</title>
 </head>
-
+<script>$(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})</script>
 <body>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <a class="navbar-brand active flex-grow-1" href="/" style="font-family: 'Graduate';">
@@ -40,22 +42,22 @@
   <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
     <form class="d-flex w-100 justify-content-center pl-5 form-inline">
         <div class="form-group row" id="change-team">
-              <label for="team-year-filter-1" class="my-1 mr-2">Home Year</label>
+              <label for="team-year-filter-1" class="my-1 mr-2"><strong>Home Year</strong></label>
               <div>
                 <select id="home-year-dropdown" name="team-year-filter-1" class="custom-select my-1 mr-sm-2">
                 </select>
               </div>
-              <label for="team-filter-1" class="my-1 mr-2">Home Team</label>
+              <label for="team-filter-1" class="my-1 mr-2"><strong>Home Team</strong></label>
               <div>
                 <select id="home-team-dropdown" name="team-filter-1" class="custom-select my-1 mr-sm-2">
                 </select>
               </div>
-              <label for="team-year-filter-2" class="my-1 mr-2">Away Year</label>
+              <label for="team-year-filter-2" class="my-1 mr-2"><strong>Away Year</strong></label>
               <div>
                 <select id="away-year-dropdown" name="team-year-filter-2" class="custom-select my-1 mr-sm-2">
                 </select>
               </div>
-              <label for="team-filter-2" class="my-1 mr-2">Away Team</label>
+              <label for="team-filter-2" class="my-1 mr-2"><strong>Away Team</strong></label>
               <div>
                 <select id="away-team-dropdown" name="team-filter-2" class="custom-select my-1 mr-sm-2">
                 </select>
@@ -65,7 +67,7 @@
   </nav>
   <div class="container">
     <div class="row mt-4 justify-content-center">
-      <h1>Predicted Scores</h1>
+      <h2>Predicted Scores</h2>
     </div>
     <div class="row">
       <div class="col-md-6 col-sm-6 col-xs-6 home-team-name">
@@ -77,10 +79,10 @@
     </div>
     <div class="row">
       <div class="col-md-6 col-sm-6 col-xs-6 home-team-score">
-        <span class="team-score" id="homeTeamScore"></span>
+        <span class="team-score" id="homeTeamScore" style="font-family: 'Graduate';"></span>
       </div>
       <div class="col-md-6 col-sm-6 col-xs-6 away-team-score">
-        <span class="team-score" id="awayTeamScore"></span>
+        <span class="team-score" id="awayTeamScore" style="font-family: 'Graduate';"></span>
       </div>
     </div>
     <div class="row">
