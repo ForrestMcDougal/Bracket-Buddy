@@ -36,7 +36,7 @@
         <li class="nav-item">
           <a id="reference" class="nav-link" href="/reference">Reference</a>
         </li>
-        
+
       </ul>
     </div>
   </nav>
@@ -83,6 +83,13 @@
         <span class="team-score" id="awayTeamScore"></span>
       </div>
     </div>
+    <div class="row">
+      <div class="col-md-4"></div>
+      <div class="col-md-4">
+        <canvas id="gauge"> </canvas>
+      </div>
+      <div class="col-md-4"></div>
+    </div>
     <div class="row" id="scatterContainer">
       <div class="col-md-8 offset-md-2 mt-4">
         <canvas id="mlScatter" aspectRatio="1"></canvas>
@@ -110,7 +117,7 @@
       </div>
     </div>
   </div>
-  
+
   </div>
 
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -130,6 +137,7 @@
   <script src="{{ url_for('static', filename='js/radar.js') }}"></script>
   <script src="{{ url_for('static', filename='js/barChart.js') }}"></script>
   <script src="{{ url_for('static', filename='js/comparison.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/gauge.js') }}"></script>
 </body>
 
 </html>
