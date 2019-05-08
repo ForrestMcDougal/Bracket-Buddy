@@ -12,8 +12,7 @@ d3.json(`/api/predictions/${homeTeam}/${homeYear}/${awayTeam}/${awayYear}`).then
 
 function showGauge(data) {
   var est_win = +data.est_win_pct;
-  var color = data.win_bar_color;
-  console.log(color)
+  console.log(data)
   new Chart(gauge, {
     type: 'horizontalBar',
     data: {
