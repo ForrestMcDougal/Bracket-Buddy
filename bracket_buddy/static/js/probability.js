@@ -20,8 +20,6 @@ function makePDFs(data) {
 
 	let minSpread = +data['spread_bounds'][0];
 	let maxSpread = +data['spread_bounds'][1];
-	console.log(minSpread);
-	console.log(maxSpread);
 	let minOE = Math.min(...oe_x).toFixed(0) - 1;
 	let maxOE = Math.max(...oe_x).toFixed(0) + 1;
 
