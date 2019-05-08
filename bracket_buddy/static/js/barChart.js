@@ -1,5 +1,6 @@
 let barChart;
 let doubleBarChart;
+let winBar;
 
 function rawLabel(xLabel, data, indx) {
 	switch (xLabel) {
@@ -286,4 +287,88 @@ function makeDoubleBarChart(data, homeTeam, homeYear, awayTeam, awayYear) {
 	};
 	doubleBarChart.options = options;
 	doubleBarChart.update();
+}
+
+function makeWinBarInit(ctx) {
+	let homeTeam = homeTeamDropdown.value;
+	let homeYear = homeYearDropdown.value;
+	let awayTeam = awayTeamDropdown.value;
+	let awayYear = awayYearDropdown.value;
+	d3.json(`/api/predictions/${homeTeam}/${homeYear}/${awayTeam}/${awayYear}`).then((data) => {
+		let est_win = +data.est_win_pct;
+		let color = data['win_bar_color'];
+		winBar = new Chart(ctx, {
+			type: 'horizontalBar',
+			data: {
+				labels: [ '%' ],
+				datasets: [
+					{
+						label: 'Estimated Win %',
+						backgroundColor: color,
+						data: [ est_win ]
+					}
+				]
+			},
+			options: makeWinBarOptions(est_win, homeYear, homeTeam, awayYear, awayTeam)
+		});
+	});
+}
+
+function makeWinBar(data, year1, team1, year2, team2) {
+	let est_win = +data.est_win_pct;
+	let color = data['win_bar_color'];
+	winBar.data = {
+		labels: [ '%' ],
+		datasets: [
+			{
+				label: 'Estimated Win %',
+				backgroundColor: color,
+				data: [ est_win ]
+			}
+		]
+	};
+	winBar.options = makeWinBarOptions(est_win, year1, team1, year2, team2);
+	winBar.update();
+}
+
+function makeWinBarOptions(est_win, year1, team1, year2, team2) {
+	let winner;
+	let est_win_abs;
+	if (est_win < 0) {
+		winner = `${year1} ${team1}`;
+		est_win_abs = -1 * est_win;
+	} else {
+		winner = `${year2} ${team2}`;
+		est_win_abs = est_win;
+	}
+	let options = {
+		tooltips: {
+			callbacks: {
+				label: function(tooltipItem, data) {
+					return `${winner}: ${est_win_abs}%`;
+				}
+			}
+		},
+		legend: { display: false },
+		title: {
+			display: true,
+			text: 'Probability of Winning'
+		},
+		scales: {
+			xAxes: [
+				{
+					barThickness: 20,
+					ticks: {
+						min: -100,
+						max: 100
+					},
+					scaleLabel: {
+						display: true,
+						labelString: `<- ${year1} ${team1} || ${year2} ${team2} ->`
+					}
+				}
+			]
+		}
+	};
+	return options;
 }

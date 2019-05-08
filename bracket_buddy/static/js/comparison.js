@@ -9,6 +9,7 @@ let ctxOverUnderPDF = document.querySelector('#overUnderPDF');
 let ctxSpreadPDF = document.querySelector('#spreadPDF');
 let teamChange = document.querySelector('#change-team');
 let scatterChart = document.querySelector('#mlScatter');
+var winBarChart = document.querySelector('#winBar');
 let homeTeamNameSpan = document.querySelector('#homeTeamName');
 let awayTeamNameSpan = document.querySelector('#awayTeamName');
 let homeTeamScoreSpan = document.querySelector('#homeTeamScore');
@@ -62,6 +63,7 @@ makeRadarRankCompareInit(ctxRadarRankHome);
 makeRadarFourFactorsComparisonInit(ctxFFHome);
 makeMLScatterInit(scatterChart);
 makePDFsInit(ctxOverUnderPDF, ctxSpreadPDF, homeTeamNameSpan, awayTeamNameSpan, homeTeamScoreSpan, awayTeamScoreSpan);
+makeWinBarInit(winBarChart);
 
 function showPage() {
 	let homeTeam = homeTeamDropdown.value;
@@ -82,5 +84,6 @@ function showPage() {
 		awayTeamScoreSpan.innerHTML = `${data['away_point_prediction']}`;
 		makeMLScatter(data, homeTeam, homeYear, awayTeam, awayYear);
 		makePDFs(data);
+		makeWinBar(data, homeYear, homeTeam, awayYear, awayTeam);
 	});
 }
