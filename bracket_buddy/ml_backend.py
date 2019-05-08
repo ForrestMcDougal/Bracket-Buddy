@@ -18,6 +18,7 @@ model_path = os.path.join('bracket_buddy', 'production_model.h5')
 model = load_model(model_path)
 graph = tf.get_default_graph()
 
+# columns to grab from database for prediction
 cols = ['AdjTempo', 'AdjOE', 'AdjDE', 'eFG_Pct_O', 'eFG_Pct_D',
         'TO_Pct_O', 'TO_Pct_D', 'OR_Pct_O', 'OR_Pct_D', 'FT_Rate_O',
         'FT_Rate_D', 'OFF_FT', 'OFF_2PT', 'OFF_3PT', 'DEF_FT',
@@ -30,12 +31,14 @@ cols = ['AdjTempo', 'AdjOE', 'AdjDE', 'eFG_Pct_O', 'eFG_Pct_D',
 
 
 def get_random_number():
+    """generate random number between -1 and 1."""
     rand = random.random()
     rand = (rand * 2) - 1
     return rand
 
 
 def prepare_data(year1, team1, year2, team2, mongo):
+    """Prepare data for prediction."""
     data = []
     team_year_info = mongo.db.basketball.find_one(
         {'TeamName': str(team1), 'Season': int(year1)})
@@ -53,6 +56,7 @@ def prepare_data(year1, team1, year2, team2, mongo):
 
 
 def randomize_data(year1, team1, year2, team2, data):
+    """randomize data for bootstrap predictions."""
     data_std = year_team_std[year1].get(team1, year_team_std['all'])
     cols_len = len(cols)
     data_copy = data.copy()
@@ -94,6 +98,7 @@ def randomize_data(year1, team1, year2, team2, data):
 
 
 def bootstrap(year1, team1, year2, team2, mongo):
+    """predict 100 random games."""
     output = {}
     data, tc1, tc2 = prepare_data(year1, team1, year2, team2, mongo)
     data_df = pd.DataFrame(data.reshape(1, 111))
@@ -144,6 +149,17 @@ def bootstrap(year1, team1, year2, team2, mongo):
     s_x = list(s_ys.index)
     s_y = list(s_ys)
     sum_s_y = sum(s_y)
+    min_spread = np.floor(min(s_x))
+    max_spread = np.ceil(max(s_x))
+    spread_bound = max(abs(min_spread), abs(max_spread))
+    output['spread_bounds'] = [str(-1 * spread_bound), str(spread_bound)]
+    spread_colors = []
+    for i in range(len(s_x)):
+        if s_x[i] <= 0:
+            spread_colors.append(tc1)
+        else:
+            spread_colors.append(tc2)
+    output['spread_colors'] = spread_colors
     s_y_norm = [x / sum_s_y for x in s_y]
     output['home_points'] = [str(x) for x in prediction[:, 0]]
     output['away_points'] = [str(x) for x in prediction[:, 1]]

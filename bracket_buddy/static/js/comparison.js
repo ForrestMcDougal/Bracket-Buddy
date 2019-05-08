@@ -1,3 +1,4 @@
+// grab elements from DOM
 let homeTeamDropdown = document.querySelector('#home-team-dropdown');
 let homeYearDropdown = document.querySelector('#home-year-dropdown');
 let awayTeamDropdown = document.querySelector('#away-team-dropdown');
@@ -15,6 +16,7 @@ let awayTeamNameSpan = document.querySelector('#awayTeamName');
 let homeTeamScoreSpan = document.querySelector('#homeTeamScore');
 let awayTeamScoreSpan = document.querySelector('#awayTeamScore');
 
+// populate select options
 YEARS.forEach((year) => {
 	let option = document.createElement('option');
 	option.text = year;
@@ -56,15 +58,40 @@ awayYearDropdown.value = '2019';
 homeTeamDropdown.value = 'Duke';
 awayTeamDropdown.value = 'North Carolina';
 
-teamChange.addEventListener('change', showPage);
-
+// initialize charts
 makeDoubleBarChartInit(ctxDoubleBar);
 makeRadarRankCompareInit(ctxRadarRankHome);
 makeRadarFourFactorsComparisonInit(ctxFFHome);
 makeMLScatterInit(scatterChart);
-makePDFsInit(ctxOverUnderPDF, ctxSpreadPDF, homeTeamNameSpan, awayTeamNameSpan, homeTeamScoreSpan, awayTeamScoreSpan);
+makePDFsInit(ctxOverUnderPDF, ctxSpreadPDF);
 makeWinBarInit(winBarChart);
 
+// initial population of charts
+let homeTeam = homeTeamDropdown.value;
+let homeYear = homeYearDropdown.value;
+let awayTeam = awayTeamDropdown.value;
+let awayYear = awayYearDropdown.value;
+d3.json(`/api/barDouble/${homeTeam}/${homeYear}/${awayTeam}/${awayYear}`).then((data) => {
+	makeDoubleBarChart(data, homeTeam, homeYear, awayTeam, awayYear);
+	makeRadarRankCompare(data, homeTeam, awayTeam);
+});
+d3
+	.json(`/api/radar/compare/${homeTeam}/${homeYear}/${awayTeam}/${awayYear}`)
+	.then((data) => makeRadarFourFactorsComparison(data, homeTeam, homeYear, awayTeam, awayYear));
+d3.json(`/api/predictions/${homeTeam}/${homeYear}/${awayTeam}/${awayYear}`).then((data) => {
+	homeTeamNameSpan.innerHTML = `${homeYear} ${homeTeam}`;
+	awayTeamNameSpan.innerHTML = `${awayYear} ${awayTeam}`;
+	homeTeamScoreSpan.innerHTML = `${data['home_point_prediction']}`;
+	awayTeamScoreSpan.innerHTML = `${data['away_point_prediction']}`;
+	makeMLScatter(data, homeTeam, homeYear, awayTeam, awayYear);
+	makePDFs(data);
+	makeWinBar(data, homeYear, homeTeam, awayYear, awayTeam);
+});
+
+// add event listener for change
+teamChange.addEventListener('change', showPage);
+
+// on change, change all charts
 function showPage() {
 	let homeTeam = homeTeamDropdown.value;
 	let homeYear = homeYearDropdown.value;
